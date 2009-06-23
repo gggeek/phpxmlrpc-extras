@@ -4,7 +4,7 @@
  *
  * @version $Id: docxmlrpcs.inc,v 1.9 2008/03/07 16:47:06 ggiunta Exp $
  * @author Gaetano Giunta
- * @copyright (c) 2005-2008 G. Giunta
+ * @copyright (c) 2005-2009 G. Giunta
  * @license code licensed under the BSD License: http://phpxmlrpc.sourceforge.net/license.txt
  *
  * @todo use some AJAX magic to implement xmlrpc calls to test/debug methods

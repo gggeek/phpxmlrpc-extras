@@ -5,7 +5,7 @@
     *
     * @author Daniele Baroncelli
     * @author Gaetano Giunta
-    * @copyright (c) 2003-2008 Giunta/Baroncelli. All rights reserved.
+    * @copyright (c) 2003-2009 Giunta/Baroncelli. All rights reserved.
     *
     * @version $Id$
     *
