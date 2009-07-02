@@ -1,6 +1,15 @@
+2009-07-02 - G. Giunta (giunta.gaetano@gmail.com) thanks Heiko Stuebner
+
+	* jsonrpc.inc: fix encoding of UTF8 chars outside of the BMP
+
+2009-06-23 - G. Giunta (giunta.gaetano@gmail.com)
+
+	* replace all usage of '= & new' with '= new', as this is deprecated in php 5
+	and has been shown to cause problems too
+
 2008-04-05 - G. Giunta (giunta.gaetano@gmail.com)
 
-	* xmlrpc.inc: fix encoding of UTF8 chars outside of the BMP
+	* jsonrpc.inc: fix encoding of UTF8 chars outside of the BMP
 
 2008-03-07 Gaetano Giunta <giunta.gaetano@gmail.com>
 
