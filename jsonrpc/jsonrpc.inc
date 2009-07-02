@@ -1196,7 +1196,7 @@
 		switch($type)
 		{
 			case 'string':
-				$jsonrpc_val = jsonrpcval($php_val, $GLOBALS['xmlrpcString']);
+				$jsonrpc_val = new jsonrpcval($php_val, $GLOBALS['xmlrpcString']);
 				break;
 			case 'integer':
 				$jsonrpc_val = new jsonrpcval($php_val, $GLOBALS['xmlrpcInt']);
