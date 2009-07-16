@@ -294,7 +294,7 @@ if (!extension_loaded('xmlrpc'))
   */
   function xmlrpc_server_create()
   {
-    $s =& new xmlrpc_server();
+    $s = new xmlrpc_server();
     $s->functions_parameters_type = 'epivals';
     $s->compress_response = false; // since we will not be outputting any http headers to go with it
     return $s;
