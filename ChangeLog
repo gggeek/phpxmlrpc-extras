@@ -1,6 +1,16 @@
+2009-07-26 - G. Giunta (giunta.gaetano@gmail.com)
+
+	* server.php, jsonrpcs.php: remove usage of ereg*() to avoid warnings with php5
+	* jsonrpc.inc: 1st try at keeping type info for params of incoming calls,
+	so that 'phpvals' type servers can still validate them
+
+2009-07-17 - G. Giunta (giunta.gaetano@gmail.com)
+
+	* xmlrpc_extension_api.inc: fix warnings with php 5.3
+
 2009-07-02 - G. Giunta (giunta.gaetano@gmail.com) thanks Heiko Stuebner
 
-	* jsonrpc.inc: fix encoding of UTF8 chars outside of the BMP
+	* fix a missing 'new' call when building string vals in php_jsonrpc_encode
 
 2009-06-23 - G. Giunta (giunta.gaetano@gmail.com)
 
