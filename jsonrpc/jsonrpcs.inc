@@ -63,7 +63,7 @@
 			{
 				$methName = $m;
 			}
-			$sysCall = $this->allow_system_funcs && ereg("^system\.", $methName);
+			$sysCall = $this->allow_system_funcs && strpos($methName, "system.") === 0;
 			$dmap = $sysCall ? $GLOBALS['_xmlrpcs_dmap'] : $this->dmap;
 
 			if(!isset($dmap[$methName]['function']))
@@ -84,7 +84,7 @@
 				}
 				else
 				{
-				list($ok, $errstr) = $this->verifySignature($paramtypes, $sig);
+					list($ok, $errstr) = $this->verifySignature($paramtypes, $sig);
 				}
 				if(!$ok)
 				{
