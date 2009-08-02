@@ -31,7 +31,7 @@
 // requires: xmlrpc.inc
 // requires: xmlrpcs.inc
 
-if (!extension_loaded('xmlrpc'))
+if (!in_array('xmlrpc',get_loaded_extensions()))
 {
 
   /**
@@ -367,7 +367,7 @@ else
   // in case xmlrpc EPI extension is already loaded, register all funcions w.
   // different names, eg. xmlrpc_alt_encode
   $content = file_get_contents(__FILE__);
-  $content = str_replace(array("!extension_loaded('xmlrpc')", 'function xmlrpc_', '<?php', '?>'), array('true', 'function xmlrpc_alt_', '', ''), $content);
+  $content = str_replace(array("!in_array('xmlrpc',get_loaded_extensions())", 'function xmlrpc_', '<?php', '?>'), array('true', 'function xmlrpc_alt_', '', ''), $content);
   eval($content);
 }
 

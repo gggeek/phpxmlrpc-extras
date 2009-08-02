@@ -1207,7 +1207,7 @@
 	* @return jsonrpcval
 	* @access public
 	*/
-	function &php_jsonrpc_encode($php_val, $options='')
+	function php_jsonrpc_encode($php_val, $options='')
 	{
 		$type = gettype($php_val);
 
@@ -1240,7 +1240,7 @@
 				$ko = false;
 				foreach($php_val as $key => $val)
 				{
-					$arr[$key] =& php_jsonrpc_encode($val, $options);
+					$arr[$key] = php_jsonrpc_encode($val, $options);
 					if(!$ko && $key !== $j)
 					{
 						$ko = true;
@@ -1264,6 +1264,7 @@
 				else
 				{
 					$arr = array();
+				    reset($php_val);
 					while(list($k,$v) = each($php_val))
 					{
 						$arr[$k] = php_jsonrpc_encode($v, $options);

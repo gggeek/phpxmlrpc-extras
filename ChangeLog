@@ -1,6 +1,27 @@
+2009-08-02 - G. Giunta (giunta.gaetano@gmail.com)
+
+	* jsonrpc.inc: fix bad encoding if same object is encoded twice using
+	php_jsonrpc_encode; removed some by-ref assignments and declarations
+
+	* json_extension_api.php: added json_last_error() function and the constants
+	defined in php 5.3.0
+
+	* json_extension_api.php, xmlrpc_extension_api: work around a php bug to
+	determine if native extensions are loaded
+
+	* jsonrpcs.inc: allow 'mixed type' servers (merge from phpxmlrpc 3.0)
+
+	* jsonrpc/testuite: better discrimination of errors
+
+	* xmlrpc/testuite: fix page title
+
+	* xmlrpc/testuite, jsonrpc/testuite: work around a php bug to determine when
+	native extensions are loaded
+
 2009-07-26 - G. Giunta (giunta.gaetano@gmail.com)
 
 	* server.php, jsonrpcs.php: remove usage of ereg*() to avoid warnings with php5
+
 	* jsonrpc.inc: 1st try at keeping type info for params of incoming calls,
 	so that 'phpvals' type servers can still validate them
 

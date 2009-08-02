@@ -33,8 +33,21 @@ else
   $GLOBALS['json_extension_api_120_behaviour'] = true;
 }
 
-if (!extension_loaded('json'))
+if (!in_array('json',get_loaded_extensions()))
 {
+  /* constants: since php 5.3.0 */
+  define('JSON_ERROR_NONE', 0);
+  define('JSON_ERROR_DEPTH', 1);
+  define('JSON_ERROR_STATE_MISMATCH', 2);
+  define('JSON_ERROR_CTRL_CHAR', 3);
+  define('JSON_ERROR_SYNTAX', 4);
+  define('JSON_HEX_TAG', 1);
+  define('JSON_HEX_AMP', 2);
+  define('JSON_HEX_APOS', 4);
+  define('JSON_HEX_QUOT', 8);
+  define('JSON_FORCE_OBJECT', 16);
+
+  $GLOBALS['_json_last_error'] = 0;
 
   /**
   * Takes a php value (array or object) and returns its json representation
@@ -43,7 +56,7 @@ if (!extension_loaded('json'))
   *
   * @bug if value is an ISO-8859-1 string with chars outside of ASCII, the php extension returns NULL, and we do not...
   */
-  function json_encode($value)
+  function json_encode($value, $options=0)
   {
     $jsval = php_jsonrpc_encode($value, array());
     // make sure we emulate the std php behaviour: strings to be encoded are UTF-8!!!
@@ -58,31 +71,40 @@ if (!extension_loaded('json'))
   *
   * @todo add support for assoc=false
   */
-  function json_decode($json, $assoc=false)
+  function json_decode($json, $assoc=false, $depth=512)
   {
     $jsval = php_jsonrpc_decode_json($json);
     if (!$jsval)
     {
+      $GLOBALS['_json_last_error'] = 4;
       return NULL;
     }
     else
     {
       // up to php version 5.2.1, json_decode only accepted structs and arrays as top-level elements
       if ($GLOBALS['json_extension_api_120_behaviour'] && ($jsval->mytype != 3 && $jsval->mytype != 2))
+      {
+        $GLOBALS['_json_last_error'] = 4;
         return NULL;
+      }
       $options = $assoc ? array() : array('decode_php_objs');
       $val = php_jsonrpc_decode($jsval, $options);
+      $GLOBALS['_json_last_error'] = 0;
       return $val;
     }
   }
 
+  function json_last_error()
+  {
+    return $GLOBALS['_json_last_error'];
+  }
 }
 else
 {
   // in case json extension is already loaded, register all funcions w.
   // different names, eg. json_alt_encode
   $content = file_get_contents(__FILE__);
-  $content = str_replace(array("!extension_loaded('json')", 'function json_', '<?php', '?>'), array('true', 'function json_alt_', '', ''), $content);
+  $content = str_replace(array("!in_array('json',get_loaded_extensions())", 'function json_', "define('JSON_", '<?php', '?>'), array('true', 'function json_alt_', "define('JSON_ALT_", '', ''), $content);
   eval($content);
 }
 ?>

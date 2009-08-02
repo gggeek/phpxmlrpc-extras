@@ -235,7 +235,8 @@
 			}
 			else
 			{
-				if ($this->functions_parameters_type == 'phpvals' || $this->functions_parameters_type == 'epivals')
+				if ($this->functions_parameters_type == 'phpvals' || $this->functions_parameters_type == 'epivals' ||
+                    (isset($this->dmap[$GLOBALS['_xh']['method']]['parameters_type']) && ($this->dmap[$GLOBALS['_xh']['method']]['parameters_type'] == 'phpvals')))
 				{
 					if($this->debug > 1)
 					{

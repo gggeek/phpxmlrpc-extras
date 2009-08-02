@@ -258,13 +258,22 @@ function print_phpstyle(aVal) {
 	{
 		//$out = var_export($val, true);
 		///@todo better testing of equality for objects
-		if (($ref === null) || $val !== $ref)
+        ob_start();
+        var_dump($val);
+        $val=ob_get_contents();
+	    ob_clean();
+        var_dump($ref);
+        $ref=ob_get_contents();
+        ob_end_clean();
+        $val = preg_replace('/object\(stdClass\)#[0-9]+/', 'object(stdClass)#xx', $val);
+        $ref = preg_replace('/object\(stdClass\)#[0-9]+/', 'object(stdClass)#xx', $ref);
+		if (($ref === 'NULL') || $val !== $ref)
 		{
-			echo '<span class="diff">';var_dump($val);/*.htmlspecialchars($out).*/ echo '</span>';
+			echo '<span class="diff">'.$val.'</span>';
 		}
 		else
 		  //echo htmlspecialchars($out);
-		  var_dump($val);
+		  echo $val;
 	}
 
     function testDecoding()
@@ -418,6 +427,7 @@ else
     function testExtensionAPI()
 	{
       echo "<h1>Extension API emulation tests</h1>\n<table>\n<tr><th></th><th>Original</th><th>Native Encoded</th><th>Encoded</th><th>Native Decoded</th><th>Decoded</th><th>Native Dec. as obj</th><th>Dec. as obj</th></tr>\n";
+
       foreach($this->testvals as $i => $val)
 	  {
         echo "<tr><td>$i</td><td>"; var_dump($val);
@@ -427,6 +437,7 @@ else
           $j1 = json_encode($val);
           var_dump($j1);
           echo "</td><td>";
+	      //var_dump($val);
           $j2 = json_alt_encode($val);
 		  if ($j1 !== $j2) {
             echo '<b>'; var_dump($j2); echo "</b>\n";
@@ -443,14 +454,20 @@ else
         if (extension_loaded('json'))
         {
           $v1 = json_decode($j1, true);
+          $e1 = function_exists('json_last_error') ? json_last_error() : 0;
 		  var_dump($v1);
 		  echo "</td><td>";
           $v2 = json_alt_decode($j2, true);
+          $e2 = json_alt_last_error();
           if ($v1 !== $v2) {
             echo '<b>'; var_dump($v2); echo "</b>\n";
           }
           else
             var_dump($v2);
+          if ($e1 != $e2)
+          {
+            echo "<br/><b>LAST ERROR: $e1 != $e2</b>";
+          }
         }
         else
         {
@@ -462,19 +479,26 @@ else
         if (extension_loaded('json'))
         {
           $v3 = json_decode($j1, false);
-          if ($v1 !== $v3) {
+          $e3 = function_exists('json_last_error') ? json_last_error() : 0;
+          if ($v1 !== $v3 && !is_array($v1)) {
             echo '<b>'; var_dump($v3); echo "</b>\n";
           }
           else
             var_dump($v3);
           echo "</td><td>";
           $v4 = json_alt_decode($j2, false);
-          if ($v3 !== $v4) {
+          $e4 = json_alt_last_error();
+          echo $this->valdiff($v4, $v3);
+          /*if ($v3 !== $v4) {
             //$out = var_export($v4, true);
             echo '<b>'; var_dump($v4); echo "</b>\n";
           }
           else
-            var_dump($v4);
+            var_dump($v4);*/
+          if ($e3 != $e4)
+          {
+            echo "<br/><b>LAST ERROR: $e3 != $e4</b>";
+          }
         }
         else
         {
