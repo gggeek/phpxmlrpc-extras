@@ -15,9 +15,6 @@
 
 	* xmlrpc/testuite: fix page title
 
-	* xmlrpc/testuite, jsonrpc/testuite: work around a php bug to determine when
-	native extensions are loaded
-
 2009-07-26 - G. Giunta (giunta.gaetano@gmail.com)
 
 	* server.php, jsonrpcs.php: remove usage of ereg*() to avoid warnings with php5
