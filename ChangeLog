@@ -1,3 +1,9 @@
+2009-08-04 - G. Giunta (giunta.gaetano@gmail.com)
+
+	* xmlrpc/testuite, jsonrpc/testsuite: work when short_open_atgs is on in php.ini
+
+	* jsonrpc/testsuite: work when native json extension is disabled
+
 2009-08-02 - G. Giunta (giunta.gaetano@gmail.com)
 
 	* jsonrpc.inc: fix bad encoding if same object is encoded twice using
