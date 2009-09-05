@@ -6,6 +6,9 @@
 # mkdir is a thorny beast under windows: make sure we can not use the cmd version, running eg. "make MKDIR=mkdir.exe"
 MKDIR=mkdir
 
+#find too
+FIND=find
+
 
 #### DO NOT TOUCH FROM HERE ONWARDS ###
 
@@ -67,7 +70,7 @@ dist:
 	cd xmlrpc_extension_api && cp --parents ${EPIFILES} ../extras-${VERSION}/xmlrpc_extension_api
 	cp ${MAINFILES} extras-${VERSION}
 	cd doc && $(MAKE)
-	find extras-${VERSION} -type f -exec dos2unix {} \;
+	${FIND} extras-${VERSION} -type f -exec dos2unix {} \;
 	tar -cvf xmlrpc-extras-${VERSION}.tar extras-${VERSION}
 	gzip xmlrpc-extras-${VERSION}.tar
 	zip -r xmlrpc-extras-${VERSION}.zip extras-${VERSION}
