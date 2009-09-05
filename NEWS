@@ -1,3 +1,18 @@
+XML-RPC for PHP EXTRAS version 0.5 - 2009/09/05
+
+This is the first release of the library to only support PHP 5.
+The corresponding version of the base library is 3.0.0 beta
+
+Quite a few changes and bugfixes have been made in the are of json support:
+* improved: catch exceptions thrown during execution of php functions exposed as methods by the jsonrpc server
+* fixed: fix bad encoding if same object is encoded twice using php_jsonrpc_encode
+* improved: json_extension_api.php: added json_last_error() function and the constants defined in php 5.3.0
+* improved: allow 'mixed type' jsonrpc servers (see description in the xmlrpc server docs)
+* improved: allow 'phpvals' jsonrpc servers to do type checking on incoming requests
+* fixed: a missing 'new' call when building string vals in php_jsonrpc_encode
+* fixed: encoding of UTF8 chars outside of the BMP
+* fixed: encoding of '/' chars in jsonrpc when source is in UTF8
+
 XML-RPC for PHP EXTRAS version 0.4 - 2007/02/25
 
 The fourth release of the php-xmlrpc extras package brings minor new features
