@@ -6,6 +6,8 @@
 	* jsonrpcs.inc: catch exceptions thrown during execution of invoked methods;
 	check for $_SERVER having been disabled via php.ini and log an error if so
 
+	* updated Makefiles (sync with base lib)
+
 	* tagged and release as 0.5
 
 2009-08-04 - G. Giunta (giunta.gaetano@gmail.com)

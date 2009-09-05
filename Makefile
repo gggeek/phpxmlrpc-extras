@@ -3,6 +3,12 @@
 
 ### USER EDITABLE VARS ###
 
+# path to PHP executable, preferably CLI version
+PHP=/usr/local/bin/php
+
+# path were xmlrpc lib files will be copied to
+PHPINCLUDEDIR=/usr/local/lib/php
+
 # mkdir is a thorny beast under windows: make sure we can not use the cmd version, running eg. "make MKDIR=mkdir.exe"
 MKDIR=mkdir
 
@@ -18,30 +24,30 @@ export VERSION=0.5
 
 MAINFILES=ChangeLog Makefile NEWS README docxmlrpcs.*
 
-EPIFILES=xmlrpc_extension_api.inc \
- testsuite.php
+EPIFILES=xmlrpc_extension_api/xmlrpc_extension_api.inc \
+ xmlrpc_extension_api/testsuite.php
 
-AJAXFILES=ajaxmlrpc.inc \
- ajaxdemo.php \
- ajaxdemo2.php \
- sonofajax.php
+AJAXFILES=ajax/ajaxmlrpc.inc \
+ ajax/ajaxdemo.php \
+ ajax/ajaxdemo2.php \
+ ajax/sonofajax.php
 
-JSONFILES=jsonrpc.inc \
- benchmark.php \
- jsonrpcs.inc \
- server.php \
- json_extension_api.inc \
- testsuite.php
+JSONFILES=jsonrpc/jsonrpc.inc \
+ jsonrpc/benchmark.php \
+ jsonrpc/jsonrpcs.inc \
+ jsonrpc/server.php \
+ jsonrpc/json_extension_api.inc \
+ jsonrpc/testsuite.php
 
-PROXYFILES=proxyxmlrpcs.inc \
- proxyserver.php
+PROXYFILES=proxy/proxyxmlrpcs.inc \
+ proxy/proxyserver.php
 
-WSDLFILES=schema.rnc \
- schema.rng \
- xmlrpc.wsdl \
- xmlrpc.xsd
+WSDLFILES=wsdl/schema.rnc \
+ wsdl/schema.rng \
+ wsdl/xmlrpc.wsdl \
+ wsdl/xmlrpc.xsd
 
-ADODBFILES=*.* lib/*.* server/*.* drivers/*.*
+ADODBFILES=adodb/*.php adodb/*.txt adodb/*.svg adodb/lib/*.php adodb/server/*.php adodb/drivers/*.php
 
 all: install
 
@@ -49,7 +55,12 @@ install:
 	@echo Please install by hand the needed components, copying the files into the appropriate directory
 	cd doc && $(MAKE) install
 
-dist:
+
+### the following targets are to be used for library development ###
+
+dist: xmlrpc-extras-${VERSION}.zip xmlrpc-extras-${VERSION}.tar.gz
+
+xmlrpc-extras-${VERSION}.zip xmlrpc-extras-${VERSION}.tar.gz: ${MAINFILES} ${EPIFILES} ${AJAXFILES} ${PROXYFILES} ${WSDLFILES} ${ADODBFILES}
 	@echo ---${VERSION}---
 	rm -rf extras-${VERSION}
 	${MKDIR} extras-${VERSION}
@@ -62,19 +73,23 @@ dist:
 	${MKDIR} extras-${VERSION}/adodb/lib
 	${MKDIR} extras-${VERSION}/adodb/server
 	${MKDIR} extras-${VERSION}/xmlrpc_extension_api
-	cd ajax && cp --parents ${AJAXFILES} ../extras-${VERSION}/ajax
-	cd jsonrpc && cp --parents ${JSONFILES} ../extras-${VERSION}/jsonrpc
-	cd proxy && cp --parents ${PROXYFILES} ../extras-${VERSION}/proxy
-	cd wsdl && cp --parents ${WSDLFILES} ../extras-${VERSION}/wsdl
-	cd adodb && cp --parents ${ADODBFILES} ../extras-${VERSION}/adodb
-	cd xmlrpc_extension_api && cp --parents ${EPIFILES} ../extras-${VERSION}/xmlrpc_extension_api
+	cp --parents ${AJAXFILES} extras-${VERSION}
+	cp --parents ${JSONFILES} extras-${VERSION}
+	cp --parents ${PROXYFILES} extras-${VERSION}
+	cp --parents ${WSDLFILES} extras-${VERSION}
+	cp --parents ${ADODBFILES} extras-${VERSION}
+	cp --parents ${EPIFILES} extras-${VERSION}
 	cp ${MAINFILES} extras-${VERSION}
-	cd doc && $(MAKE)
-	${FIND} extras-${VERSION} -type f -exec dos2unix {} \;
+	cd doc && $(MAKE) dist
+#   on unix shells last char should be \;
+	${FIND} extras-${VERSION} -type f ! -name "*.fttb" ! -name "*.pdf" ! -name "*.gif" -exec dos2unix {} ;
+	-rm xmlrpc-extras-${VERSION}.zip xmlrpc-extras-${VERSION}.tar.gz
 	tar -cvf xmlrpc-extras-${VERSION}.tar extras-${VERSION}
 	gzip xmlrpc-extras-${VERSION}.tar
 	zip -r xmlrpc-extras-${VERSION}.zip extras-${VERSION}
+doc:
+	cd doc && $(MAKE) doc
 
 clean:
-	rm -rf extras-${VERSION}
+	rm -rf extras-${VERSION} xmlrpc-extras-${VERSION}.zip xmlrpc-extras-${VERSION}.tar.gz
 	cd doc && $(MAKE) clean
