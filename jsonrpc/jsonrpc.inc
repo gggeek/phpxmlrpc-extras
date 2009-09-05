@@ -988,7 +988,7 @@
 
 			if($data == '')
 			{
-				error_log('XML-RPC: jsonrpcmsg::parseResponse: no response received from server.');
+				error_log('XML-RPC: '.__METHOD__.': no response received from server.');
 				$r = new jsonrpcresp(0, $GLOBALS['xmlrpcerr']['no_data'], $GLOBALS['xmlrpcstr']['no_data']);
 				return $r;
 			}
