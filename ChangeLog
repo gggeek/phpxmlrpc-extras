@@ -1,3 +1,7 @@
+2010-08-23 - G. Giunta (giunta.gaetano@gmail.com
+
+	* jsonrpcs.inc: correct default options param value for php_jsonrpc_encode
+
 2009-09-05 - G. Giunta (giunta.gaetano@gmail.com)
 
 	* jsonrpcs.inc, jsonrpcs.inc: use __METHOD__ constant for error messages
@@ -77,7 +81,7 @@
 	missing file in ajaxmlrpc dir
 
 	* better rendering of docs in xml+css format for function prototypes
- 
+
 	* json_extension_api.inc: allow user to switch between new and old behaviour
 	when decoding single scalar values
 

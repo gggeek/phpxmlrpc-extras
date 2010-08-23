@@ -1207,7 +1207,7 @@
 	* @return jsonrpcval
 	* @access public
 	*/
-	function php_jsonrpc_encode($php_val, $options='')
+	function php_jsonrpc_encode($php_val, $options=array())
 	{
 		$type = gettype($php_val);
 
