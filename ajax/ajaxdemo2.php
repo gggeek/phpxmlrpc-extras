@@ -3,9 +3,8 @@
  * Demo of a single-php-file webservice + frontend.
  * Uses the phpxmlrpc class and the jsxmlrpc library
  *
- * @version $Id$
  * @author Gaetano Giunta
- * @copyright (c) 2007-2009 G. Giunta
+ * @copyright (c) 2007-2013 G. Giunta
  * @license code licensed under the BSD License: http://phpxmlrpc.sourceforge.net/license.txt
  */
 

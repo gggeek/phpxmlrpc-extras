@@ -11,7 +11,6 @@
 
   <!--
        Test WSDL for describing xml-rpc web services
-       $Id: xmlrpc.wsdl,v 1.7 2005/12/09 10:14:26 ggiunta Exp $
   -->
 
   <documentation>

@@ -7,9 +7,8 @@
  * If the xmlrpc extension is loaded, all new functions will be created as 'alt',
  * eg: xmlrpc_alt_encode, xmlrpc_alt_server_create, etc...
  *
- * @version $Id: xmlrpc_extension_api.inc,v 1.5 2008/03/07 16:47:32 ggiunta Exp $
  * @author Gaetano Giunta
- * @copyright (c) 2006-2009s G. Giunta
+ * @copyright (c) 2006-2013 G. Giunta
  * @license code licensed under the BSD License: http://phpxmlrpc.sourceforge.net/license.txt
  *
  * @requires phpxmlrpc version 2.1 or later

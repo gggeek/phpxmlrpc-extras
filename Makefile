@@ -1,5 +1,4 @@
 # Makefile for phpxmlrpc extras
-# $Id: Makefile,v 1.13 2008/03/07 16:40:06 ggiunta Exp $
 
 ### USER EDITABLE VARS ###
 

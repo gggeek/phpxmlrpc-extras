@@ -4,9 +4,7 @@
  *
  * @author G. Giunta
  *
- * @version   $Revision: 1.3 $ $Date: 2008/03/07 16:47:06 $ $Author: ggiunta $
- *
- * @copyright Copyright (c) 2004-2009 Gaetano Giunta. All rights reserved.
+ * @copyright Copyright (c) 2004-2013 Gaetano Giunta. All rights reserved.
  *            Released under both BSD license and Lesser GPL library license.
  *            Whenever there is any discrepancy between the two licenses,
  *            the BSD license will take precedence.

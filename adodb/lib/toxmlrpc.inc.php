@@ -5,9 +5,7 @@
     *
     * @author Daniele Baroncelli
     * @author Gaetano Giunta
-    * @copyright (c) 2003-2009 Giunta/Baroncelli. All rights reserved.
-    *
-    * @version $Id$
+    * @copyright (c) 2003-2013 Giunta/Baroncelli. All rights reserved.
     *
     * @todo some more error checking here and there
     * @todo document the xmlrpc-struct used to encode recordset info

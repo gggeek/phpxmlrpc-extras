@@ -2,9 +2,8 @@
 /**
  * Reverse proxy extension to the PHP-XMLRPC server.
  *
- * @version $Id: proxyxmlrpcs.inc,v 1.3 2008/03/07 16:47:32 ggiunta Exp $
  * @author Gaetano Giunta
- * @copyright (c) 2006-2009 G. Giunta
+ * @copyright (c) 2006-2013 G. Giunta
  * @license code licensed under the BSD License: http://phpxmlrpc.sourceforge.net/license.txt
  **/
 
