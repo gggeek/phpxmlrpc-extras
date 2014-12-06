@@ -1,6 +1,14 @@
-2013-12-22 - G. Giunta (giunta.gaetano@gmail.com)
+NB: All crecent commits are available online.
+This file will not be updated further.
+See https://github.com/gggeek/phpxmlrpc-extras/commits/master
+
+2014-12-6 - G. Giunta (giunta.gaetano@gmail.com)
 
 	* docxmlrpcs.inc: fix opportunity of XSS attack (thanks to sf.net people for reporting it)
+
+2013 - G. Giunta (giunta.gaetano@gmail.com)
+
+	* add .gitignore and composer.json; remove $Id tag from source files
 
 2010-08-23 - G. Giunta (giunta.gaetano@gmail.com)
 
