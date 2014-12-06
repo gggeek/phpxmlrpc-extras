@@ -3,7 +3,7 @@
  * Benchmarking suite for the json module of the PHP-XMLRPC lib
  *
  * @author Gaetano Giunta
- * @copyright (c) 2006-2013 G. Giunta
+ * @copyright (c) 2006-2014 G. Giunta
  * @license code licensed under the BSD License: http://phpxmlrpc.sourceforge.net/license.txt
  *
  * There are known differences in data handling that result in CRC discrepancies:

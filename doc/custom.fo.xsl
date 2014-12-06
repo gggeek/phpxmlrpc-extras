@@ -5,7 +5,7 @@
 <!--
  Customization xsl stylesheet for docbook to pdf transform
  @author Gaetano Giunta
- @copyright (c) 2007-2013 G. Giunta
+ @copyright (c) 2007-2014 G. Giunta
  @license
 -->
 

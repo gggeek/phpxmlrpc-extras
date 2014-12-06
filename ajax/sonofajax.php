@@ -3,7 +3,7 @@
  * Demo of an ajax jsonrpc server + client in a single php script
  *
  * @author Gaetano Giunta
- * @copyright (c) 2006-2013 G. Giunta
+ * @copyright (c) 2006-2014 G. Giunta
  * @license code licensed under the BSD License: http://phpxmlrpc.sourceforge.net/license.txt
  */
 

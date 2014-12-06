@@ -8,7 +8,7 @@
  * Original idea taken from the PHP-O-Lait library by Craig Mason-Jones
  *
  * @author Gaetano Giunta
- * @copyright (c) 2006-2013 G. Giunta
+ * @copyright (c) 2006-2014 G. Giunta
  * @license code licensed under the BSD License: http://phpxmlrpc.sourceforge.net/license.txt
  *
  * @todo add a js object wrapper for all web services if user prefers oop instead
