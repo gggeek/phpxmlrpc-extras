@@ -202,7 +202,7 @@ in an alphabetic order.';
 		$a=str_replace("-", "", $a);
 		$b=str_replace("-", "", $b);
 
-		if ($agesorter_arr[$a]==$agesorter[$b])
+		if ($agesorter_arr[$a]==$agesorter_arr[$b])
 		{
 			return 0;
 		}
@@ -221,7 +221,7 @@ And the array will be returned with the entries sorted by their numbers.
 ';
 	function agesorter($m)
 	{
-		global $agesorter_arr, $xmlrpcerruser, $s;
+		global $agesorter_arr, $xmlrpcerruser;
 
 		xmlrpc_debugmsg("Entering 'agesorter'");
 		// get the parameter
@@ -256,7 +256,7 @@ And the array will be returned with the entries sorted by their numbers.
 			$agesorter_arr=$agar;
 			// hack, must make global as uksort() won't
 			// allow us to pass any other auxilliary information
-			uksort($agesorter_arr, agesorter_compare);
+			uksort($agesorter_arr, 'agesorter_compare');
 			$outAr=array();
 			while (list( $key, $val ) = each( $agesorter_arr ) )
 			{

@@ -1,3 +1,10 @@
+XML-RPC for PHP EXTRAS version 0.5.1 - 2014/12/6
+
+Only one change for this release - but an important one:
+
+* security fix for an XSS problem in docxmlrpcs.inc.
+  All users of the documenting_xmlrpc_server class are urged to upgrade asap.
+
 XML-RPC for PHP EXTRAS version 0.5 - 2009/09/05
 
 This is the first release of the library to only support PHP 5.
@@ -24,7 +31,7 @@ and some bugfixes:
 
 * the usual lot of bugfixes for JSONRPC: slightly faster handling of data which
   is internally encoded as UTF-8; support booleans, strings, null as valid id
-  in requests and responses; correctly add quotes when serializig datetimes;
+  in requests and responses; correctly add quotes when serializing datetimes;
   correct handling of charset declaration in http headers; switched the declared
   content-type from 'text/plain' to 'application/json' as per the proposed rfc;
   modify json_extension_api.inc to follow php 445/521 semantics

@@ -121,7 +121,7 @@
 					$opts = array('lang' => $lang, 'title' => 'Method '.$_GET['methodName']);
 					if ($editorpath != '')
 					{
-						$mstart = xmlrpc_smarty($template['xmlrpcmethodstart'], array('method' => $_GET['methodName']));
+						$mstart = xmlrpc_smarty($template['xmlrpcmethodstart'], array('method' => htmlspecialchars($_GET['methodName'])));
 						$mend = xmlrpc_smarty($template['xmlrpcmethodend'], array());
 						$opts['extras'] = xmlrpc_smarty($template['editorheaders'], array('baseurl' => $editorpath, 'methodcallstart' => $mstart, 'methodcallend' => $mend));
 					}
@@ -138,12 +138,12 @@
 					}
 					if (!array_key_exists($_GET['methodName'], $methods))
 					{
-						$payload .= xmlrpc_smarty($template['methodheader'], array('method' => $_GET['methodName'], 'desc' => ''));
-						$payload .= xmlrpc_smarty($template['methodnotfound'], array('method' => $_GET['methodName']));
+						$payload .= xmlrpc_smarty($template['methodheader'], array('method' => htmlspecialchars($_GET['methodName']), 'desc' => ''));
+						$payload .= xmlrpc_smarty($template['methodnotfound'], array('method' => htmlspecialchars($_GET['methodName'])));
 					}
 					else
 					{
-						$payload .= xmlrpc_smarty($template['methodheader'], array('method' => $_GET['methodName'], 'desc' => @$methods[$_GET['methodName']]['docstring']));
+						$payload .= xmlrpc_smarty($template['methodheader'], array('method' => htmlspecialchars($_GET['methodName']), 'desc' => @$methods[$_GET['methodName']]['docstring']));
 						//$payload .= xmlrpc_smarty($template['methodfound']);
 						for ($i = 0; $i < count($methods[$_GET['methodName']]['signature']); $i++)
 						{
@@ -161,15 +161,15 @@
 							{
 								$payload .= xmlrpc_smarty($template['sigparam'], array('paramtype' => $val[$j], 'paramdesc' => @$doc[$j]));
 							}
-							$payload .= xmlrpc_smarty($template['sigfooter'], array('outtype' => $out, 'outdesc' => $outdoc, 'method' => $_GET['methodName']));
+							$payload .= xmlrpc_smarty($template['sigfooter'], array('outtype' => $out, 'outdesc' => $outdoc, 'method' => htmlspecialchars($_GET['methodName'])));
 						}
 						if ($editorpath)
 						{
-							$payload .= xmlrpc_smarty($template['methodfooter'], array('method' => $_GET['methodName'], 'extras' => xmlrpc_smarty($template['editorlink'], array())));
+							$payload .= xmlrpc_smarty($template['methodfooter'], array('method' => htmlspecialchars($_GET['methodName']), 'extras' => xmlrpc_smarty($template['editorlink'], array())));
 						}
 						else
 						{
-							$payload .= xmlrpc_smarty($template['methodfooter'], array('method' => $_GET['methodName'], 'extras' => ''));
+							$payload .= xmlrpc_smarty($template['methodfooter'], array('method' => htmlspecialchars($_GET['methodName']), 'extras' => ''));
 						}
 					}
 				}
