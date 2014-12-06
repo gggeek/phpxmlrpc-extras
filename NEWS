@@ -1,3 +1,7 @@
+XML-RPC for PHP EXTRAS version 0.5.2 - 2014/12/7
+
+Only one change for this release - fix class autoloading for composer
+
 XML-RPC for PHP EXTRAS version 0.5.1 - 2014/12/6
 
 Only one change for this release - but an important one:
