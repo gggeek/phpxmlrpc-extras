@@ -15,32 +15,30 @@ require_once('..\jsonrpc\jsonrpcs.inc');
 require_once('ajaxmlrpc.inc');
 
 // php functions to be exposed as webservices
-function sumintegers ($msg)
+function sumintegers($msg)
 {
-  $v = $msg->getParam(0);
-  $n = $v->arraySize();
-  $tot = 0;
-  for ($i = 0; $i < $n; $i++)
-  {
-    $val = $v->arrayMem($i);
-    $tot = $tot + $val->scalarval();
-  }
+    $v = $msg->getParam(0);
+    $n = $v->arraySize();
+    $tot = 0;
+    for ($i = 0; $i < $n; $i++) {
+        $val = $v->arrayMem($i);
+        $tot = $tot + $val->scalarval();
+    }
 
-  return new xmlrpcresp(new xmlrpcval($tot, 'int'));
+    return new xmlrpcresp(new xmlrpcval($tot, 'int'));
 }
 
 // webservices signature
 // NB: do not use dots in method names
 $dmap = array(
-'sumintegers' => array(
-  'function' => 'sumintegers',
-  'signature' => array(array('integer', 'array'))
-)
+    'sumintegers' => array(
+        'function' => 'sumintegers',
+        'signature' => array(array('integer', 'array'))
+    )
 );
 
 // create server object
-if ($_SERVER['REQUEST_METHOD'] == 'POST')
-{
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $server = new jsonrpc_server($dmap);
     die();
 }

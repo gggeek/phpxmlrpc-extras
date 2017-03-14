@@ -64,7 +64,7 @@ class proxy_xmlrpc_server extends xmlrpc_server
     /**
      * Add to dispatch map of this server some (or all) of the methods
      * exposed by a remote server.
-     * @return false on error, or the number of methods proxyed
+     * @return int|false false on error, or the number of methods proxyed
      */
     function acquire_server_methods($methodlist = null)
     {

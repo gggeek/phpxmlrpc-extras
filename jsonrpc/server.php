@@ -206,7 +206,7 @@ function agesorter_compare($a, $b)
     $a = str_replace("-", "", $a);
     $b = str_replace("-", "", $b);
 
-    if ($agesorter_arr[$a] == $agesorter[$b]) {
+    if ($agesorter_arr[$a] == $agesorter_arr[$b]) {
         return 0;
     }
     return ($agesorter_arr[$a] > $agesorter_arr[$b]) ? -1 : 1;

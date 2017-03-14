@@ -31,10 +31,10 @@ function sumintegers ($msg)
 // webservices signature
 // NB: do not use dots in method names
 $dmap = array(
-'sumintegers' => array(
-  'function' => 'sumintegers',
-  'signature' => array(array('integer', 'array'))
-)
+    'sumintegers' => array(
+        'function' => 'sumintegers',
+        'signature' => array(array('integer', 'array'))
+    )
 );
 
 // create server object and set its desired properties

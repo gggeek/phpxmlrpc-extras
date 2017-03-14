@@ -1220,6 +1220,7 @@ function serialize_jsonrpcresp($resp, $id = null, $charset_encoding = '')
  * xmlrpcval objects
  * @param xmlrpcval or jsonrpcval $value
  * @string $charset_encoding
+ * @return string
  * @access private
  */
 function serialize_jsonrpcval($value, $charset_encoding = '')
@@ -1311,7 +1312,7 @@ function serialize_jsonrpcval($value, $charset_encoding = '')
  * accepted come from javadoc blocks), return corresponding phpxmlrpc type.
  * NB: for php 'resource' types returns empty string, since resources cannot be serialized;
  * for php class names returns 'struct', since php objects can be serialized as json structs;
- * for php arrays always retutn 'array', even though arrays sometiles serialize as json structs
+ * for php arrays always return 'array', even though arrays sometimes serialize as json structs
  * @param string $phptype
  * @return string
  */

@@ -15,7 +15,7 @@
  *       of plain function names (see php-o-lait for an example),
  *       or at least a name prefix for all created functions, to prevent js namespace pollution
  * @todo find a fix for xmlrpc methods whose name contain chars invalid in js function names (eg. '.')
- * @todo if we sbuclass jsonrpc server, we can use all this magic with json...
+ * @todo if we subclass jsonrpc server, we can use all this magic with json...
  * @todo find a better way of handling webservice errors than using a js alert()
  * @todo add support for json with jsxmlrpc (only jsolait supports it currently)
  */
@@ -66,7 +66,7 @@ class js_rpc_server extends xmlrpc_server
 /**
  * Return html code to include all needed jsolait / jsxmlrpc libs
  * @param string $jsLibsPath
- * @param string $jsLIbsType either 'jsolait' or 'jsxmlrpc'
+ * @param string $jsLibsType either 'jsolait' or 'jsxmlrpc'
  * @return string
  */
 function js_import_libs($jsLibsPath, $jsLibsType = 'jsolait')
@@ -171,7 +171,7 @@ function js_wrap_xmlrpc_server($server, $url, $liburl = '', $methodlist = null, 
  * @param string $url url at which the xmlrpcserver responds
  * @param string $liburl url of the jsolait lib (see jsolait docs for more info)
  * @param string $protocol either 'xmlrpc' or 'jsonrpc'
- * @param string $jsLIbsType either 'jsolait' or 'jsxmlrpc'
+ * @param string $jsLibsType either 'jsolait' or 'jsxmlrpc'
  * @return string the js code snippet defining js functions that wrap web services
  */
 function js_wrap_dispatch_map($dmap, $url, $liburl = '', $methodlist = null, $protocol = 'xmlrpc', $jsLibsType = 'jsolait')
