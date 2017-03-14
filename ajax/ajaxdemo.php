@@ -3,8 +3,8 @@
  * Demo of a simple ajax xmlrpc serevr + client in a single php script
  *
  * @author Gaetano Giunta
- * @copyright (c) 2006-2014 G. Giunta
- * @license code licensed under the BSD License: http://phpxmlrpc.sourceforge.net/license.txt
+ * @copyright (c) 2006-2017 G. Giunta
+ * @license code licensed under the BSD License: see license.txt
  */
 
 // import required libs

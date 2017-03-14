@@ -19,5 +19,8 @@
     "require":
     {
         "phpxmlrpc/phpxmlrpc": ">=2.1.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": ">=4.0.0"
     }
 }

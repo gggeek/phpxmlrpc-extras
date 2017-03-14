@@ -3,8 +3,8 @@
  * Demo of an ajax jsonrpc server + client in a single php script
  *
  * @author Gaetano Giunta
- * @copyright (c) 2006-2014 G. Giunta
- * @license code licensed under the BSD License: http://phpxmlrpc.sourceforge.net/license.txt
+ * @copyright (c) 2006-2017 G. Giunta
+ * @license code licensed under the BSD License: see license.txt
  */
 
 // import required libs
@@ -41,8 +41,8 @@ $dmap = array(
 // create server object
 if ($_SERVER['REQUEST_METHOD'] == 'POST')
 {
-	$server = new jsonrpc_server($dmap);
-	die();
+    $server = new jsonrpc_server($dmap);
+    die();
 }
 ?>
 <html>

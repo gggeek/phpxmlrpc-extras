@@ -1,12 +1,12 @@
 <?php
 /**
  * Basic xmlrpc adodb proxy: this page will service incoming xmlrpc requests.
- * 
+ *
  * @author G. Giunta
- * 
- * @copyright Copyright (c) 2004-2014 Gaetano Giunta. All rights reserved.
- *            Released under both BSD license and Lesser GPL library license. 
- *            Whenever there is any discrepancy between the two licenses, 
+ *
+ * @copyright Copyright (c) 2004-2017 Gaetano Giunta. All rights reserved.
+ *            Released under both BSD license and Lesser GPL library license.
+ *            Whenever there is any discrepancy between the two licenses,
  *            the BSD license will take precedence.
  **/
 
@@ -29,7 +29,7 @@ include($adodbserver_configfile);
 
 
 // include file with the list and implementation of the exposed functions
-// Note: we keep the list separate because this way it integrates more easily 
+// Note: we keep the list separate because this way it integrates more easily
 // with extended xmlrpc frameworks
 /// function file location
 $adodbserver_functionfile = getcwd()."/server_functions.inc.php";
@@ -44,5 +44,3 @@ include($adodbserver_functionfile);
 $s =& new $adodbserver_class($adodbserver_functionarray, false);
 $s->setDebug($adodbserver_debuglvl);
 $s->service();
-
-?>

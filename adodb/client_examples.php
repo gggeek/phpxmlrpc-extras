@@ -4,9 +4,7 @@
  *
  * @author G. Giunta
  *
- * @version $Id$
- *
- * @copyright Copyright (c) 2004-2006 Gaetano Giunta. All rights reserved.
+ * @copyright Copyright (c) 2004-2017 Gaetano Giunta. All rights reserved.
  *            Released under both BSD license and Lesser GPL library license.
  *            Whenever there is any discrepancy between the two licenses,
  *            the BSD license will take precedence.

@@ -2,10 +2,10 @@
 
 (c) 2006, 2007 Gaetano Giunta
 
-Released under both BSD and GNU Lesser GPL library license. 
+Released under both BSD and GNU Lesser GPL library license.
 This means you can use it in proprietary products.
 
- 
+
 >> NOTE NOTE NOTE
 
 Code and especially documentation are in EARLY BETA stage.
@@ -48,7 +48,7 @@ Then take a look at the schema documenting a typical usage scenario (file schema
 - part C is the client application, and is the most varying of the 3 parts:
   + it can be written in PHP and make use of the adodb xmlrpc driver (module 3 above). The programmer only needs to know the adodb api.
   + it can be written in PHP and make direct use of xmlrpc calls. The programmer needs to know the phpxmlrpc api and decode 'by hand' the recordset received from the db.
-  + it can be written in any other language than PHP, making use of an approriate xmlrpc library.  
+  + it can be written in any other language than PHP, making use of an approriate xmlrpc library.
   + it can be part of a website as well as a stand-alone application
 
 Needless to say, all 3 parts can reside on the same as well as on 3 completely separate physical servers (any combination is allowed).
@@ -61,7 +61,7 @@ A few usage cases:
 
 >> Files
 
-adodb-xmlrpc.inc.php	      adodb driver that connects to SQL-to-XMLRPC proxies
+adodb-xmlrpc.inc.php          adodb driver that connects to SQL-to-XMLRPC proxies
 client_driver_examples.php    examples of usage of the
 client_examples.php           examples of clients for the SQL-to-XMLRPC proxy
 readme.txt                    this file
@@ -111,7 +111,7 @@ PHP-xmlrpc is an implementation of xml-rpc in PHP written originally by Edd Dumb
 ADODB is a database access library written and maintained by John Lim. There is an active forum on the web at http://phplens.com/lensforum?forumID=4
 
 JAVADOC-generated documentation can be found in the doc subdirectory.
- 
+
 The code is commented 'quite a lot'. Take a look at the source if you have troubles making it work, or to understand the usage patterns / function calls.
 Long lists of todo items can also be found at the beginning of each file, in case you feel the urge to contribute.
 

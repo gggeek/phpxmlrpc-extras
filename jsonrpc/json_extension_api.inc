@@ -8,8 +8,8 @@
  * ie: json_alt_encode, json_alt_decode
  *
  * @author Gaetano Giunta
- * @copyright (c) 2006-2014 G. Giunta
- * @license code licensed under the BSD License: http://phpxmlrpc.sourceforge.net/license.txt
+ * @copyright (c) 2006-2017 G. Giunta
+ * @license code licensed under the BSD License: see license.txt
  *
  * @requires phpxmlrpc version 2.1 or later
  */
@@ -106,4 +106,3 @@ else
   $content = str_replace(array("!in_array('json',get_loaded_extensions())", 'function json_', "define('JSON_", '<?php', '?>'), array('true', 'function json_alt_', "define('JSON_ALT_", '', ''), $content);
   eval($content);
 }
-?>

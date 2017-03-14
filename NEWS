@@ -1,3 +1,7 @@
+XML-RPC for PHP EXTRAS version 0.6 - 2017/3/14
+
+Accpet non-standard options in calls to xmlrpc_encode_request
+
 XML-RPC for PHP EXTRAS version 0.5.2 - 2014/12/7
 
 Only one change for this release - fix class autoloading for composer

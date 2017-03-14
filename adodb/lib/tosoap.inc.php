@@ -2,10 +2,10 @@
 /**
 * Helper functions to convert between ADODB recordset objects and SOAP values.
 * Uses John Lim's AdoDB and NuSOAP libs
-* 
+*
 * @author Gaetano Giunta
-* @copyright (c) 2005-2014 Gaetano Giunta. All rights reserved.
-* 
+* @copyright (c) 2005-2017 Gaetano Giunta. All rights reserved.
+*
 * @todo use wsdl object to ease serialization / deserialization ?
 * @todo have an ADODB-tuned deserializer (i.e. use php decription of db native types
 *       as alternative to JDBC - see adodb metatypes infrastructure for complete list)
@@ -30,20 +30,20 @@ function JDBC2PHPType($jdbctype, $stringval)
     case 'DECIMAL':
     case 'NUMERIC':
       return floatval($stringval);
-    case 'BIT':	  
+    case 'BIT':
     case 'BOOLEAN':
       return $stringval ? true : false;
     default:
       return $stringval;
-  }  
+  }
 }
 
     /**
     * Include the main libraries
-    */    
+    */
     require_once('nusoap.php');
 //    require_once('adodb.inc.php');
-            
+
     /**
     * Builds an xmlrpc struct value out of an AdoDB recordset
     */
@@ -143,10 +143,10 @@ function JDBC2PHPType($jdbctype, $stringval)
 
         return $body;
     }
-    
+
     /**
     * Returns an xmlrpc struct value as string out of an AdoDB recordset
-    */    
+    */
     function rs2soapstring (&$adodbrs) {
         $xmlrpc = rs2soapval ($adodbrs);
         if ($xmlrpc)
@@ -158,7 +158,7 @@ function JDBC2PHPType($jdbctype, $stringval)
     /**
     * Given a well-formed nusoap soap val object returns an AdoDB object.
     * Works fine if given as input the nusoap-decoded php array
-    * 
+    *
     * @todo add some error checking on the input value
     */
     function soapval2rs (&$soapval) {
@@ -178,9 +178,9 @@ function JDBC2PHPType($jdbctype, $stringval)
 
         //$data = $soapval->decode();
 //var_dump($data);
-        // rebuild column information  
+        // rebuild column information
         $header = $data['recordSetMetaData'];
-        
+
         $numfields = $header['!fieldCount'];
         $numrecords = $header['!recordCount'];
 
@@ -234,5 +234,3 @@ function JDBC2PHPType($jdbctype, $stringval)
         return $rs;
 //timenow('decode_query_2_rs');
     }
-
-?>
