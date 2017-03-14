@@ -1,10 +1,12 @@
 XML-RPC for PHP EXTRAS version 0.6 - 2017/3/14
 
-Accpet non-standard options in calls to xmlrpc_encode_request
+Accept non-standard options in calls to xmlrpc_encode_request
+
 
 XML-RPC for PHP EXTRAS version 0.5.2 - 2014/12/7
 
 Only one change for this release - fix class autoloading for composer
+
 
 XML-RPC for PHP EXTRAS version 0.5.1 - 2014/12/6
 
@@ -12,6 +14,7 @@ Only one change for this release - but an important one:
 
 * security fix for an XSS problem in docxmlrpcs.inc.
   All users of the documenting_xmlrpc_server class are urged to upgrade asap.
+
 
 XML-RPC for PHP EXTRAS version 0.5 - 2009/09/05
 
@@ -27,6 +30,7 @@ Quite a few changes and bugfixes have been made in the are of json support:
 * fixed: a missing 'new' call when building string vals in php_jsonrpc_encode
 * fixed: encoding of UTF8 chars outside of the BMP
 * fixed: encoding of '/' chars in jsonrpc when source is in UTF8
+
 
 XML-RPC for PHP EXTRAS version 0.4 - 2007/02/25
 
@@ -112,7 +116,7 @@ Might be useful in defining some wsdl file describing xmlrpc services (good luck
 The DTD is not quite accurate, due to limitations in the definition language.
 RELAX NG should be 100% precise and accurate.
 
-DOCXMLRPCS:
+DOCXMLRPCSERVER:
 ----------------------------------------
 Subclass of xmlrpc server that self-generates HTML documentation of exposed services.
 Easy as a breeze to use, and extremely user-friendly.
