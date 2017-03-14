@@ -1,6 +1,8 @@
 XML-RPC for PHP EXTRAS version 0.6 - 2017/3/14
 
-Accept non-standard options in calls to xmlrpc_encode_request
+* Accept non-standard options in calls to xmlrpc_encode_request
+
+* Reformat most php code and minor doc improvements
 
 
 XML-RPC for PHP EXTRAS version 0.5.2 - 2014/12/7
@@ -116,7 +118,7 @@ Might be useful in defining some wsdl file describing xmlrpc services (good luck
 The DTD is not quite accurate, due to limitations in the definition language.
 RELAX NG should be 100% precise and accurate.
 
-DOCXMLRPCSERVER:
+DOCXMLRPCS:
 ----------------------------------------
 Subclass of xmlrpc server that self-generates HTML documentation of exposed services.
 Easy as a breeze to use, and extremely user-friendly.

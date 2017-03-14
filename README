@@ -21,19 +21,18 @@ PHP-XMLRPC Extras
 
 ## INCLUDED PACKAGES:
 
-### WSDL:
-    The completely UNOFFICIAL DTD and RELAX NG schemas to validate your xmlrpc against.
-    Might be useful in defining some wsdl file describing xmlrpc services (good luck!!!).
-    The DTD is not quite accurate, due to limitations in the definition language.
-    RELAX NG should be 100% precise and accurate.
+### ADODB:
+    Provides an easy mean of connecting applications to remote databases using a web service protocol instead of a
+    native database driver.
+
+### AJAX:
+    Demo of ajaxified version of xmlrpc lib: supports executing xmlrpc/jsonrpc calls
+    directly from the client browser.
+    Needs the excellent jsolait lib from http://jsolait.net/ (thanks Jan Kollhof)
 
 ### DOCXMLRPCSERVER:
     Subclass of xmlrpc server that self-generates HTML documentation of exposed services.
     Easy as a breeze to use, and extremely user-friendly.
-
-    PROXY:
-    Subclass of xmlrpc server that can act as remote (transparent) xmlrpc proxy to forward calls to a remote server.
-    Can either forward any received call or probe remote server first for existing methods.
 
 ### JSONRPC:
     Support for this brand new trendy protocol, 100% buzzword-compliant and ajax-ready.
@@ -41,7 +40,16 @@ PHP-XMLRPC Extras
     Makes it very easy to build a server that supports both protocols at the same time.
     Original JSON parsing code from Michal Migurski (whose lib is now officially part of PEAR).
 
-### AJAX:
-    Demo of ajaxified version of xmlrpc lib: supports executing xmlrpc/jsonrpc calls
-    directly from the client browser.
-    Needs the excellent jsolait lib from http://jsolait.net/ (thanks Jan Kollhof)
+### PROXY:
+    Subclass of xmlrpc server that can act as remote (transparent) xmlrpc proxy to forward calls to a remote server.
+    Can either forward any received call or probe remote server first for existing methods.
+
+### WSDL:
+    The completely UNOFFICIAL DTD and RELAX NG schemas to validate your xmlrpc against.
+    Might be useful in defining some wsdl file describing xmlrpc services (good luck!!!).
+    The DTD is not quite accurate, due to limitations in the definition language.
+    RELAX NG should be 100% precise and accurate.
+
+### XMLRPC_EXTENSION_API
+    Provides drop_in support for th php native xmlrpc extension, for when your code depends on it, but you can not
+    install it on the server.

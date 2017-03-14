@@ -117,6 +117,8 @@ if (!in_array('xmlrpc', get_loaded_extensions())) {
      */
     function xmlrpc_encode_request($meth, $vals, $opts = null)
     {
+        $opts = array_merge($opts, array('extension_api'));
+
         if ($meth !== null) {
             // mimic EPI behaviour: if ($val === NULL) then send NO parameters
             if (!is_array($vals)) {
@@ -141,7 +143,7 @@ if (!in_array('xmlrpc', get_loaded_extensions())) {
             }
             $values = array();
             foreach ($vals as $key => $value) {
-                $values[] = php_xmlrpc_encode($value, array('extension_api'));
+                $values[] = php_xmlrpc_encode($value, $opts);
             }
 
             // create request
@@ -152,7 +154,7 @@ if (!in_array('xmlrpc', get_loaded_extensions())) {
             if (is_array($vals) && xmlrpc_is_fault($vals))
                 $req = new xmlrpcresp(0, (integer)$vals['faultCode'], (string)$vals['faultString']);
             else
-                $req = new xmlrpcresp(php_xmlrpc_encode($vals, array('extension_api')));
+                $req = new xmlrpcresp(php_xmlrpc_encode($vals, $opts));
             $resp = "<?xml version=\"1.0\"?" . ">\n" . $req->serialize();
         }
         return $resp;
