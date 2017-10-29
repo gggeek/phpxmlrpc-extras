@@ -105,7 +105,7 @@ function generateDocs($server, $doctype = 'html', $lang = 'en', $editorpath = ''
 
             // method name decoding: is user seeking info about a single method?
             if (isset($_GET['methodName'])) {
-                $opts = array('lang' => $lang, 'title' => 'Method ' . $_GET['methodName']);
+                $opts = array('lang' => $lang, 'title' => 'Method ' . htmlspecialchars($_GET['methodName']));
                 if ($editorpath != '') {
                     $mstart = xmlrpc_smarty($template['xmlrpcmethodstart'], array('method' => htmlspecialchars($_GET['methodName'])));
                     $mend = xmlrpc_smarty($template['xmlrpcmethodend'], array());
