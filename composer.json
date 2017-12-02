@@ -13,7 +13,7 @@
             "jsonrpc/jsonrpcs.inc",
             "proxy/proxyxmlrpcs.inc",
             "xmlrpc_extension_api/xmlrpc_extension_api.inc",
-            "docxmlrpcs.inc"
+            "docxmlrpcserver/docxmlrpcs.inc"
         ]
     },
     "require":
