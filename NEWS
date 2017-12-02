@@ -1,3 +1,13 @@
+XML-RPC for PHP EXTRAS version 0.6.2 - 2017/12/2
+
+* Fix class autoloading when trying to install the package via Composer (thanks gmpf)
+
+
+XML-RPC for PHP EXTRAS version 0.6.1 - 2017/10/29
+
+* Security fix: avoid one XSS in class documenting_xmlrpc_server
+
+
 XML-RPC for PHP EXTRAS version 0.6 - 2017/3/14
 
 * Accept non-standard options in calls to xmlrpc_encode_request

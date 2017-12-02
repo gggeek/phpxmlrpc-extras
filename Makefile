@@ -17,7 +17,7 @@ FIND=find
 
 #### DO NOT TOUCH FROM HERE ONWARDS ###
 
-export VERSION=0.6
+export VERSION=0.6.2
 # better alternative: try to recover version number from code
 #export VERSION=$(shell egrep "\$GLOBALS *\[ *'xmlrpcVersion' *\] *= *'" xmlrpc.inc | sed -r s/"(.*= *' *)([0-9a-zA-Z.-]+)(.*)"/\\2/g )
 
