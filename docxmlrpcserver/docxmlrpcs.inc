@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 <?php
 /**
  * Self-documenting extension to the PHP-XMLRPC server
