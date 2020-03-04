@@ -226,7 +226,7 @@ if (!in_array('xmlrpc', get_loaded_extensions())) {
                 }
             } else {
                 // @todo EPI will NOT raise a warning for good type names, eg. 'boolean', etc...
-                raise_error("invalid type '$type' passed to xmlrpc_set_type()");
+                trigger_error("invalid type '$type' passed to xmlrpc_set_type()");
                 return false;
             }
             return true;
