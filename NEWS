@@ -1,4 +1,4 @@
-XML-RPC for PHP EXTRAS version 0.6.3 - unreleased
+XML-RPC for PHP EXTRAS version 0.6.3 - 2020/12/23
 
 * Fix an error when emulating xmlrpc_set_type
 
