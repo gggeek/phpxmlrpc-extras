@@ -1,3 +1,11 @@
+XML-RPC for PHP EXTRAS version 1.0 - unreleased
+
+Major changes this time around:
+- bumped the minimum required version of the base phpxmlrpc library to 4.4.3
+- introduction of php namespaces
+- externalised two components (JSONRPC and EXTENSION-API) to their own packages
+- moved away from Makefiles
+
 XML-RPC for PHP EXTRAS version 0.6.3 - 2020/12/23
 
 * Fix an error when emulating xmlrpc_set_type
