@@ -6,8 +6,8 @@ PHP-XMLRPC Extras
     of use for development of xml-rpc (and jsonrpc, soap) based applications
 
 ## REQUIREMENTS:
-    PHP 4.2 or newer
-    php-xmlrpc 2.1 or newer
+    PHP 5.3 or newer
+    phpxmlrpc/phpxmlrpc 4.5.0 or newer
 
 ## API DOCUMENTATION:
     HTML documentation can be found in the doc/ directory.
@@ -34,12 +34,6 @@ PHP-XMLRPC Extras
     Subclass of xmlrpc server that self-generates HTML documentation of exposed services.
     Easy as a breeze to use, and extremely user-friendly.
 
-### JSONRPC:
-    Support for this brand new trendy protocol, 100% buzzword-compliant and ajax-ready.
-    Client and server classes provided.
-    Makes it very easy to build a server that supports both protocols at the same time.
-    Original JSON parsing code from Michal Migurski (whose lib is now officially part of PEAR).
-
 ### PROXY:
     Subclass of xmlrpc server that can act as remote (transparent) xmlrpc proxy to forward calls to a remote server.
     Can either forward any received call or probe remote server first for existing methods.
@@ -49,7 +43,3 @@ PHP-XMLRPC Extras
     Might be useful in defining some wsdl file describing xmlrpc services (good luck!!!).
     The DTD is not quite accurate, due to limitations in the definition language.
     RELAX NG should be 100% precise and accurate.
-
-### XMLRPC_EXTENSION_API
-    Provides drop_in support for th php native xmlrpc extension, for when your code depends on it, but you can not
-    install it on the server.

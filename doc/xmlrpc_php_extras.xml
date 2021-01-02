@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 <?xml-stylesheet href="docbook-css/driver.css" type="text/css"?>
-<!DOCTYPE book PUBLIC "-//OASIS//DTD DocBook XML V4.4//EN"
-"http://www.oasis-open.org/docbook/xml/4.4/docbookx.dtd">
+<!DOCTYPE book PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN"
+    "http://docbook.org/xml/4.5/docbookx.dtd">
 <!--
 PHP-XMLRPC Extras User manual
 -->
@@ -18,7 +18,7 @@ PHP-XMLRPC Extras User manual
     </author>
 
     <copyright>
-      <year>2006-2020 G. Giunta</year>
+      <year>2006-2021 G. Giunta</year>
     </copyright>
 
     <legalnotice>

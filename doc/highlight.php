@@ -3,7 +3,7 @@
  * takes a dir as arg, highlights all php code found in html files inside
  *
  * @author Gaetano Giunta
- * @copyright (c) 2007-2020 G. Giunta
+ * @copyright (c) 2007-2021 G. Giunta
  */
 
 function highlight($file)
@@ -44,5 +44,3 @@ foreach($files as $file)
 		file_put_contents($dir.'/'.$file, $out);
 	}
 }
-
-?>

@@ -1,15 +1,17 @@
-XML-RPC for PHP EXTRAS version 1.0 - unreleased
+XML-RPC for PHP EXTRAS version 1.0-alpha - unreleased
 
 Major changes this time around:
-- bumped the minimum required version of the base phpxmlrpc library to 4.5 / php 5.3
-- externalised two components (JSONRPC and EXTENSION-API) to their own, separate packages
-- introduction of php namespaces, class autoloading, Composer dependency management
-- moved the demo files in a separate directory
+- bumped the minimum required version of the base phpxmlrpc library to 4.5 / php to 5.3
+- externalised two components (JSONRPC and EXTENSION-API) to their own, separate packages: phpxmlrpc/jsonrpc and phpxmlrpc/polyfill-xmlrpc
+- introduction of php namespaces, class autoloading, Composer for dependency management
+- moved the demo files into their own, separate directory
 - introduced phpunit, docker and travis for testing
 - moved away from Makefiles
 
 As always with the phpxmlrpc libraries, the `.inc` files are still provided, insuring full compatibility
 for developers who rely on the previous APIs (classes, functions, global variables)
+
+Still to be ported to modern-day coding standards: adodb and ajax components, as well as the docs
 
 
 XML-RPC for PHP EXTRAS version 0.6.3 - 2020/12/23
