@@ -5,22 +5,23 @@
     "homepage": "https://github.com/gggeek/phpxmlrpc-extras",
     "keywords": [ "xmlrpc", "webservices", "jsonrpc" ],
     "autoload": {
+        "psr-4": {"PhpXmlRpc\\Extras\\": "src/"},
         "classmap": [
             "adodb/drivers/",
             "adodb/lib/",
             "ajax/ajaxmlrpc.inc",
-            "jsonrpc/jsonrpc.inc",
-            "jsonrpc/jsonrpcs.inc",
             "proxy/proxyxmlrpcs.inc",
-            "xmlrpc_extension_api/xmlrpc_extension_api.inc",
             "docxmlrpcserver/docxmlrpcs.inc"
         ]
     },
     "require":
     {
-        "phpxmlrpc/phpxmlrpc": ">=2.1.0"
+        "phpxmlrpc/phpxmlrpc": "^4.5.0"
     },
     "require-dev": {
-        "phpunit/phpunit": ">=4.0.0"
+        "ext-curl": "*",
+        "phpunit/phpunit": "^5.0 || ^8.5.12",
+        "phpunit/phpunit-selenium": "*",
+        "yoast/phpunit-polyfills": "*"
     }
 }
