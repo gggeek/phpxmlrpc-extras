@@ -1,6 +1,6 @@
 <?php
 /**
- * Very simple xmlrpc reverse proxy server. Forwards all requests to the gggeek.altervista.org server
+ * Very simple xmlrpc reverse proxy server. Forwards all requests to the server defined in the constant XMLRPCSERVER
  *
  * @author Gaetano Giunta
  * @copyright (c) 2006-2021 G. Giunta
@@ -12,7 +12,7 @@ require_once __DIR__ . "/_prepend.php";
 use PhpXmlRpc\Extras\ReverseProxy;
 use PhpXmlRpc\Client;
 
-$server = new ReverseProxy(new Client('http://gggeek.altervista.org/sw/xmlrpc/demo/server/server.php'), false);
+$server = new ReverseProxy(new Client(XMLRPCSERVER), false);
 $server->setDebug(2);
 $server->service();
 
