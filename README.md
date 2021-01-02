@@ -7,7 +7,7 @@ PHP-XMLRPC Extras
 
 ## REQUIREMENTS:
     PHP 5.3 or newer
-    phpxmlrpc/phpxmlrpc 4.5.0 or newer
+    phpxmlrpc/phpxmlrpc 4.5.1 or newer
 
 ## API DOCUMENTATION:
     HTML documentation can be found in the doc/ directory.
@@ -21,11 +21,11 @@ PHP-XMLRPC Extras
 
 ## INCLUDED PACKAGES:
 
-### ADODB:
+### ADODB (WIP - not ported yet from old API):
     Provides an easy mean of connecting applications to remote databases using a web service protocol instead of a
     native database driver.
 
-### AJAX:
+### AJAX (WIP - not ported yet from old API):
     Demo of ajaxified version of xmlrpc lib: supports executing xmlrpc/jsonrpc calls
     directly from the client browser.
     Needs the excellent jsolait lib from http://jsolait.net/ (thanks Jan Kollhof)
@@ -43,3 +43,10 @@ PHP-XMLRPC Extras
     Might be useful in defining some wsdl file describing xmlrpc services (good luck!!!).
     The DTD is not quite accurate, due to limitations in the definition language.
     RELAX NG should be 100% precise and accurate.
+
+[![License](https://poser.pugx.org/phpxmlrpc/extras/license)](https://packagist.org/packages/phpxmlrpc/extras)
+[![Latest Stable Version](https://poser.pugx.org/phpxmlrpc/extras/v/stable)](https://packagist.org/packages/phpxmlrpc/extras)
+[![Total Downloads](https://poser.pugx.org/phpxmlrpc/extras/downloads)](https://packagist.org/packages/phpxmlrpc/extras)
+
+[![Build Status](https://travis-ci.com/gggeek/phpxmlrpc-extras.svg)](https://travis-ci.com/gggeek/phpxmlrpc-extras)
+[![Code Coverage](https://scrutinizer-ci.com/g/gggeek/phpxmlrpc-extras/badges/coverage.png)](https://scrutinizer-ci.com/g/gggeek/phpxmlrpc-extras)
