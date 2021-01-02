@@ -11,8 +11,13 @@ require_once __DIR__ . "/_prepend.php";
 
 use PhpXmlRpc\Extras\SelfDocumentingServer;
 
-/// @todo add more stuff, eg. by including the server from the phpxmlrpc core lib...
-$server = new SelfDocumentingServer(null, false);
+// Import example webservice definitions from the demos found in the base PhpXmlrpc lib
+$providersDir = __DIR__."/../../vendor/phpxmlrpc/phpxmlrpc/demo/server/methodProviders/";
+$signatures1 = include($providersDir.'functions.php');
+$signatures2 = include($providersDir.'interop.php');
+$signatures3 = include($providersDir.'validator1.php');
+
+$server = new SelfDocumentingServer(array_merge($signatures1, $signatures2, $signatures3), false);
 $server->setDebug(2);
 $server->service();
 

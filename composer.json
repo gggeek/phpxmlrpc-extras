@@ -3,25 +3,28 @@
     "description": "A collection of extensions, addons and other stuff that might be of use for development of xml-rpc (and jsonrpc, soap) based applications",
     "license": "BSD-3-Clause",
     "homepage": "https://github.com/gggeek/phpxmlrpc-extras",
-    "keywords": [ "xmlrpc", "webservices", "jsonrpc" ],
+    "keywords": [ "xmlrpc", "webservices", "jsonrpc", "adodb", "wsdl" ],
     "autoload": {
         "psr-4": {"PhpXmlRpc\\Extras\\": "src/"},
         "classmap": [
             "adodb/drivers/",
             "adodb/lib/",
-            "ajax/ajaxmlrpc.inc",
-            "proxy/proxyxmlrpcs.inc",
-            "docxmlrpcserver/docxmlrpcs.inc"
+            "ajax/ajaxmlrpc.inc"
         ]
     },
     "require":
     {
-        "phpxmlrpc/phpxmlrpc": "^4.5.0"
+        "phpxmlrpc/phpxmlrpc": "^4.5.1"
     },
     "require-dev": {
         "ext-curl": "*",
         "phpunit/phpunit": "^5.0 || ^8.5.12",
         "phpunit/phpunit-selenium": "*",
         "yoast/phpunit-polyfills": "*"
+    },
+    "config": {
+        "preferred-install": {
+            "phpxmlrpc/phpxmlrpc": "source"
+        }
     }
 }
