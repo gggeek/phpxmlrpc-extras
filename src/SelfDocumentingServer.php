@@ -64,7 +64,7 @@ class SelfDocumentingServer extends Server
                 && $_SERVER['CONTENT_TYPE'] == 'application/x-www-form-urlencoded'
                 && isset($_POST['methodCall'])
             ) {
-                if (function_exists('get_magic_quotes_gpc') && get_magic_quotes_gpc()) {
+                if (function_exists('get_magic_quotes_gpc') && @get_magic_quotes_gpc()) {
                     $_POST['methodCall'] = stripslashes($_POST['methodCall']);
                 }
                 return parent::service($_POST['methodCall'], $returnPayload);
