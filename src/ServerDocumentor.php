@@ -66,6 +66,7 @@ class ServerDocumentor
                     } else {
                         $payload .= $this->render('methodheader', array('method' => htmlspecialchars($_GET['methodName']), 'desc' => @$methods[$_GET['methodName']]['docstring']));
                         //$payload .= $this->render('methodfound']);
+                        $minParams = -1;
                         for ($i = 0; $i < count($methods[$_GET['methodName']]['signature']); $i++) {
                             $val = $methods[$_GET['methodName']]['signature'][$i];
                             // NEW: signature_docs array, MIGHT be present - or not...
@@ -76,15 +77,22 @@ class ServerDocumentor
                             $payload .= $this->render('sigheader', array('signum' => $i + 1));
                             $out = array_shift($val);
                             $outdoc = array_shift($doc);
+                            if (count($val) < $minParams || $minParams < 0) {
+                                $minParams = count($val);
+                            }
                             for ($j = 0; $j < count($val); $j++) {
                                 $payload .= $this->render('sigparam', array('paramtype' => $val[$j], 'paramdesc' => @$doc[$j]));
                             }
                             $payload .= $this->render('sigfooter', array('outtype' => $out, 'outdesc' => $outdoc, 'method' => htmlspecialchars($_GET['methodName'])));
                         }
+                        $formParams = '';
+                        for ($j = 0; $j < $minParams; $j++) {
+                            $formParams .= $this->render('formparam');
+                        }
                         if ($editorPath) {
-                            $payload .= $this->render('methodfooter', array('method' => htmlspecialchars($_GET['methodName']), 'extras' => $this->render('editorlink', array())));
+                            $payload .= $this->render('methodfooter', array('method' => htmlspecialchars($_GET['methodName']), 'params' => $formParams, 'extras' => $this->render('editorlink', array())));
                         } else {
-                            $payload .= $this->render('methodfooter', array('method' => htmlspecialchars($_GET['methodName']), 'extras' => ''));
+                            $payload .= $this->render('methodfooter', array('method' => htmlspecialchars($_GET['methodName']), 'params' => $formParams, 'extras' => ''));
                         }
                     }
                 } else {
@@ -182,6 +190,9 @@ class ServerDocumentor
 </table>
 </blockquote>',
 
+            'formparam' => '&lt;param&gt;&lt;value&gt;&lt;/value&gt;&lt;/param&gt;
+',
+
             'methodfooter' => '
 <h2>Test method call</h2>
 <p>Complete by hand the form below inserting the needed parameters to call this method.<br/>
@@ -190,7 +201,7 @@ For a string param use e.g. <pre>&lt;param&gt;&lt;value&gt;&lt;string&gt;Hello&l
 <textarea id="methodCall" name="methodCall" rows="5" cols="80">
 &lt;methodCall&gt;&lt;methodName&gt;{$method}&lt;/methodName&gt;
 &lt;params&gt;
-&lt;/params&gt;
+{$params}&lt;/params&gt;
 &lt;/methodCall&gt;
 </textarea><br/>
 {$extras}
