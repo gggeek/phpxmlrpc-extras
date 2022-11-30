@@ -100,7 +100,7 @@ class ADODB_xmlrpc extends ADOConnection
             $dsn = DB::parseDSN($database);
 
             if ($dsn)
-                $msg =& new $this->xmlrpcmsg_class($this->xmlrpcserver_func_prefix . $methname,
+                $msg = new $this->xmlrpcmsg_class($this->xmlrpcserver_func_prefix . $methname,
                     array(
                         new xmlrpcval($dsn['phptype']),
                         new xmlrpcval($dsn['hostspec']),
@@ -113,7 +113,7 @@ class ADODB_xmlrpc extends ADOConnection
                 // @todo set some error state/msg: DSN parsing failed
                 return false;
         } else {
-            $msg =& new $this->xmlrpcmsg_class($this->xmlrpcserver_func_prefix . $methname);
+            $msg = new $this->xmlrpcmsg_class($this->xmlrpcserver_func_prefix . $methname);
         }
 
         $resp = $this->_send($msg, true);
@@ -153,7 +153,7 @@ class ADODB_xmlrpc extends ADOConnection
 
     function _query($sql, $inputarr = false)
     {
-        $msg =& new $this->xmlrpcmsg_class($this->xmlrpcserver_func_prefix . 'execute',
+        $msg = new $this->xmlrpcmsg_class($this->xmlrpcserver_func_prefix . 'execute',
             array(
                 new xmlrpcval($this->_connectionID),
                 new xmlrpcval($sql)
@@ -191,7 +191,7 @@ class ADODB_xmlrpc extends ADOConnection
 
     function _close()
     {
-        $msg =& new $this->xmlrpcmsg_class($this->xmlrpcserver_func_prefix . 'close',
+        $msg = new $this->xmlrpcmsg_class($this->xmlrpcserver_func_prefix . 'close',
             array(new xmlrpcval($this->_connectionID))
         );
 
@@ -215,7 +215,7 @@ class ADODB_xmlrpc extends ADOConnection
 
     function ServerInfo()
     {
-        $msg =& new $this->xmlrpcmsg_class($this->xmlrpcserver_func_prefix . 'callconnectionfunction',
+        $msg = new $this->xmlrpcmsg_class($this->xmlrpcserver_func_prefix . 'callconnectionfunction',
             array(new xmlrpcval($this->_connectionID), new xmlrpcval('ServerInfo'))
         );
         $resp = $this->_send($msg);
@@ -235,9 +235,9 @@ class ADODB_xmlrpc extends ADOConnection
         //$this->_server_hostname = $server_hostname;
         if ($server_port !== null) {
             //$this->_server_port = $server_port;
-            $this->_xmlrpcclient =& new $this->xmlrpcclient_class($server_path, $server_hostname, $server_port);
+            $this->_xmlrpcclient = new $this->xmlrpcclient_class($server_path, $server_hostname, $server_port);
         } else {
-            $this->_xmlrpcclient =& new $this->xmlrpcclient_class($server_path, $server_hostname);
+            $this->_xmlrpcclient = new $this->xmlrpcclient_class($server_path, $server_hostname);
         }
 
         if ($user)
@@ -257,7 +257,7 @@ class ADODB_xmlrpc extends ADOConnection
         $client =& $this->_xmlrpcclient;
         if (is_object($client)) {
             $client->setDebug($this->debug);
-            $resp =& $client->send($payload, $this->_timeout, $this->_server_protocol);
+            $resp = $client->send($payload, $this->_timeout, $this->_server_protocol);
             if (!$resp) {
                 $this->_errorNo = $client->errno;
                 $this->_errorMsg = $client->errstring;
@@ -314,7 +314,7 @@ class ADORecordSet_xmlrpc
      * HACK HACK HACK
      * The xmlrpc connection takes care of building and initing the appropriate recordset,
      * and passes it to us as an object.
-     * So we just copy the object reference into ourself. Lovely PHP let us do that :)
+     * So we just copy the object reference into ourselves. Lovely PHP let us do that :)
      */
     function ADORecordSet_xmlrpc($objectID, $fetchmode = null)
     {

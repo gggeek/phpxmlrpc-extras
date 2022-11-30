@@ -111,7 +111,7 @@ class ADODB_soap extends ADOConnection
 
             if ($dsn) {
 //timenow('build_connect_soapval_start');
-                $msg =& new soapval('connectionParams', 'ConnectionParams', null,
+                $msg = new soapval('connectionParams', 'ConnectionParams', null,
                     null, $tosoap_namespace,
                     array(
                         //'' => $dsn['phptype'],
@@ -175,7 +175,7 @@ class ADODB_soap extends ADOConnection
 
 //timenow('build_query_soapval_start');
         if ($this->fix_query)
-            $msg =& new soapval('query', 'Query', null, null, $tosoap_namespace,
+            $msg = new soapval('query', 'Query', null, null, $tosoap_namespace,
                 array(
                     'connectionID' => $this->_connectionID,
                     'sqlString' => htmlspecialchars($sql),  // SOAP DOES NOT HANDLE IT!!!
@@ -184,7 +184,7 @@ class ADODB_soap extends ADOConnection
                 )
             );
         else
-            $msg =& new soapval('query', 'Query', null, null, $tosoap_namespace,
+            $msg = new soapval('query', 'Query', null, null, $tosoap_namespace,
                 array(
                     'connectionID' => $this->_connectionID,
                     'sqlString' => $sql,
@@ -238,7 +238,7 @@ class ADODB_soap extends ADOConnection
         global $tosoap_namespace;
 
 //timenow('build_close_soapval_start');
-        $msg =& new soapval('connectionID', 'ConnectionID', null,
+        $msg = new soapval('connectionID', 'ConnectionID', null,
             null, $tosoap_namespace,
             array('connectionID' => $this->_connectionID));
 //timenow('build_close_soapval');
@@ -297,10 +297,10 @@ class ADODB_soap extends ADOConnection
 
         if ($timeout !== null) {
             //$this->_server_port = $server_port;
-            $this->_soapclient =& new $this->soapclient_class($host,
+            $this->_soapclient = new $this->soapclient_class($host,
                 false, false, false, false, false, $timeout, $timeout);
         } else {
-            $this->_soapclient =& new $this->soapclient_class($host);
+            $this->_soapclient = new $this->soapclient_class($host);
         }
 
         if ($user)
@@ -397,9 +397,9 @@ class ADORecordSet_soap
 {
     /**
      * HACK HACK HACK
-     * The soap connection takes care of bulding and initing the appropriate recordset,
+     * The soap connection takes care of building and initing the appropriate recordset,
      * and passes it to us as an object.
-     * So we just copy the object reference into ourself. Lovely PHP 4 let us do that :)
+     * So we just copy the object reference into ourselves. Lovely PHP 4 let us do that :)
      */
     function ADORecordSet_soap($objectID, $fetchmode = null)
     {
