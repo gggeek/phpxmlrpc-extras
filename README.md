@@ -45,5 +45,5 @@ PHP-XMLRPC Extras
 [![Latest Stable Version](https://poser.pugx.org/phpxmlrpc/extras/v/stable)](https://packagist.org/packages/phpxmlrpc/extras)
 [![Total Downloads](https://poser.pugx.org/phpxmlrpc/extras/downloads)](https://packagist.org/packages/phpxmlrpc/extras)
 
-[![Build Status](https://github.com/gggeek/phpxmlrpc-extras/actions/workflows/ci.yml/badge.svg)](https://github.com/gggeek/phpxmlrpc-extras/actions/workflows/ci.yml)
+[![Build Status](https://github.com/gggeek/phpxmlrpc-extras/actions/workflows/ci.yml/badge.svg)](https://github.com/gggeek/phpxmlrpc-extras/actions/workflows/ci.yaml)
 [![Code Coverage](https://codecov.io/gh/gggeek/phpxmlrpc-extras/branch/master/graph/badge.svg)](https://app.codecov.io/gh/gggeek/phpxmlrpc-extras)
