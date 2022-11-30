@@ -1,4 +1,9 @@
-XML-RPC for PHP EXTRAS version 1.0-alpha - unreleased
+## XML-RPC for PHP EXTRAS version xxx - (unreleased)
+
+- converted the remaining files to utf8
+- moved from Travis to GitHub Actions for testing; test on all php versions from 5.4 to 8.1
+
+## XML-RPC for PHP EXTRAS version 1.0-alpha - 2021/1/3
 
 Major changes this time around!
 - bumped the minimum required version of the base phpxmlrpc library to 4.5 / php to 5.3
@@ -14,34 +19,34 @@ for developers who rely on the previous APIs (classes, functions, global variabl
 Still to be ported to modern-day coding standards: adodb and ajax components, as well as the docs
 
 
-XML-RPC for PHP EXTRAS version 0.6.3 - 2020/12/23
+## XML-RPC for PHP EXTRAS version 0.6.3 - 2020/12/23
 
 * Fix an error when emulating xmlrpc_set_type
 
 
-XML-RPC for PHP EXTRAS version 0.6.2 - 2017/12/2
+## XML-RPC for PHP EXTRAS version 0.6.2 - 2017/12/2
 
 * Fix class autoloading when trying to install the package via Composer (thanks gmpf)
 
 
-XML-RPC for PHP EXTRAS version 0.6.1 - 2017/10/29
+## ML-RPC for PHP EXTRAS version 0.6.1 - 2017/10/29
 
 * Security fix: avoid one XSS in class documenting_xmlrpc_server
 
 
-XML-RPC for PHP EXTRAS version 0.6 - 2017/3/14
+## XML-RPC for PHP EXTRAS version 0.6 - 2017/3/14
 
 * Accept non-standard options in calls to xmlrpc_encode_request
 
 * Reformat most php code and minor doc improvements
 
 
-XML-RPC for PHP EXTRAS version 0.5.2 - 2014/12/7
+## XML-RPC for PHP EXTRAS version 0.5.2 - 2014/12/7
 
 Only one change for this release - fix class autoloading for composer
 
 
-XML-RPC for PHP EXTRAS version 0.5.1 - 2014/12/6
+## XML-RPC for PHP EXTRAS version 0.5.1 - 2014/12/6
 
 Only one change for this release - but an important one:
 
@@ -49,7 +54,7 @@ Only one change for this release - but an important one:
   All users of the documenting_xmlrpc_server class are urged to upgrade asap.
 
 
-XML-RPC for PHP EXTRAS version 0.5 - 2009/09/05
+## XML-RPC for PHP EXTRAS version 0.5 - 2009/09/05
 
 This is the first release of the library to only support PHP 5.
 The corresponding version of the base library is 3.0.0 beta
@@ -65,7 +70,7 @@ Quite a few changes and bugfixes have been made in the are of json support:
 * fixed: encoding of '/' chars in jsonrpc when source is in UTF8
 
 
-XML-RPC for PHP EXTRAS version 0.4 - 2007/02/25
+## XML-RPC for PHP EXTRAS version 0.4 - 2007/02/25
 
 The fourth release of the php-xmlrpc extras package brings minor new features
 and some bugfixes:
@@ -87,7 +92,7 @@ and some bugfixes:
 * one bugfix in XMLRPC_EXTENSION_API
 
 
-XML-RPC for PHP EXTRAS version 0.3 - 2006/11/23
+## XML-RPC for PHP EXTRAS version 0.3 - 2006/11/23
 
 The third release of the  php-xmlrpc extras package brings the usual lot of
 bugfixes and new capabilities:
@@ -102,7 +107,7 @@ the php json extension can include this file to run unaltered on php installs wh
 the extension is missing
 
 
-XML-RPC for PHP EXTRAS version 0.2 - 2006/09/08
+## XML-RPC for PHP EXTRAS version 0.2 - 2006/09/08
 
 I'm pleased to announce the second release of the php-xmlrpc extras package.
 
@@ -134,7 +139,7 @@ The php xmlrpc base library version 2.1 or later is needed for these package to
 run.
 
 
-XML-RPC for PHP EXTRAS version 0.1 - 2006/04/24
+## XML-RPC for PHP EXTRAS version 0.1 - 2006/04/24
 
 I'm pleased to announce the initial release of the php-xmlrpc extras package.
 
