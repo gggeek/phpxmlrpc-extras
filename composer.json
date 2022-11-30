@@ -12,15 +12,17 @@
             "ajax/ajaxmlrpc.inc"
         ]
     },
-    "require":
-    {
+    "require": {
         "phpxmlrpc/phpxmlrpc": "^4.5.1"
     },
     "require-dev": {
         "ext-curl": "*",
-        "phpunit/phpunit": "^5.0 || ^8.5.12",
+        "phpunit/phpunit": "^4.8 || ^5.0 || ^8.5.12",
         "phpunit/phpunit-selenium": "*",
         "yoast/phpunit-polyfills": "*"
+    },
+    "suggest": {
+        "phpxmlrpc/jsxmlrpc": "Needed for the Ajax Server component"
     },
     "config": {
         "preferred-install": {

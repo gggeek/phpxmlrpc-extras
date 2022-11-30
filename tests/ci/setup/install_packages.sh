@@ -4,5 +4,9 @@
 
 set -e
 
+echo "Installing base software packages..."
+
 DEBIAN_FRONTEND=noninteractive apt-get install -y \
-    sudo unzip wget zip
+    sudo unzip wget
+
+echo "Done installing base software packages"
