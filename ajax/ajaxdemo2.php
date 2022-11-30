@@ -14,13 +14,12 @@ require_once('..\..\xmlrpc\xmlrpcs.inc');
 require_once('ajaxmlrpc.inc');
 
 // php functions to be exposed as webservices
-function sumintegers ($msg)
+function sumintegers($msg)
 {
   $v = $msg->getParam(0);
   $n = $v->arraySize();
   $tot = 0;
-  for ($i = 0; $i < $n; $i++)
-  {
+  for ($i = 0; $i < $n; $i++) {
     $val = $v->arrayMem($i);
     $tot = $tot + $val->scalarval();
   }

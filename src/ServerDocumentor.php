@@ -31,7 +31,9 @@ class ServerDocumentor
      * @return string
      *
      * @todo add support for i18n of generated user-readable docs (eg html)
-     * @todo make css link customizeable
+     * @todo make css link customizeable, as well as the title
+     * @todo add customizeable favicon to the template
+     * @todo move template to utf8
      */
     function generateDocs($server, $doctype = 'html', $lang = 'en', $editorPath = '')
     {

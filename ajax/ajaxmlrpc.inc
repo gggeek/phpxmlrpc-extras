@@ -20,14 +20,12 @@
  * @todo add support for json with jsxmlrpc (only jsolait supports it currently)
  */
 
-// requires: xmlrpc.inc, xmlrpcs.inc
-
 class js_rpc_server extends xmlrpc_server
 {
     var $jsLibsPath = 'jsolait'; // default url of jsolait/jsxmlrpc lib: same dir as php script...
     var $selfUrl;
     /// Javascript lib in use: either 'jsolait' or 'jsxmlrpc'
-    var $jsLibsType = 'jsolait';
+    var $jsLibsType = 'jsxmlrpc';
 
     /**
      * Override base class creator, since we take care of either executing
@@ -35,20 +33,19 @@ class js_rpc_server extends xmlrpc_server
      * (this means on creating class we should either execute-and-die or
      * basically do nothing. Use $servicenow=false only for debugging)
      */
-    function js_rpc_server($dispMap = null, $serviceNow = true)
+    function __construct($dispMap = null, $serviceNow = true)
     {
         // Check if this page has been called via XMLRPC or not
         if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_SERVER['CONTENT_TYPE']) &&
             strpos(strtolower($_SERVER['CONTENT_TYPE']), 'text/xml') === 0
         ) {
             // xmlrpc call received: serve web service and die
-            parent::xmlrpc_server($dispMap, $serviceNow);
+            parent::__construct($dispMap, $serviceNow);
             die();
         } else {
-            // standard page request received: prepare self to emit javascript
-            // code that will call self
+            // standard page request received: prepare self to emit javascript code that will call self
             $this->selfUrl = $_SERVER['REQUEST_URI'];
-            parent::xmlrpc_server($dispMap, false);
+            parent::__construct($dispMap, false);
         }
     }
 
@@ -62,6 +59,8 @@ class js_rpc_server extends xmlrpc_server
         echo js_wrap_xmlrpc_server($this, $this->selfUrl, $this->jsLibsPath, $methodlist, $this->jsLibsType);
     }
 }
+
+/// @todo move all global functions to a JSWrapper class
 
 /**
  * Return html code to include all needed jsolait / jsxmlrpc libs
