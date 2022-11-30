@@ -70,7 +70,7 @@ PHP-XMLRPC Extras User manual
     <para>This collection of utilities provides many additional features to
     the PHP classes that are part of the PHP-XMLRPC library.</para>
 
-    <para>Altough very useful for specific purposes, these files have been
+    <para>Although very useful for specific purposes, these files have been
     omitted from the base distribution in order to keep it small and
     focused.</para>
 
@@ -105,7 +105,7 @@ PHP-XMLRPC Extras User manual
       <para>This is the first release of the library to only support PHP 5.
       The corresponding version of the base library is 3.0.0 beta</para>
 
-      <para>Quite a few changes and bugfixes have been made in the are of json
+      <para>Quite a few changes and bugfixes have been made in the area of json
       support:</para>
 
       <para>improved: catch exceptions thrown during execution of php
@@ -221,13 +221,13 @@ PHP-XMLRPC Extras User manual
   <chapter>
     <title>System requirements</title>
 
-    <para>The PHP-XMLRPC library base package, version 2.1 or later, is a
+    <para>The PHP-XMLRPC library base package, version 4.5.1 or later, is a
     prerequisite for the extras packages.</para>
 
     <para>A working php setup is of course needed.</para>
 
     <para>The base library is tested to work with php versions ranging from
-    4.0.5 to 5.2. Please note that not all library features are available for
+    5.4 to 8.1. Please note that not all library features are available for
     every PHP version. The "curl" php extension is needed to support https
     calls. The "json" and "xmlrpc" php extensions do not interfere with the
     operations of either the base library or extras.</para>
@@ -236,7 +236,7 @@ PHP-XMLRPC Extras User manual
     component that is part of the extras. This prevents complete regression
     tests to be carried out against all php versions. If you encounter any
     quirk, especially with old php installs, please report it on the <ulink
-    url="http://sourceforge.net/projects/phpxmlrpc">project development
+    url="https://github.com/gggeek/phpxmlrpc">project development
     pages</ulink>.</para>
   </chapter>
 
@@ -812,7 +812,7 @@ $s-&gt;service();</programlisting></para>
             containing different characters from the ones intended (a.k.a.
             garbage), while the native extension discards invalid characters
             and any following. Please note that if you are trying to do this
-            your code is most probably wrong.<programlisting>var_dump(json_encode("Günter, Elène"));
+            your code is most probably wrong.<programlisting>var_dump(json_encode("GÃ¼nter, ElÃ¨ne"));
 
 // this implenentation
 string(19) ""Gnter, El\u8ba5ne""
