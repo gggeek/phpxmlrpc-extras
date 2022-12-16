@@ -4,15 +4,8 @@
     "license": "BSD-3-Clause",
     "homepage": "https://github.com/gggeek/phpxmlrpc-extras",
     "keywords": [ "xmlrpc", "webservices", "jsonrpc", "adodb", "wsdl" ],
-    "autoload": {
-        "psr-4": {"PhpXmlRpc\\Extras\\": "src/"},
-        "classmap": [
-            "adodb/drivers/",
-            "adodb/lib/",
-            "ajax/ajaxmlrpc.inc"
-        ]
-    },
     "require": {
+        "php": "^5.3.0 || ^7.0 || ^8.0",
         "phpxmlrpc/phpxmlrpc": "^4.5.1"
     },
     "require-dev": {
@@ -23,6 +16,14 @@
     },
     "suggest": {
         "phpxmlrpc/jsxmlrpc": "Needed for the Ajax Server component"
+    },
+    "autoload": {
+        "psr-4": {"PhpXmlRpc\\Extras\\": "src/"},
+        "classmap": [
+            "adodb/drivers/",
+            "adodb/lib/",
+            "ajax/ajaxmlrpc.inc"
+        ]
     },
     "config": {
         "preferred-install": {
