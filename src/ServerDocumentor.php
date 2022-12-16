@@ -216,8 +216,8 @@ For a string param use e.g. <pre>&lt;param&gt;&lt;value&gt;&lt;string&gt;Hello&l
 <!--
 function runeditor()
 {
-  //var url = "{$baseurl}visualeditor.php?params={$param_payload}";
-  var url = "{$baseurl}visualeditor.php";
+  //var url = "{$baseurl}visualeditor.html?params={$param_payload}";
+  var url = "{$baseurl}visualeditor.html";
   //if (document.frmaction.wstype.value == "1")
   //  url += "&type=jsonrpc";
   var wnd = window.open(url, "_blank", "width=750, height=400, location=0, resizable=1, menubar=0, scrollbars=1");
