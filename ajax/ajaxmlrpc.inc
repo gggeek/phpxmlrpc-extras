@@ -1,66 +1,18 @@
 <?php
-/**
- * AJAX extension to the PHP-XMLRPC lib (works with jsonrpc, too).
+/******************************************************************************
  *
- * Makes use of either the js-xmlrpc lib or the excellent Jsolait javascript
- * library by Jan-Klaas Kollhof
+ * *** DEPRECATED ***
  *
- * Original idea taken from the PHP-O-Lait library by Craig Mason-Jones
- *
- * @author Gaetano Giunta
- * @copyright (c) 2006-2022 G. Giunta
- * @license code licensed under the BSD License: see license.txt
- *
- * @todo add a js object wrapper for all web services if user prefers oop instead
- *       of plain function names (see php-o-lait for an example),
- *       or at least a name prefix for all created functions, to prevent js namespace pollution
- * @todo find a fix for xmlrpc methods whose name contain chars invalid in js function names (eg. '.')
- * @todo if we subclass jsonrpc server, we can use all this magic with json...
- * @todo find a better way of handling webservice errors than using a js alert()
- * @todo add support for json with jsxmlrpc (only jsolait supports it currently)
- */
+ * This file is only used to insure backwards compatibility
+ * with the previous API of the library
+ *****************************************************************************/
 
-class js_rpc_server extends xmlrpc_server
+include_once(__DIR__.'/../src/JSRPCServer.php');
+include_once(__DIR__.'/../src/JSWrapper.php');
+
+class js_rpc_server extends PhpXmlRpc\Extras\JSRPCServer
 {
-    var $jsLibsPath = 'jsolait'; // default url of jsolait/jsxmlrpc lib: same dir as php script...
-    var $selfUrl;
-    /// Javascript lib in use: either 'jsolait' or 'jsxmlrpc'
-    var $jsLibsType = 'jsxmlrpc';
-
-    /**
-     * Override base class creator, since we take care of either executing
-     * or just preparing the server
-     * (this means on creating class we should either execute-and-die or
-     * basically do nothing. Use $servicenow=false only for debugging)
-     */
-    function __construct($dispMap = null, $serviceNow = true)
-    {
-        // Check if this page has been called via XMLRPC or not
-        if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_SERVER['CONTENT_TYPE']) &&
-            strpos(strtolower($_SERVER['CONTENT_TYPE']), 'text/xml') === 0
-        ) {
-            // xmlrpc call received: serve web service and die
-            parent::__construct($dispMap, $serviceNow);
-            die();
-        } else {
-            // standard page request received: prepare self to emit javascript code that will call self
-            $this->selfUrl = $_SERVER['REQUEST_URI'];
-            parent::__construct($dispMap, false);
-        }
-    }
-
-    /**
-     * Echo js code that wraps calls to server.
-     * Note that method names with a . will not work!
-     * @param array $methodlist list of methods to be wrapped. Null = all server methods (except system.XXX methods)
-     */
-    function importMethods2JS($methodlist = null)
-    {
-        echo js_wrap_xmlrpc_server($this, $this->selfUrl, $this->jsLibsPath, $methodlist, $this->jsLibsType);
-    }
 }
-
-/// @todo move all global functions to a JSWrapper class
 
 /**
  * Return html code to include all needed jsolait / jsxmlrpc libs
@@ -70,82 +22,24 @@ class js_rpc_server extends xmlrpc_server
  */
 function js_import_libs($jsLibsPath, $jsLibsType = 'jsolait')
 {
-    if ($jsLibsPath == '') {
-        $jsLibsPath = '.';
-    }
-    if ($jsLibsType == 'jsolait') {
-        $out = '<script type="text/javascript" src="' . $jsLibsPath . '/init.js"></script>
-';
-    } else {
-        $out = '<script type="text/javascript" src="' . $jsLibsPath . '/xmlrpc_lib.js"></script>
-';
-    }
-    return $out;
+    $w = new PhpXmlRpc\Extras\JSWrapper();
+    return $w->importLibs($jsLibsPath, $jsLibsType);
 }
 
 /**
  * Return js code providing a function to call a method of an xmlrpc server.
  * Note that method names should NOT contain dot characters, nor url contain double quotes
- * @todo catch run-time xmlrpc exceptions without a js alert
  */
 function js_wrap_xmlrpc_method($method, $url, $liburl = '', $protocol = 'xmrlpc', $jsLibsType = 'jsolait')
 {
-    //$method = str_replace('.', '_', $method);
-    if ($jsLibsType == 'jsolait') {
-        $out = 'function ' . $method . ' (args) {
-	var ' . $protocol . ' = null;
-	var ' . $protocol . '_server = null;';
-        /*if ($baseurl != '')
-        {
-            $out .= '
-        jsolait.baseURL = '.$baseurl;
-        }*/
-        if ($liburl != '') {
-            $out .= '
-	jsolait.libURL = "' . $liburl . '"';
-        }
-        $out .= '
-	try {
-		' . $protocol . ' = importModule("' . $protocol . '");
-		' . $protocol . '_server = new ' . $protocol . '.ServiceProxy("' . $url . '", ["' . $method . '"]);
-		try {
-			return ' . $protocol . '_server.' . $method . '(args);
-		} catch (e) {
-			alert(e);
-		}
-	} catch (e) {
-		alert(e);
-	}
-}
-';
-    } else {
-        $out = 'function ' . $method . ' () {
-	var ws_client = new ' . $protocol . '_client("' . $url . '");
-	var ws_args = [];
-	for (var i = 0; i < arguments.length; i++)
-	{
-		ws_args[ws_args.length] = ' . $protocol . '_encode(arguments[i]);
-	}
-	var ws_msg = new ' . $protocol . 'msg("' . $method . '", ws_args);
-	try {
-		var ws_resp = ws_client.send(ws_msg);
-		if  (ws_resp.faultCode())
-			alert("ERROR: " + ws_resp.faultCode() + " - " + ws_resp.faultString());
-		else
-			return  ' . $protocol . '_decode(ws_resp.value());
-	} catch (e) {
-		alert(e);
-	}
-}
-';
-    }
-    return $out;
+    $w = new PhpXmlRpc\Extras\JSWrapper();
+    return $w->wrapXmlrpcMethod($method, $url, $liburl, $protocol, $jsLibsType);
 }
 
 /**
- * Return js code providing functions to call all methods of an xmlrpc server
+ * Return js code providing functions to call all methods of an xmlrpc server.
  * Note that method names with a . will not work!
- * @param xmlrpcserver $server
+ * @param PhpXmlRpc\Server $server
  * @param array $methodlist list of methods to be wrapped into js (or null == expose all methods)
  * @param string $url url at which the xmlrpcserver responds
  * @param string $liburl url of the jsolait lib (see jsolait docs for more info)
@@ -154,17 +48,13 @@ function js_wrap_xmlrpc_method($method, $url, $liburl = '', $protocol = 'xmrlpc'
  */
 function js_wrap_xmlrpc_server($server, $url, $liburl = '', $methodlist = null, $jsLibsType = 'jsolait')
 {
-    if (is_a($server, 'jsonrpc_server')) {
-        $protocol = 'jsonrpc';
-    } else {
-        $protocol = 'xmlrpc';
-    }
-    return js_wrap_dispatch_map($server->dmap, $url, $liburl, $methodlist, $protocol, $jsLibsType);
+    $w = new PhpXmlRpc\Extras\JSWrapper();
+    return $w->wrapXmlrpcServer($server, $url, $liburl, $methodlist, $jsLibsType);
 }
 
 /**
- * Same functionality as 'js_wrap_xmlrpc_server', but needs only the server
- * dispatch map (and an optional server type) , not the server itself
+ * Same functionality as 'js_wrap_xmlrpc_server', but needs only the server dispatch map (and an optional server type),
+ * not the server itself.
  * @param array $dmap an xmlrpc server dispatch map
  * @param array $methodlist list of methods to be wrapped into js (or null = wrap all)
  * @param string $url url at which the xmlrpcserver responds
@@ -175,25 +65,6 @@ function js_wrap_xmlrpc_server($server, $url, $liburl = '', $methodlist = null, 
  */
 function js_wrap_dispatch_map($dmap, $url, $liburl = '', $methodlist = null, $protocol = 'xmlrpc', $jsLibsType = 'jsolait')
 {
-    $out = '';
-    $out .= js_import_libs($liburl, $jsLibsType);
-    if ($methodlist == null) {
-        $methodlist = array_keys($dmap);
-    } // be extra tolerant: a single method can be passed as string...
-    else if (is_string($methodlist)) {
-        $methodlist = array($methodlist);
-    }
-
-    $out .= '<script type="text/javascript">
-<!--
-';
-    foreach ($methodlist as $method) {
-        if (array_key_exists($method, $dmap)) {
-            $out .= js_wrap_xmlrpc_method($method, $url, $liburl, $protocol, $jsLibsType);
-        }
-    }
-    $out .= '//-->
-</script>
-';
-    return $out;
+    $w = new PhpXmlRpc\Extras\JSWrapper();
+    return $w->wrapDispatchMap($dmap, $url, $liburl, $methodlist, $protocol, $jsLibsType);
 }

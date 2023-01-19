@@ -1,58 +1,57 @@
 <?php
 /**
- * Demo of an ajax jsonrpc server + client in a single php script
+ * Demo of an ajax json-rpc server + client in a single php script
  *
  * @author Gaetano Giunta
- * @copyright (c) 2006-2022 G. Giunta
+ * @copyright (c) 2006-2023 G. Giunta
  * @license code licensed under the BSD License: see license.txt
  */
 
-// import required libs
-require_once('..\..\xmlrpc\xmlrpc.inc');
-require_once('..\..\xmlrpc\xmlrpcs.inc');
-require_once('..\jsonrpc\jsonrpc.inc');
-require_once('..\jsonrpc\jsonrpcs.inc');
-require_once('ajaxmlrpc.inc');
+require_once __DIR__ . "/../_prepend.php";
+
+use PhpXmlRpc\Extras\JSWrapper;
+use PhpXmlRpc\JsonRpc\Response;
+use PhpXmlRpc\JsonRpc\Server;
+use PhpXmlRpc\JsonRpc\Value;
 
 // php functions to be exposed as webservices
-function sumintegers($msg)
+function sumIntegers($msg)
 {
     $v = $msg->getParam(0);
-    $n = $v->arraySize();
     $tot = 0;
-    for ($i = 0; $i < $n; $i++) {
-        $val = $v->arrayMem($i);
+    foreach ($v as $val) {
         $tot = $tot + $val->scalarval();
     }
 
-    return new xmlrpcresp(new xmlrpcval($tot, 'int'));
+    return new Response(new Value($tot, 'int'));
 }
 
 // webservices signature
 // NB: do not use dots in method names
 $dmap = array(
     'sumintegers' => array(
-        'function' => 'sumintegers',
+        'function' => 'sumIntegers',
         'signature' => array(array('integer', 'array'))
     )
 );
 
-// create server object
+// execute webservices in case of POST requests
+// (we could limit this by sniffing the content-type header)
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $server = new jsonrpc_server($dmap);
+    $server = new Server($dmap);
     die();
 }
 ?>
 <html>
 <head>
 <?php
+$wrapper = new JSWrapper();
 // import all webservices from server into javascript namespace
-echo js_wrap_dispatch_map($dmap, 'sonofajax.php', 'jsolait', null, 'jsonrpc');
+echo $wrapper->wrapDispatchMap($dmap, 'sonofajax.php', '', null, 'jsonrpc');
 ?>
 </head>
 <body>
-Click
-<a href="#" onclick="alert(sumintegers([10,11,12])); return false;">here</a>
-to execute a webservice call and display results in a popup message...
+Click <a href="#" onclick="alert(sumintegers([10,11,12])); return false;">here</a> to execute a webservice call and
+display results in a popup message...
 </body>
 </html>
