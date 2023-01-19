@@ -27,7 +27,9 @@ class ServerDocumentor
      * @param Server $server
      * @param string $doctype type of documentation to generate: html (default), wsdl, etc...
      * @param string $lang language for docs
-     * @param string $editorPath
+     * @param string $editorPath path to the visualeditor.html file, part of the jsxmlrpc lib. NB: when setting this,
+     *               make sure that both that file and the xmlrpc_lib.js are present, with the same relative paths as in
+     *               the original lib
      * @return string
      *
      * @todo add support for i18n of generated user-readable docs (eg html)
@@ -53,7 +55,9 @@ class ServerDocumentor
                     if ($editorPath != '') {
                         $mstart = $this->render('xmlrpcmethodstart', array('method' => htmlspecialchars($_GET['methodName'])));
                         $mend = $this->render('xmlrpcmethodend', array());
-                        $opts['extras'] = $this->render('editorheaders', array('baseurl' => $editorPath, 'methodcallstart' => $mstart, 'methodcallend' => $mend));
+                        $editorUrl = preg_replace('|visualeditor.html$|', '', $editorPath);
+                        $libUrl = rtrim($editorPath, '/') . '/../lib/';
+                        $opts['extras'] = $this->render('editorheaders', array('editorurl' => $editorUrl, 'liburl' => $libUrl, 'methodcallstart' => $mstart, 'methodcallend' => $mend));
                     } else
                         $opts['extras'] = '';
                     $payload .= $this->render('docheader', $opts);
@@ -91,6 +95,7 @@ class ServerDocumentor
                         for ($j = 0; $j < $minParams; $j++) {
                             $formParams .= $this->render('formparam');
                         }
+
                         if ($editorPath) {
                             $payload .= $this->render('methodfooter', array('method' => htmlspecialchars($_GET['methodName']), 'params' => $formParams, 'extras' => $this->render('editorlink', array())));
                         } else {
@@ -145,7 +150,7 @@ class ServerDocumentor
 <body>',
 
             'docfooter' => '
-<div class="footer">Generated using PHP-XMLRPC ' . PhpXmlRpc::$xmlrpcVersion . '</div>
+<div class="footer">Generated using PHPXMLRPC ' . PhpXmlRpc::$xmlrpcVersion . '</div>
 </body></html>',
 
             'apiheader' => '
@@ -205,14 +210,16 @@ For a string param use e.g. <pre>&lt;param&gt;&lt;value&gt;&lt;string&gt;Hello&l
 <input type="submit" value="Test"/>
 </p></form>',
 
-            'editorheaders' => '<script type="text/javascript" src="{$baseurl}xmlrpc_lib.js"></script>
-<!--<script type="text/javascript" src="{$baseurl}jsonrpc_lib.js"></script>-->
+            'editorheaders' => '<script type="module">
+import {base64_decode} from "{$liburl}xmlrpc_lib.js";
+window.base64_decode = base64_decode;
+</script>
 <script type="text/javascript">
 <!--
 function runeditor()
 {
-  //var url = "{$baseurl}visualeditor.html?params={$param_payload}";
-  var url = "{$baseurl}visualeditor.html";
+  //var url = "{$editorurl}visualeditor.html?params={$param_payload}";
+  var url = "{$editorurl}visualeditor.html";
   //if (document.frmaction.wstype.value == "1")
   //  url += "&type=jsonrpc";
   var wnd = window.open(url, "_blank", "width=750, height=400, location=0, resizable=1, menubar=0, scrollbars=1");

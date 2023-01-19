@@ -1,3 +1,7 @@
+## XML-RPC for PHP EXTRAS version 1.0-beta2 - 2023/1/19
+
+- improved integration of ServerDocumentor with recent jsxmlrpc lib versions
+
 ## XML-RPC for PHP EXTRAS version 1.0-beta1 - 2023/1/19
 
 - bumped the minimum required version of the base phpxmlrpc library to 4.6
@@ -80,7 +84,7 @@ Quite a few changes and bugfixes have been made in the are of json support:
 
 ## XML-RPC for PHP EXTRAS version 0.4 - 2007/02/25
 
-The fourth release of the php-xmlrpc extras package brings minor new features
+The fourth release of the phpxmlrpc extras package brings minor new features
 and some bugfixes:
 
 * DOCXMLRPCS gets a bugfix for php installs where magic_quotes_gpc is set and an
@@ -102,7 +106,7 @@ and some bugfixes:
 
 ## XML-RPC for PHP EXTRAS version 0.3 - 2006/11/23
 
-The third release of the  php-xmlrpc extras package brings the usual lot of
+The third release of the  phpxmlrpc extras package brings the usual lot of
 bugfixes and new capabilities:
 
 Lots of bugfixes in the json code, leading to improved serialization and parsing.
@@ -117,7 +121,7 @@ the extension is missing
 
 ## XML-RPC for PHP EXTRAS version 0.2 - 2006/09/08
 
-I'm pleased to announce the second release of the php-xmlrpc extras package.
+I'm pleased to announce the second release of the phpxmlrpc extras package.
 
 Besides some bugfixing and improvements, two very interesting new packages have
 been added:
@@ -149,7 +153,7 @@ run.
 
 ## XML-RPC for PHP EXTRAS version 0.1 - 2006/04/24
 
-I'm pleased to announce the initial release of the php-xmlrpc extras package.
+I'm pleased to announce the initial release of the phpxmlrpc extras package.
 
 The documentation is quite scarce (read: nonexistent), but the code is in pretty good shape.
 

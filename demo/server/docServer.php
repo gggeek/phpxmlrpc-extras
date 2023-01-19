@@ -1,6 +1,6 @@
 <?php
 /**
- * Demo of the Self-documenting PHP-XMLRPC server
+ * Demo of the Self-documenting PHPXMLRPC server
  *
  * @author Gaetano Giunta
  * @copyright (c) 2005-2023 G. Giunta

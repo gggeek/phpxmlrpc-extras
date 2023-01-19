@@ -1,5 +1,5 @@
-PHP-XMLRPC Extras
-=================
+PHPXMLRPC Extras
+================
 
 ## DESCRIPTION
   A collection of server addons that might be of use for development of xml-rpc (and json-rpc) based applications

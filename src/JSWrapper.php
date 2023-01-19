@@ -3,7 +3,7 @@
 namespace PhpXmlRpc\Extras;
 
 /**
- * AJAX extension to the PHP-XMLRPC lib (works with json-rpc, too).
+ * AJAX extension to the PHPXMLRPC lib (works with json-rpc, too).
  * Makes use of the js-xmlrpc lib.
  * Original idea taken from the PHP-O-Lait library by Craig Mason-Jones
  *

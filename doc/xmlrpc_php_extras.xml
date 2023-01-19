@@ -3,10 +3,10 @@
 <!DOCTYPE book PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN"
     "http://docbook.org/xml/4.5/docbookx.dtd">
 <!--
-PHP-XMLRPC Extras User manual
+PHPXMLRPC Extras User manual
 -->
 <book lang="en">
-  <title>EXTRAS package for the PHP-XMLRPC library</title>
+  <title>EXTRAS package for the PHPXMLRPC library</title>
 
   <subtitle>version 0.5</subtitle>
 
@@ -68,7 +68,7 @@ PHP-XMLRPC Extras User manual
     <title>Introduction</title>
 
     <para>This collection of utilities provides many additional features to
-    the PHP classes that are part of the PHP-XMLRPC library.</para>
+    the PHP classes that are part of the PHPXMLRPC library.</para>
 
     <para>Although very useful for specific purposes, these files have been
     omitted from the base distribution in order to keep it small and
@@ -119,7 +119,7 @@ PHP-XMLRPC Extras User manual
 
     <para><itemizedlist>
         <listitem>
-          <para>AJAX: demo of an ajaxified version of the php-xmlrpc lib:
+          <para>AJAX: demo of an ajaxified version of the phpxmlrpc lib:
           supports executing xmlrpc/jsonrpc calls directly from the client
           browser. Needs the excellent jsolait lib from <ulink
           url="http://jsolait.net/">http://jsolait.net/</ulink> (thanks Jan
@@ -129,7 +129,7 @@ PHP-XMLRPC Extras User manual
         <listitem>
           <para>DOCXMLRPCS: subclass of xmlrpc server that auto-generates HTML
           documentation of exposed services. Easy as a breeze to use, and
-          extremely user-friendly (it is used on the main php-xmlrpc website,
+          extremely user-friendly (it is used on the main phpxmlrpc website,
           too).</para>
         </listitem>
 
