@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <?xml-stylesheet href="docbook-css/driver.css" type="text/css"?>
 <!DOCTYPE book PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN"
     "http://docbook.org/xml/4.5/docbookx.dtd">
@@ -74,148 +74,15 @@ PHP-XMLRPC Extras User manual
     omitted from the base distribution in order to keep it small and
     focused.</para>
 
-    <para><ulink url="???">PHP-XMLRPC</ulink> is a php library which
+    <para><ulink url="???">PHPXMLRPC</ulink> is a php library which
     implements the XMLRPC protocol.</para>
 
     <para>XMLRPC is a format devised by <ulink
     url="http://www.userland.com/">Userland Software</ulink> for achieving
     remote procedure call via XML using HTTP as the transport. XML-RPC has its
     own web site, <ulink
-    url="http://www.xmlrpc.com/">www.xmlrpc.com</ulink></para>
+    url="http://xmlrpc.com/">xmlrpc.com</ulink></para>
 
-    <para>Support for JSON and JSONRPC is part of this distribution.</para>
-
-    <para><ulink url="???">JSON</ulink> is a format devised to ease
-    serialization and deserialization of common data types without incurring
-    the overhead that is normally associated with XML. It is a subset of the
-    Javascript language, and as such it is easily manipulated within web
-    browsers.</para>
-
-    <para><ulink url="http://www.jsonrpc.org">JSONRPC</ulink> is a remote
-    procedure call protocol that uses HTTP for transport and a json syntax
-    extremely similar to the xmlrpc one.</para>
-  </chapter>
-
-  <chapter>
-    <title>What's new</title>
-
-    <section>
-      <title>rev. 0.5</title>
-
-      <para>This is the first release of the library to only support PHP 5.
-      The corresponding version of the base library is 3.0.0 beta</para>
-
-      <para>Quite a few changes and bugfixes have been made in the area of json
-      support:</para>
-
-      <para>improved: catch exceptions thrown during execution of php
-      functions exposed as methods by the jsonrpc server</para>
-
-      <itemizedlist>
-        <listitem>
-          <para>improved: catch exceptions thrown during execution of php
-          functions exposed as methods by the jsonrpc server</para>
-        </listitem>
-
-        <listitem>
-          <para>fixed: fix bad encoding if same object is encoded twice using
-          php_jsonrpc_encode</para>
-        </listitem>
-
-        <listitem>
-          <para>improved: json_extension_api.php: added json_last_error()
-          function and the constants defined in php 5.3.0</para>
-        </listitem>
-
-        <listitem>
-          <para>improved: allow 'mixed type' jsonrpc servers (see description
-          in the xmlrpc server docs)</para>
-        </listitem>
-
-        <listitem>
-          <para>improved: allow 'phpvals' jsonrpc servers to do type checking
-          on incoming requests</para>
-        </listitem>
-
-        <listitem>
-          <para>fixed: a missing 'new' call when building string vals in
-          php_jsonrpc_encode</para>
-        </listitem>
-
-        <listitem>
-          <para>fixed: encoding of UTF8 chars outside of the BMP</para>
-        </listitem>
-
-        <listitem>
-          <para>fixed: encoding of '/' chars in jsonrpc when source is in
-          UTF8</para>
-        </listitem>
-      </itemizedlist>
-    </section>
-
-    <section>
-      <title>rev. 0.4</title>
-
-      <para><itemizedlist>
-          <listitem>
-            <para>DOCXMLRPCS got a bugfix for php installs where
-            magic_quotes_gpc is set and an option to take advantage of a
-            visual editor for xmlrpc values (the editor being part of the
-            jsxmlrpc package, it has to be downloaded separately)</para>
-          </listitem>
-
-          <listitem>
-            <para>the usual lot of bugfixes for JSONRPC: slightly faster
-            handling of data which is internally encoded as UTF-8; support for
-            booleans, strings, null as valid id in requests and responses;
-            correctly add quotes when serializing datetimes; correct handling
-            of charset declaration in http headers; switched the declared
-            content-type from 'text/plain' to 'application/json' as per the
-            proposed rfc; modified json_extension_api.inc to follow php
-            445/521 semantics</para>
-          </listitem>
-
-          <listitem>
-            <para>added in AJAXMLRPC a new server class that takes advantage
-            of ths jsxmlrpc lib for the generated javascript code (instead of
-            jsolait)</para>
-          </listitem>
-
-          <listitem>
-            <para>one bugfix in XMLRPC_EXTENSION_API</para>
-          </listitem>
-        </itemizedlist></para>
-    </section>
-
-    <section>
-      <title>rev. 0.3</title>
-
-      <para><itemizedlist>
-          <listitem>
-            <para>This manual was, albeit in complete, added to the
-            distribution</para>
-          </listitem>
-
-          <listitem>
-            <para>a new php file has been included in the JsonRPC package,
-            which implements the same API as the PHP native JSON extension: it
-            can be used to replace the extension in those situations where
-            modifications to the application server are not feasible, such as
-            websites on shared hosting etc...</para>
-          </listitem>
-
-          <listitem>
-            <para>bugfixes in the JsonRPC and ADODB packages</para>
-          </listitem>
-        </itemizedlist></para>
-    </section>
-
-    <section>
-      <title>rev. 0.2</title>
-
-      <para>See the <filename>NEWS</filename> file for a detailed list of
-      changes in release 0.2</para>
-    </section>
   </chapter>
 
   <chapter>
@@ -227,7 +94,7 @@ PHP-XMLRPC Extras User manual
     <para>A working php setup is of course needed.</para>
 
     <para>The base library is tested to work with php versions ranging from
-    5.4 to 8.1. Please note that not all library features are available for
+    5.4 to 8.2. Please note that not all library features are available for
     every PHP version. The "curl" php extension is needed to support https
     calls. The "json" and "xmlrpc" php extensions do not interfere with the
     operations of either the base library or extras.</para>
