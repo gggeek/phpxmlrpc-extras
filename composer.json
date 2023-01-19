@@ -1,9 +1,9 @@
 {
     "name": "phpxmlrpc/extras",
-    "description": "A collection of extensions, addons and other stuff that might be of use for development of xml-rpc (and jsonrpc, soap) based applications",
+    "description": "A collection of extensions, addons and other stuff that might be of use for development of xml-rpc (and json-rpc) based applications",
     "license": "BSD-3-Clause",
     "homepage": "https://github.com/gggeek/phpxmlrpc-extras",
-    "keywords": [ "xmlrpc", "webservices", "jsonrpc", "adodb", "wsdl" ],
+    "keywords": [ "xmlrpc", "webservices", "jsonrpc" ],
     "require": {
         "php": "^5.3.0 || ^7.0 || ^8.0",
         "phpxmlrpc/phpxmlrpc": "^4.5.1"
@@ -20,8 +20,6 @@
     "autoload": {
         "psr-4": {"PhpXmlRpc\\Extras\\": "src/"},
         "classmap": [
-            "adodb/drivers/",
-            "adodb/lib/",
             "ajax/ajaxmlrpc.inc"
         ]
     },

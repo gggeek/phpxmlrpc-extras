@@ -4,7 +4,8 @@
 - moved from Travis to GitHub Actions for testing; test on all php versions from 5.4 to 8.1
 - removed the WSDL schemas - they now reside at https://github.com/gggeek/xmlrpc-schemas and can be installed via Composer
   as package "phpxmlrpc/schemas"
-
+- removed the ADOdb module - it now resides at https://github.com/gggeek/adodb-xmlrpc-proxy and can be installed via Composer
+  as package "phpxmlrpc/adodb-xmlrpc-proxy"
 
 ## XML-RPC for PHP EXTRAS version 1.0-alpha - 2021/1/3
 

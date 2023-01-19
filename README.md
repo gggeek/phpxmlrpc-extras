@@ -2,7 +2,7 @@ PHP-XMLRPC Extras
 =================
 
 ## DESCRIPTION
-  A collection of extensions, addons and other stuff that might be of use for development of xml-rpc (and jsonrpc, soap)
+  A collection of extensions, addons and other stuff that might be of use for development of xml-rpc (and json-rpc)
   based applications
 
 ## REQUIREMENTS
@@ -14,14 +14,9 @@ PHP-XMLRPC Extras
   HTML documentation can be found in the doc/ directory.
 
 ## COPYRIGHT:
-  Use of this software is subject to the terms in [license.txt](license.txt) (except for the code in the adodb directory,
-  which is dual licensed under BSD and LGPL)
+  Use of this software is subject to the terms in [license.txt](license.txt)
 
 ## INCLUDED MODULES
-
-### ADODB (WIP - not ported yet from old API):
-  Provides an easy mean of connecting applications to remote databases using a web service protocol instead of a native
-  database driver.
 
 ### AJAX (WIP - not ported yet from old API):
   Demo of ajaxified version of xmlrpc lib: supports executing xmlrpc/jsonrpc calls directly from the client browser.
