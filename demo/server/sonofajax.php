@@ -7,7 +7,7 @@
  * @license code licensed under the BSD License: see license.txt
  */
 
-require_once __DIR__ . "/../_prepend.php";
+require_once __DIR__ . "/_prepend.php";
 
 use PhpXmlRpc\Extras\JSWrapper;
 use PhpXmlRpc\JsonRpc\Response;
@@ -41,13 +41,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $server = new Server($dmap);
     die();
 }
-?>
-<html>
+?><!DOCTYPE html>
+<html lang="en">
 <head>
+<title>XMLRPC Extras Ajax demo - JSON-RPC</title>
 <?php
-$wrapper = new JSWrapper();
-// import all webservices from server into javascript namespace
-echo $wrapper->wrapDispatchMap($dmap, 'sonofajax.php', '', null, 'jsonrpc');
+    $wrapper = new JSWrapper();
+    // import all webservices from server into javascript namespace
+    echo $wrapper->wrapDispatchMap($dmap, 'sonofajax.php', '', null, 'jsonrpc');
 ?>
 </head>
 <body>

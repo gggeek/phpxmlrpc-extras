@@ -23,7 +23,7 @@ class js_rpc_server extends PhpXmlRpc\Extras\JSRPCServer
 function js_import_libs($jsLibsPath, $jsLibsType = 'jsolait')
 {
     $w = new PhpXmlRpc\Extras\JSWrapper();
-    return $w->importLibs($jsLibsPath, $jsLibsType);
+    return $w->importLibs($jsLibsPath, 'xmlrpc', $jsLibsType);
 }
 
 /**

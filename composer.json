@@ -1,6 +1,6 @@
 {
     "name": "phpxmlrpc/extras",
-    "description": "A collection of extensions, addons and other stuff that might be of use for development of xml-rpc (and json-rpc) based applications",
+    "description": "A collection of server-side addons that might be of use for development of xml-rpc (and json-rpc) based applications",
     "license": "BSD-3-Clause",
     "homepage": "https://github.com/gggeek/phpxmlrpc-extras",
     "keywords": [ "xmlrpc", "webservices", "jsonrpc" ],
@@ -16,10 +16,10 @@
     },
     "suggest": {
         "phpxmlrpc/jsonrpc": "Needed for the SonOfAjax demo",
-        "phpxmlrpc/jsxmlrpc": "Needed for the Ajax Server component. NB: better installed via NPM!"
+        "phpxmlrpc/jsxmlrpc": "Used the Ajax Server component. NB: better installed via NPM or used directly from CDN!"
     },
     "autoload": {
-        "psr-4": {"PhpXmlRpc\\Extras\\": "src/"},
+        "psr-4": {"PhpXmlRpc\\Extras\\": "src/"}
     },
     "config": {
         "preferred-install": {

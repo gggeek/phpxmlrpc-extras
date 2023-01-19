@@ -18,8 +18,9 @@ class ReverseProxy extends Server
     public $execute_any_call = true;
 
     /**
-     * Override constructor: we always need a client object to be used for
-     * communicating with remote server, and have no dispatch map of ours
+     * Override constructor: we always need a client object to be used for communicating with remote server, and have
+     * no dispatch map of ours.
+     *
      * @param Client $client
      * @param boolean $serviceNow
      */
@@ -54,7 +55,6 @@ class ReverseProxy extends Server
      * @param mixed $req either a Request obj or a method name
      * @param array $params array with method parameters as php types (if m is method name only)
      * @param array $paramTypes array with xmlrpc types of method parameters (if m is method name only)
-     *
      * @return Response
      *
      * @throws \Exception
@@ -75,8 +75,11 @@ class ReverseProxy extends Server
 
     /**
      * Add to dispatch map of this server some (or all) of the methods exposed by a remote server.
+     *
      * @param string|string[] $methodList
      * @return int|false false on error, or the number of methods proxied
+     *
+     * @todo feature-creep allow to specify remote methods to proxy via a regexp
      */
     public function acquireServerMethods($methodList = null)
     {

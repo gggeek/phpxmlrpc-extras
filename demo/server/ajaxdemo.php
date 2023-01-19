@@ -7,7 +7,7 @@
  * @license code licensed under the BSD License: see license.txt
  */
 
-require_once __DIR__ . "/../_prepend.php";
+require_once __DIR__ . "/_prepend.php";
 
 use PhpXmlRpc\Extras\JSRPCServer;
 use PhpXmlRpc\Response;
@@ -41,12 +41,13 @@ $server = new JSRPCServer($dmap);
 // nothing below here will be executed when an rpc call is being served
 
 // here starts the front-end code
-?><html lang="en">
+?><!DOCTYPE html>
+<html lang="en">
 <head>
 <title>XMLRPC Extras Ajax demo</title>
 <?php
-// import all webservices from server into javascript namespace
-$server->importMethods2JS();
+    // import all webservices from server into javascript namespace
+    $server->importMethods2JS();
 ?>
 </head>
 <body>

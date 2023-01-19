@@ -5,13 +5,16 @@ namespace PhpXmlRpc\Extras;
 use PhpXmlRpc\Server;
 
 /**
- * @todo if we subclass jsonrpc server, we can use all this magic with json...
+ * @todo if we subclass the json-rpc server instead of the xml-rpc one, we _might_ be able to easily use all this magic
+ *       with both xml-rpc and json-rpc protocols...
  */
 class JSRPCServer extends Server
 {
-    public $jsLibsPath = 'jsolait'; // default url of jsolait/jsxmlrpc lib: same dir as php script...
+    /** @var string default url of jsxmlrpc lib */
+    public $jsLibsPath = 'https://cdn.jsdelivr.net/npm/@jsxmlrpc/jsxmlrpc@0.6/lib/index.js';
+    /** @var string */
     public $selfUrl;
-    /// Javascript lib in use: either 'jsolait' or 'jsxmlrpc'
+    /** @var string Javascript lib in use: either 'jsolait' or 'jsxmlrpc' */
     public $jsLibsType = 'jsxmlrpc';
 
     /**
