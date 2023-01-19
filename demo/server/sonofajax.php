@@ -48,7 +48,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 <?php
     $wrapper = new JSWrapper();
     // import all webservices from server into javascript namespace
-    echo $wrapper->wrapDispatchMap($dmap, 'sonofajax.php', '', null, 'jsonrpc');
+    echo $wrapper->wrapDispatchMap($dmap, $_SERVER['REQUEST_URI'], 'https://cdn.jsdelivr.net/npm/@jsxmlrpc/jsxmlrpc@0.6/lib/index.js', null, 'jsonrpc');
 ?>
 </head>
 <body>
