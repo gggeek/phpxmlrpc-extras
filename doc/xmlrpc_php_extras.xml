@@ -6,7 +6,7 @@
 PHP-XMLRPC Extras User manual
 -->
 <book lang="en">
-  <title>EXTRAS packages for the PHP-XMLRPC library</title>
+  <title>EXTRAS package for the PHP-XMLRPC library</title>
 
   <subtitle>version 0.5</subtitle>
 
@@ -18,7 +18,7 @@ PHP-XMLRPC Extras User manual
     </author>
 
     <copyright>
-      <year>2006-2022 G. Giunta</year>
+      <year>2006-2023 G. Giunta</year>
     </copyright>
 
     <legalnotice>
@@ -221,8 +221,8 @@ PHP-XMLRPC Extras User manual
   <chapter>
     <title>System requirements</title>
 
-    <para>The PHP-XMLRPC library base package, version 4.5.1 or later, is a
-    prerequisite for the extras packages.</para>
+    <para>The PHPXMLRPC library base package, version 4.5.1 or later, is a
+    prerequisite for the extras package.</para>
 
     <para>A working php setup is of course needed.</para>
 
@@ -241,17 +241,14 @@ PHP-XMLRPC Extras User manual
   </chapter>
 
   <chapter>
-    <title>List of packages in the distribution</title>
+    <title>List of modules in the distribution</title>
 
-    <para>The 'extras' library is formed by many separate components, grouped
-    together for ease of download. The terms 'component' and package' are used
+    <para>The 'extras' library is formed by separate components, grouped
+    together for ease of download. The terms 'component' and 'module' are used
     interchangeably within this manual to indicate groups of files that
-    provide a particular capability. Please note that the term 'package' is
-    used with a different meaning on the library download pages on the
-    www.sourceforge.net website, where the complete extras collection is in
-    fact called a package in itself.</para>
+    provide a particular capability.</para>
 
-    <para>Included packages as of the current release are:</para>
+    <para>Included modules as of the current release are:</para>
 
     <para><itemizedlist>
         <listitem>
@@ -293,33 +290,16 @@ PHP-XMLRPC Extras User manual
           either forward any received call or probe the remote server first
           for existing methods.</para>
         </listitem>
-
-        <listitem>
-          <para>WSDL: the completely UNOFFICIAL DTD and RELAX NG schemas to
-          validate your xmlrpc against. Might be useful in defining some wsdl
-          file describing xmlrpc services (good luck!!!). The DTD is not quite
-          accurate, due to inherent limitations in the definition language.
-          The RELAX NG schema should be on the other hand 100% precise and
-          accurate.</para>
-        </listitem>
-
-        <listitem>
-          <para>XMLRPC_EXTENSION_API: a replacement for the php native xmlrpc
-          extension, written in 100% pure php. Typical use case: enabling a
-          php application, written taking advantage of the php native xmlrpc
-          extension, to run also on webservers where the extension is not /
-          can not be installed.</para>
-        </listitem>
       </itemizedlist></para>
   </chapter>
 
   <chapter>
-    <title>ADODB package</title>
+    <title>ADODB module</title>
 
     <sect1>
       <title>Introduction</title>
 
-      <para>The main purpose of this package is to provide a flexible and
+      <para>The main purpose of this module is to provide a flexible and
       easy-to-use database-to-webservice conversion mechanism. In layman
       terms, we want to provide an easy mean of connecting applications to
       remote databases using a web service protocol instead of a native
@@ -386,19 +366,19 @@ PHP-XMLRPC Extras User manual
       <para><itemizedlist>
           <listitem>
             <para><filename>client_driver_examples.php</filename>: php demo
-            code showcasing usage of this package to connect to remote
+            code showcasing usage of this module to connect to remote
             databases via the xmlrpc ADODB driver</para>
           </listitem>
 
           <listitem>
             <para><filename>client_examples.php</filename>: php demo code
-            showcasing usage of this package to connect to remote databases
+            showcasing usage of this module to connect to remote databases
             via xmlrpc</para>
           </listitem>
 
           <listitem>
             <para><filename>readme.txt</filename>: a short description of the
-            purpose of this package</para>
+            purpose of this module</para>
           </listitem>
 
           <listitem>
@@ -630,7 +610,7 @@ PHP-XMLRPC Extras User manual
   </chapter>
 
   <chapter>
-    <title>Ajax package</title>
+    <title>Ajax module</title>
 
     <sect1>
       <title>files</title>
@@ -670,7 +650,7 @@ PHP-XMLRPC Extras User manual
   </chapter>
 
   <chapter>
-    <title>DocXmlRpc package</title>
+    <title>DocXmlRpc module</title>
 
     <sect1>
       <title>files</title>
@@ -692,7 +672,7 @@ PHP-XMLRPC Extras User manual
     <sect1>
       <title>usage</title>
 
-      <para>The purpose of this package is to let users have human-readable
+      <para>The purpose of this module is to let users have human-readable
       documentation automatically generated for all xmlrpc methods that are
       implemented by a given xmlrpc server.</para>
 
@@ -708,7 +688,7 @@ PHP-XMLRPC Extras User manual
       debugging.</para>
 
       <para>The simplest way to make usage of the extra capabilities of this
-      package is to take an existing xmlrpc_server and swap the php class used
+      module is to take an existing xmlrpc_server and swap the php class used
       with <classname>documenting_xmlrpc_server</classname>:<programlisting>// define the dispatch map describing all of the xmlrpc methods exposed by this server and the php functions that implement them
 $dmap = array(
   '' =&gt; array(),
@@ -737,173 +717,7 @@ $s-&gt;service();</programlisting></para>
   </chapter>
 
   <chapter>
-    <title>JsonRPC package</title>
-
-    <sect1>
-      <title>files</title>
-
-      <para><itemizedlist>
-          <listitem>
-            <para><filename>jsonrpc.inc</filename>: contains the classes
-            implementing the JSONRPC client and the JSON encoding/decoding
-            functionality. <function>include()</function> this and
-            <filename>xmlrpc.inc</filename> in your PHP files to use the
-            classes</para>
-          </listitem>
-
-          <listitem>
-            <para><filename>jsonrpcs.inc</filename>: contains the JSONRPC
-            server class. <function>include()</function> this in addition to
-            <filename>xmlrpc.inc</filename>, <filename>xmlrpcs.inc</filename>
-            and <filename>jsonrpc.inc</filename> to get server
-            functionality</para>
-          </listitem>
-
-          <listitem>
-            <para><filename>json_extension_api.php</filename>: contains the
-            functions that emulate the php JSON extension API.
-            <function>include()</function> this in addition to
-            <filename>xmlrpc.inc</filename> and
-            <filename>jsonrpc.inc</filename> in your PHP files to have access
-            to the required functionality</para>
-          </listitem>
-
-          <listitem>
-            <para><filename>server.php</filename>:</para>
-          </listitem>
-
-          <listitem>
-            <para><filename>benchmark.php</filename>:</para>
-          </listitem>
-
-          <listitem>
-            <para><filename>testsuite.php</filename>: testsuite used to verify
-            adherence of this implementation to the native JSON
-            extension</para>
-          </listitem>
-        </itemizedlist></para>
-    </sect1>
-
-    <sect1>
-      <title>JSONRPC functionality</title>
-
-      <para>The API is basically the same as the PHP-XMLRPC base library: all
-      the classes have "jsonrpc" instead of "xmlrpc" in their names, but
-      method names and members do not vary.</para>
-
-      <para>To be documented...</para>
-    </sect1>
-
-    <sect1>
-      <title>Native JSON extension emulation layer</title>
-
-      <para>The <filename>json_extension_api.php</filename> file has been
-      created with the goal of letting developers write applications taking
-      advantage of the functionality offered by the php JSON extension, and
-      allow them to deploy on php installations where that extension is not
-      /cannot be installed. Since the reimplementation is written in 100% php,
-      it can be deployed on virtually any php setup by simply copying three
-      php files. The API of the native library is reproduced feature for
-      feature and bug for bug, with the following exceptions:<itemizedlist>
-          <listitem>
-            <para>when trying to <function>json_encode()</function> a php
-            string value that contains characters outside of the UTF-8
-            encoding range, this implementation will return a json string
-            containing different characters from the ones intended (a.k.a.
-            garbage), while the native extension discards invalid characters
-            and any following. Please note that if you are trying to do this
-            your code is most probably wrong.<programlisting>var_dump(json_encode("Günter, Elène"));
-
-// this implenentation
-string(19) ""Gnter, El\u8ba5ne""
-
-// native extension
-string(3) ""G""</programlisting></para>
-          </listitem>
-
-          <listitem>
-            <para>when calling <function>json_encode()</function> on a php
-            float value, the json representation generated by this
-            implementation will always contain a fractional part, whereas the
-            native extension does not. This feature allow us, when using this
-            implementation to both encode and decode, to distinguish between
-            int and float values and rebuild them with the correct php type,
-            despite the JSON protocol lacks two separate types.<programlisting
-            lang="php">var_dump(json_encode(1.0);
-
-// this implementation
-string(3) "1.0"
-
-// native extension
-string(1) "1"</programlisting></para>
-          </listitem>
-        </itemizedlist></para>
-
-      <para>An interesting feature of this implementation, not offered by the
-      native implementation, is that it allows to transparently encode/decode
-      php strings to/from json using the ISO-8859-1 character set for the php
-      representation, instead of UTF-8. ISO-8859-1 is the native character set
-      of php, so this is the behaviour that is most likely to best fit the
-      majority of usages.</para>
-
-      <sect2>
-        <title>API documentation</title>
-
-        <para>Please note that if you <function>include()</function> the
-        <filename>json_extension_api.php</filename> file on a php installation
-        where the native JSON extension is loaded, the functions provided by
-        this implementation will be automatically renamed to
-        <function>json_alt_encode</function> and
-        <function>json_alt_decode</function>. This prevents function name
-        clashes and makes it easy to compare the output of the two
-        implementations.</para>
-
-        <sect3>
-          <title>json_encode</title>
-
-          <para>Encode a php value into a JSON formatted string.</para>
-
-          <para>See the description in the php manual for more details.</para>
-        </sect3>
-
-        <sect3>
-          <title>json_decode</title>
-
-          <para>Decode a a JSON formatted string into the corresponding php
-          value(s). Returns NULL on error.</para>
-
-          <para>See the description in the php manual for more details.</para>
-        </sect3>
-
-        <sect3>
-          <title>$xmlrpc_internalencoding</title>
-
-          <para>The character set to which the JSON strings will be converted
-          by <methodname>json_decode()</methodname>. Defaults to "UTF-8" for
-          compatibility with the php json extension, but can be set to
-          "ISO-8859-1" or "ASCII".</para>
-        </sect3>
-
-        <sect3>
-          <title>$json_extension_api_120_behaviour</title>
-
-          <para>The behaviour of the php json extension was changed in between
-          versions. Up to version 1.2.0, calling
-          <methodname>json_decode()</methodname> on strings representing
-          scalar json values (ie. strings, booleans, numbers and null) not
-          encapsulated within an array or struct would return false. From
-          version 1.2.1 onwards, decoding single scalar json values is
-          allowed. By setting the value of the global variable
-          <varname>$json_extension_api_120_behaviour</varname> to true or
-          false, the behaviour of the emulation layer will be altered to
-          follow the different versions of the extension.</para>
-        </sect3>
-      </sect2>
-    </sect1>
-  </chapter>
-
-  <chapter>
-    <title>Proxy package</title>
+    <title>Proxy module</title>
 
     <sect1>
       <title>files</title>
@@ -926,123 +740,6 @@ string(1) "1"</programlisting></para>
       <title>usage</title>
 
       <para>To be documented...</para>
-    </sect1>
-  </chapter>
-
-  <chapter>
-    <title>WSDL package</title>
-
-    <sect1>
-      <title>files</title>
-
-      <para><itemizedlist>
-          <listitem>
-            <para><filename>xmlrpc.xsd</filename>: a XML Schema Definition
-            attempting to describe XMLRPC</para>
-          </listitem>
-
-          <listitem>
-            <para><filename>xmlrpc.wsdl</filename>: a XML Schema Definition
-            attempting to describe XMLRPC method calls and responses</para>
-          </listitem>
-
-          <listitem>
-            <para><filename>schema.rng</filename>: a RELAX NG schema
-            definition describing XMLRPC (using xml notation)</para>
-          </listitem>
-
-          <listitem>
-            <para><filename>schema.rnc</filename>: the same RELAX NG schema
-            definition describing XMLRPC (using ... notation)</para>
-          </listitem>
-        </itemizedlist></para>
-    </sect1>
-
-    <sect1>
-      <title>rationale</title>
-
-      <para>The XMLRPC protocol has been specified a long time ago, at the
-      dawn of XML and is described only in natural language. Attempts have
-      been made to "reverse specify" it with DTD or XSD, with little success.
-      Both definition languages are in fact too limited in their capability of
-      expressing valid xml constructs to capture in a complete and correct
-      fashion the XMLRPC semantics (see
-      http://www.cafeconleche.org/books/xmljava/chapters/ch02s05.html for more
-      details. Suffice to say that XSD does not allow to specify two
-      consecutive xml elements with the same name but of different types, such
-      as the faultCode and faultReason response members happen to be).</para>
-
-      <para>The RELAX-NG definition language on the other hand has been found
-      capable enough to fully describe XMLRPC, and the schema that is part of
-      this distribution can be used to validate any XMLRPC request or response
-      conforming to the spec. IT IS NOT AUTHORITATIVE because the XMLRPC
-      specification is copyright by Dave Winer, and he seems to have lost
-      interest in any further development of the protocol, but it should be
-      considered accurate and production ready (if you find any bugs, please
-      let the authors know, using the <ulink url="???">project's web
-      site</ulink>).</para>
-
-      <para>This situation is very unfortunate, since WSDL has emerged as a
-      widely accepted web services standard, and a plethora of tools exist to
-      parse existing WSDL files and automatically generate code stubs or
-      generate WSDL definitions from existing code. If a WSDL representation
-      of XMLRPC webservices could be generated, the net result would be
-      greatly inreased interoperability between SOAP clients and toolkits and
-      XMLRPC server implementations.</para>
-
-      <para>Even though the apparent goal of the WSDL language design was to
-      allow description of every possible message exchange, using every
-      conceivable xml serialization over any transport (and a lot of the
-      redundancy, verbosity and complication of the language are direct
-      consequence of the flexibility sought), existing implementations de
-      facto only support the SOAP binding for webservices, and XSD as language
-      definition schema. RELAX-NG, while nominally accepted, has yet to find
-      widespread usage in webservices toolkits. This leaves us with
-      almost-bot-not-quite interoperable solutions.</para>
-    </sect1>
-  </chapter>
-
-  <chapter>
-    <title>XMLRPC extension API package</title>
-
-    <sect1>
-      <title>files</title>
-
-      <para><itemizedlist>
-          <listitem>
-            <para><filename>xmlrpc_extension_api.inc</filename>: contains the
-            classes and functions that emulate the php XMLRPC extension API.
-            <function>include()</function> this in your PHP files to have
-            access to the required functionality</para>
-          </listitem>
-
-          <listitem>
-            <para><filename>testsuite.php</filename>: testsuite used to verify
-            adherence of this implementation to the native extension</para>
-          </listitem>
-        </itemizedlist></para>
-    </sect1>
-
-    <sect1>
-      <title>usage</title>
-
-      <para>To be documented...</para>
-    </sect1>
-
-    <sect1>
-      <title>API documentation</title>
-
-      <para>Please note that if you <function>include()</function> the
-      <filename>xmlrpc_extension_api.php</filename> file on a php installation
-      where the native XMLRPC extension is loaded, the functions provided by
-      this implementation will be automatically renamed to
-      <function>xmlrpc_alt_encode</function>,
-      <function>xmlrpc_alt_decode</function>, etc. This prevents function name
-      clashes and makes it easy to compare the output of the two
-      implementations.</para>
-
-      <para>To be documented... suffice to say that you can read the
-      documentation for the php xmlrpc extension on the php manual.</para>
     </sect1>
   </chapter>
 </book>
