@@ -1,14 +1,15 @@
 ## XML-RPC for PHP EXTRAS version xxx - (unreleased)
 
 - bumped the minimum required version of the base phpxmlrpc library to 4.6
-- ported the Ajax module to contemporary php and jsxmlrpc. Replaced usage of javascript `alert` with `console.log`
+- ported the Ajax module to contemporary php, phpxmlrpc and jsxmlrpc. Replaced usage of javascript `alert` with `console.log`
 - updated the self-documenting server to generate html-5 in utf8 (was using xhtml, iso-8859-1 previously)
-- converted the remaining files to utf8
-- moved from Travis to GitHub Actions for testing; test on all php versions from 5.4 to 8.1
 - removed the WSDL schemas - they now reside at https://github.com/gggeek/xmlrpc-schemas and can be installed via Composer
   as package "phpxmlrpc/schemas"
 - removed the ADOdb module - it now resides at https://github.com/gggeek/adodb-xmlrpc-proxy and can be installed via Composer
   as package "phpxmlrpc/adodb-xmlrpc-proxy"
+- fixed the test container to include git, as it is required to make tests pass
+- converted the remaining source/docs files to utf8
+- moved from Travis to GitHub Actions for testing; test on all php versions from 5.4 to 8.2
 
 ## XML-RPC for PHP EXTRAS version 1.0-alpha - 2021/1/3
 
