@@ -1,28 +1,12 @@
 <?php
-/**
- * AJAX extension to the PHP-XMLRPC lib (works with json-rpc, too).
- *
- * Makes use of the js-xmlrpc lib
- *
- * Original idea taken from the PHP-O-Lait library by Craig Mason-Jones
- *
- * @author Gaetano Giunta
- * @copyright (c) 2006-2023 G. Giunta
- * @license code licensed under the BSD License: see license.txt
- *
- * @todo add a js object wrapper for all web services if user prefers oop instead
- *       of plain function names (see php-o-lait for an example),
- *       or at least a name prefix for all created functions, to prevent js namespace pollution
- * @todo find a fix for xmlrpc methods whose name contain chars invalid in js function names (eg. '.')
- * @todo if we subclass jsonrpc server, we can use all this magic with json...
- * @todo find a better way of handling webservice errors than using a js alert()
- * @todo add support for json with jsxmlrpc (only jsolait supports it currently)
- */
 
 namespace PhpXmlRpc\Extras;
 
 use PhpXmlRpc\Server;
 
+/**
+ * @todo if we subclass jsonrpc server, we can use all this magic with json...
+ */
 class JSRPCServer extends Server
 {
     public $jsLibsPath = 'jsolait'; // default url of jsolait/jsxmlrpc lib: same dir as php script...
@@ -31,10 +15,8 @@ class JSRPCServer extends Server
     public $jsLibsType = 'jsxmlrpc';
 
     /**
-     * Override base class creator, since we take care of either executing
-     * or just preparing the server
-     * (this means on creating class we should either execute-and-die or
-     * basically do nothing. Use $servicenow=false only for debugging)
+     * Override base class creator, since we take care of either executing or just preparing the server (this means on
+     * creating class we should either execute-and-die or basically do nothing. Use $servicenow=false only for debugging)
      */
     function __construct($dispatchMap = null, $serviceNow = true)
     {

@@ -2,6 +2,21 @@
 
 namespace PhpXmlRpc\Extras;
 
+/**
+ * AJAX extension to the PHP-XMLRPC lib (works with json-rpc, too).
+ *
+ * Makes use of the js-xmlrpc lib
+ *
+ * Original idea taken from the PHP-O-Lait library by Craig Mason-Jones
+ *
+ * @todo add a js object wrapper for all web services if user prefers oop instead
+ *       of plain function names (see php-o-lait for an example),
+ *       or at least a name prefix for all created functions, to prevent js namespace pollution
+ * @todo find a fix for xmlrpc methods whose name contain chars invalid in js function names (eg. '.')
+ * @todo find a better way of handling webservice errors than using a js alert()
+ * @todo add support for json with jsxmlrpc (only jsolait supports it currently)
+ * @todo drop support for jsolait, as it is unmaintained
+ */
 class JSWrapper
 {
     /**
