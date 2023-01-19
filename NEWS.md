@@ -1,4 +1,4 @@
-## XML-RPC for PHP EXTRAS version xxx - (unreleased)
+## XML-RPC for PHP EXTRAS version 1.0-beta1 - 2023/1/19
 
 - bumped the minimum required version of the base phpxmlrpc library to 4.6
 - ported the Ajax module to contemporary php, phpxmlrpc and jsxmlrpc. Replaced usage of javascript `alert` with `console.log`
