@@ -1,3 +1,9 @@
+## XML-RPC for PHP EXTRAS version XXX - unreleased
+
+- bumped the minimum required version of php to 5.4
+
+- bumped the minimum required version of phpxmlrpc/phpxmlrpc to 4.10
+
 ## XML-RPC for PHP EXTRAS version 1.0-beta2 - 2023/1/19
 
 - improved integration of ServerDocumentor with recent jsxmlrpc lib versions
