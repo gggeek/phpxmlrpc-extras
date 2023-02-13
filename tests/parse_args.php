@@ -1,9 +1,9 @@
 <?php
 
-class argParser
+class extrasArgParser
 {
     /**
-     * @todo actually garb the args from the environment
+     * @todo actually grab the args from the environment
      * @return array
      */
     public static function getArgs()

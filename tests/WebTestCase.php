@@ -12,72 +12,40 @@
  */
 
 include_once __DIR__ . '/parse_args.php';
-include_once __DIR__ . '/PolyfillTestCase.php';
+include_once __DIR__ . '/../vendor/phpxmlrpc/phpxmlrpc/tests/WebTestCase.php';
 
 use PhpXmlRpc\Client;
 use PhpXmlRpc\Encoder;
 use PhpXmlRpc\Request;
-use PHPUnit\Extensions\SeleniumCommon\RemoteCoverage;
 
-abstract class WebTestCase extends PolyfillXmlRpc_PolyfillTestCase
+abstract class ExtrasWebTestCase extends PhpXmlRpc_WebTestCase
 {
-    protected $args = array();
-    protected $testId;
-    /** @var boolean $collectCodeCoverageInformation */
-    protected $collectCodeCoverageInformation;
-    protected $coverageScriptUrl;
-    protected $baseUrl;
     protected $defaultTarget = '';
     /** @var Client $client */
     protected $client;
+    protected $request_compression = null;
+    protected $accepted_compression = '';
 
     public function set_up()
     {
-        $this->args = argParser::getArgs();
+        parent::set_up();
+
+        $this->args = extrasArgParser::getArgs();
 
         $this->baseUrl = $this->args['HTTPSERVER'] . '/' . ltrim($this->args['HTTPPREFIX'], '/') . $this->defaultTarget;
         $this->coverageScriptUrl = 'http://' . $this->args['HTTPSERVER'] . '/' . $this->args['HTTPPREFIX'] . '/tests/phpunit_coverage.php';
 
         $this->client = new Client($this->args['HTTPPREFIX'] . $this->defaultTarget, $this->args['HTTPSERVER'], 80);
         $this->client->setDebug($this->args['DEBUG']);
-    }
 
-    /**
-     * Reimplemented to allow us to collect code coverage info from the target server.
-     * Code taken from PHPUnit_Extensions_Selenium2TestCase
-     *
-     * @param TestResult $result
-     * @return TestResult
-     * @throws Exception
-     *
-     * @todo instead of overriding run via _run, try to achieve this by implementing Yoast\PHPUnitPolyfills\TestListeners\TestListenerDefaultImplementation
-     */
-    public function _run($result = NULL)
-    {
-        $this->testId = get_class($this) . '__' . $this->getName();
+        $this->client->request_compression = $this->request_compression;
+        $this->client->accepted_compression = $this->accepted_compression;
 
-        if ($result === NULL) {
-            $result = $this->createResult();
-        }
-
-        $this->collectCodeCoverageInformation = $result->getCollectCodeCoverageInformation();
-
-        parent::_run($result);
+        $this->client->setCookie('PHPUNIT_RANDOM_TEST_ID', static::$randId);
 
         if ($this->collectCodeCoverageInformation) {
-            $coverage = new RemoteCoverage(
-                $this->coverageScriptUrl,
-                $this->testId
-            );
-            $result->getCodeCoverage()->append(
-                $coverage->get(), $this
-            );
+            $this->client->setCookie('PHPUNIT_SELENIUM_TEST_ID', $this->testId);
         }
-
-        // do not call this before to give the time to the Listeners to run
-        //$this->getStrategy()->endOfTest($this->session);
-
-        return $result;
     }
 
     /**
@@ -131,7 +99,9 @@ abstract class WebTestCase extends PolyfillXmlRpc_PolyfillTestCase
             $param = $encoder->encode($param);
         }
         $request = new Request($method, $params);
+
         $response = $this->client->send($request);
+
         if (!$faultOk) {
             $this->assertEquals(0, $response->faultCode());
         }

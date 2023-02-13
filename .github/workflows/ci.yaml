@@ -111,7 +111,6 @@ jobs:
                     #sudo cat /etc/apache2/sites-available/000-default.conf
                     #ls -ltr /var/log
                     #ls -ltr /var/log/apache2
-                    sudo cat /var/log/privoxy/*
-                    sudo cat /var/log/apache2/error.log
-                    sudo cat /var/log/apache2/other_vhosts_access.log
+                    if [ -d /var/log/apache2 ]; then sudo cat /var/log/apache2/error.log; fi
+                    if [ -d /var/log/apache2 ]; then sudo cat /var/log/apache2/other_vhosts_access.log; fi
                     sudo cat /var/log/php*.log

@@ -130,4 +130,9 @@ class ReverseProxy extends Server
 
         return $ok;
     }
+
+    // avoid checking for existing methods while parsing the request
+    public function methodNameCallback($methodName, $xmlParser, $parser)
+    {
+    }
 }
