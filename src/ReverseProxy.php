@@ -35,7 +35,7 @@ class ReverseProxy extends Server
         //{
         $this->client = $client;
         //}
-        $this->client->return_type = 'xmlrpcvals';
+        $this->client->setOption(Client::OPT_RETURN_TYPE, 'xmlrpcvals');
         $this->client->setDebug(0);
 
         parent::__construct(null, $serviceNow);
@@ -43,7 +43,7 @@ class ReverseProxy extends Server
 
     public function doProxy($req)
     {
-        $this->debugmsg('Forwarding method ' . $req->method() . ' to server ' . $this->client->server);
+        $this->debugMsg('Forwarding method ' . $req->method() . ' to server ' . $this->client->server);
         return $this->client->send($req);
     }
 
@@ -121,7 +121,7 @@ class ReverseProxy extends Server
                         $desc = $desc->value();
                         $desc = $desc->scalarval();
                     }
-                    $this->add_to_map($method, array($this, 'doProxy'), $sig, $desc);
+                    $this->addToMap($method, array($this, 'doProxy'), $sig, $desc);
                     $ok++;
                 }
 

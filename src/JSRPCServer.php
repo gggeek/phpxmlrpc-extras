@@ -41,7 +41,7 @@ class JSRPCServer extends Server
     /**
      * Echo js code that wraps calls to server.
      * Note that method names with a . will not work!
-     * @param array $methodList list of methods to be wrapped. Null = all server methods (except system.XXX methods)
+     * @param array|null $methodList list of methods to be wrapped. Null = all server methods (except system.XXX methods)
      * @return void
      */
     public function importMethods2JS($methodList = null)
