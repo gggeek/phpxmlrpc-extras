@@ -63,7 +63,7 @@ jobs:
                     find . -type f -exec chmod +r {} \;
 
             # Avoid downloading composer deps on every workflow run. Is this useful for us? Caching the installation of
-            # php/apache/privoxy/perl would be more useful...
+            # php/apache would be more useful...
             #-
             #    uses: actions/cache@v2
             #    with:

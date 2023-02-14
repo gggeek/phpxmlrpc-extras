@@ -10,9 +10,6 @@ clean_up() {
     echo "[$(date)] Stopping the Web server"
     service apache2 stop
 
-    echo "[$(date)] Stopping Privoxy"
-    service privoxy stop
-
     echo "[$(date)] Stopping FPM"
     service php-fpm stop
 
@@ -72,9 +69,6 @@ service php-fpm start
 
 echo "[$(date)] Starting the Web server..."
 service apache2 start
-
-echo "[$(date)] Starting Privoxy..."
-service privoxy start
 
 echo "[$(date)] Bootstrap finished"
 

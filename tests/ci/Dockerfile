@@ -15,7 +15,6 @@ RUN if [ ! -f /.dockerenv ]; then touch /.dockerenv; fi && \
   ./install_packages.sh && \
   ./create_user.sh && \
   ./setup_apache.sh && \
-  ./setup_privoxy.sh && \
   ./setup_php.sh "${PHP_VERSION}" && \
   ./setup_composer.sh
 
