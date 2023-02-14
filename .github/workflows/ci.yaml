@@ -89,6 +89,12 @@ jobs:
                         fi
                     fi
 
+            -   name: reset dependencies to the lowest version
+                run: 'composer update --prefer-lowest'
+
+            -   name: run tests again
+                run: ./vendor/bin/phpunit -v tests
+
             # @todo would it be useful to run a 2nd test with composer --prefer-lowest? After all the only dependencies we have are testing tools
 
             -   name: failure troubleshooting
