@@ -1,9 +1,12 @@
 <?php
 
+/**
+ * @todo rename both the class and the file
+ */
 class extrasArgParser
 {
     /**
-     * @todo actually grab the args from the environment
+     * @todo check how to grab the parameters from phpunit config
      * @return array
      */
     public static function getArgs()
@@ -23,6 +26,13 @@ class extrasArgParser
             'HTTPSVERIFYHOST' => 2,
             'SSLVERSION' => 0,
         );
+
+        // check for params passed as env vars
+        foreach($args as $key => $val) {
+            if (array_key_exists($key, $_SERVER)) {
+                $args[$key] = $_SERVER[$key];
+            }
+        }
 
         return $args;
     }

@@ -5,6 +5,13 @@ on: [push, pull_request]
 jobs:
     test:
         runs-on: ${{ matrix.operating-system }}
+        env:
+            HTTPSERVER: localhost
+            HTTPSSERVER: localhost
+            HTTPSVERIFYHOST: 2
+            HTTPSIGNOREPEER: 0
+            SSLVERSION: 0
+            DEBUG: 0
         strategy:
             fail-fast: false
             matrix:
