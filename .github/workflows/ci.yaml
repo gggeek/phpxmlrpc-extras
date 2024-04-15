@@ -18,6 +18,8 @@ jobs:
                 include:
                     # @see https://docs.github.com/en/actions/using-github-hosted-runners/about-github-hosted-runners
                     # @todo run some tests on 'windows-latest' (needs test env setup scripts for windows to be developed)
+                    -   php: '8.3'
+                        operating-system: ubuntu-22.04
                     -   php: '8.2'
                         operating-system: ubuntu-22.04
                     -   php: '8.1'
@@ -78,7 +80,7 @@ jobs:
             #        key: ${{ runner.os }}-${{ hashFiles('**/composer.lock') }}
 
             -   name: install dependencies
-                run: 'composer install'
+                run: 'composer install --no-progress --prefer-dist'
 
             -   name: run tests and upload coverage info if needed
                 run: |
