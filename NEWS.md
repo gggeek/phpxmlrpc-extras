@@ -1,12 +1,16 @@
-## XML-RPC for PHP EXTRAS version XXX - unreleased
+## XML-RPC for PHP EXTRAS version 1.0-beta3 - 2024/4/15
 
 - bumped the minimum required version of php to 5.4
 
 - bumped the minimum required version of phpxmlrpc/phpxmlrpc to 4.10
 
+- run CI tests also on php 8.3
+
+
 ## XML-RPC for PHP EXTRAS version 1.0-beta2 - 2023/1/19
 
 - improved integration of ServerDocumentor with recent jsxmlrpc lib versions
+
 
 ## XML-RPC for PHP EXTRAS version 1.0-beta1 - 2023/1/19
 
@@ -20,6 +24,7 @@
 - fixed the test container to include git, as it is required to make tests pass
 - converted the remaining source/docs files to utf8
 - moved from Travis to GitHub Actions for testing; test on all php versions from 5.4 to 8.2
+
 
 ## XML-RPC for PHP EXTRAS version 1.0-alpha - 2021/1/3
 
