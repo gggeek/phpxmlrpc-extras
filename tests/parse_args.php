@@ -15,13 +15,13 @@ class extrasArgParser
         $args = array(
             'DEBUG' => 0,
             'HTTPSERVER' => 'localhost',
-            'HTTPPREFIX' => null,
+            'HTTPURI' => null,
             // now that we run tests in Docker by default, with a webserver set up for https, let's default to it
             'HTTPSSERVER' => 'localhost',
-            'HTTPSPREFIX' => null,
+            'HTTPSURI' => null,
             // example alternative:
             //'HTTPSSERVER' => 'gggeek.altervista.org',
-            //'HTTPSPREFIX' => '/sw/phpxmlrpc/extras',
+            //'HTTPSURI' => '/sw/phpxmlrpc/extras',
             'HTTPSIGNOREPEER' => false,
             'HTTPSVERIFYHOST' => 2,
             'SSLVERSION' => 0,

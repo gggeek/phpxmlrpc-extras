@@ -32,10 +32,10 @@ abstract class ExtrasWebTestCase extends PhpXmlRpc_WebTestCase
 
         $this->args = extrasArgParser::getArgs();
 
-        $this->baseUrl = $this->args['HTTPSERVER'] . '/' . ltrim($this->args['HTTPPREFIX'], '/') . $this->defaultTarget;
-        $this->coverageScriptUrl = 'http://' . $this->args['HTTPSERVER'] . '/' . $this->args['HTTPPREFIX'] . '/tests/phpunit_coverage.php';
+        $this->baseUrl = $this->args['HTTPSERVER'] . '/' . ltrim($this->args['HTTPURI'], '/') . $this->defaultTarget;
+        $this->coverageScriptUrl = 'http://' . $this->args['HTTPSERVER'] . '/' . $this->args['HTTPURI'] . '/tests/phpunit_coverage.php';
 
-        $this->client = new Client($this->args['HTTPPREFIX'] . $this->defaultTarget, $this->args['HTTPSERVER'], 80);
+        $this->client = new Client($this->args['HTTPURI'] . $this->defaultTarget, $this->args['HTTPSERVER'], 80);
         $this->client->setDebug($this->args['DEBUG']);
 
         $this->client->request_compression = $this->request_compression;
