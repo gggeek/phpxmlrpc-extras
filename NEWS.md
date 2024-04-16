@@ -1,3 +1,10 @@
+## XML-RPC for PHP EXTRAS version 1.0-beta4 - 2024/4/16
+
+- fixed: a php warning emitted by class `ReverseProxy` because of compatibility with its parent class
+
+- bumped the minimum required version of phpxmlrpc/phpxmlrpc to 4.10.1
+
+
 ## XML-RPC for PHP EXTRAS version 1.0-beta3 - 2024/4/15
 
 - bumped the minimum required version of php to 5.4
