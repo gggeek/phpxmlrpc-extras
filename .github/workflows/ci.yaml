@@ -103,12 +103,16 @@ jobs:
 
             # NB: the current phpunit dependencies break with --prefer-lowest and php >= 7.1. We only lower phpxmlrpc
             -   name: reset dependencies to the lowest version
-                run: 'composer update --prefer-lowest phpxmlrpc/phpxmlrpc'
+                run: |
+                    if [  "${{ matrix.php }}" = '8.4' ]; then
+                        # versions 4.10.1 to 4.10.4 are buggy with php 8.4, even though they do not declare it,
+                        # so we hack around that
+                        sed -e 's?"phpxmlrpc/phpxmlrpc": "^4\.10\..*?"phpxmlrpc/phpxmlrpc": "^4.11.0"?g' --in-place composer.json
+                    fi
+                    composer update --prefer-lowest phpxmlrpc/phpxmlrpc
 
             -   name: run tests again
                 run: ./vendor/bin/phpunit -v tests
-
-            # @todo would it be useful to run a 2nd test with composer --prefer-lowest? After all the only dependencies we have are testing tools
 
             -   name: failure troubleshooting
                 if: ${{ failure() }}
