@@ -11,13 +11,13 @@
     "require-dev": {
         "ext-curl": "*",
         "phpxmlrpc/jsonrpc": "^1.0.0-beta1",
-        "phpunit/phpunit": "^4.8 || ^5.0 || ^8.5.12",
+        "phpunit/phpunit": "^4.8.28 || ^5.6.3 || ^8.5.42",
         "phpunit/phpunit-selenium": "*",
         "yoast/phpunit-polyfills": "*"
     },
     "suggest": {
         "phpxmlrpc/jsonrpc": "Needed for the SonOfAjax demo",
-        "phpxmlrpc/jsxmlrpc": "Used the Ajax Server component. NB: better installed via NPM or used directly from CDN!"
+        "phpxmlrpc/jsxmlrpc": "Used by the Ajax Server component. NB: better installed via NPM or used directly from CDN!"
     },
     "autoload": {
         "psr-4": {"PhpXmlRpc\\Extras\\": "src/"}
