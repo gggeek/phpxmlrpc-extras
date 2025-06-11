@@ -68,7 +68,7 @@ else
         echo "Using PHP from shivammathur/php5-ubuntu..."
 
         # @todo this set of packages has only been tested on Bionic, Focal and Jammy so far
-        if [ "${DEBIAN_VERSION}" = jammy ]; then
+        if [ "${DEBIAN_VERSION}" = jammy -o "${DEBIAN_VERSION}" = noble ]; then
             ENCHANTSUFFIX='-2'
         fi
         DEBIAN_FRONTEND=noninteractive apt-get install -y \
@@ -110,14 +110,17 @@ else
         LC_ALL=en_US.UTF-8 add-apt-repository ppa:ondrej/php
         apt-get update
 
-        DEBIAN_FRONTEND=noninteractive apt-get install -y \
-            php${PHP_VERSION} \
+        PHP_PACKAGES="php${PHP_VERSION} \
             php${PHP_VERSION}-cli \
             php${PHP_VERSION}-dom \
             php${PHP_VERSION}-curl \
             php${PHP_VERSION}-fpm \
-            php${PHP_VERSION}-mbstring \
-            php${PHP_VERSION}-xdebug
+            php${PHP_VERSION}-mbstring"
+        # @todo remove this IF once xdebug is compatible and available
+        if [ "${PHP_VERSION}" != 8.4 ]; then
+            PHP_PACKAGES="${PHP_PACKAGES} php${PHP_VERSION}-xdebug"
+        fi
+        DEBIAN_FRONTEND=noninteractive apt-get install -y ${PHP_PACKAGES}
 
         update-alternatives --set php /usr/bin/php${PHP_VERSION}
     fi
