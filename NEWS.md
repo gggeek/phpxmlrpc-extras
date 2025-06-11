@@ -1,3 +1,8 @@
+## XML-RPC for PHP EXTRAS version XX (unreleased)
+
+- Improved: added CI testing on php 8.4. Default the local testing container to using PHP 8.1 on Ubuntu Jammy
+
+
 ## XML-RPC for PHP EXTRAS version 1.0-beta4 - 2024/4/16
 
 - fixed: a php warning emitted by class `ReverseProxy` because of compatibility with its parent class
