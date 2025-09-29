@@ -16,13 +16,17 @@ use PhpXmlRpc\Server;
  */
 class SelfDocumentingServer extends Server
 {
-    /// default format for generated documentation: either wsdl or html
+    /** @var string default format for generated documentation: either wsdl or html */
     public $default_doctype = 'html';
     public $default_doclang = 'en';
+    /** @var string[] */
     public $supported_langs = array('en');
+    /** @var string[] */
     public $supported_doctypes = array('html', 'wsdl');
-    /// relative path to the visual xmlrpc editing dialog
+    /** @var string|null relative path to the visual xmlrpc editing dialog */
     public $editorpath = '';
+    /** @var bool */
+    public $execute_on_form_submit = true;
 
     /**
      * Override service method:
@@ -55,7 +59,7 @@ class SelfDocumentingServer extends Server
         } else {
             // we break the xmlrpc spec here, and answer to POST requests that have been sent via a standard html form,
             // such as the one that is part of self-generated docs
-            if (isset($_SERVER['CONTENT_TYPE'])
+            if ($this->execute_on_form_submit && isset($_SERVER['CONTENT_TYPE'])
                 && $_SERVER['CONTENT_TYPE'] == 'application/x-www-form-urlencoded'
                 && isset($_POST['methodCall'])
             ) {
