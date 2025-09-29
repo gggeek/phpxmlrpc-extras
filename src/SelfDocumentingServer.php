@@ -51,7 +51,7 @@ class SelfDocumentingServer extends Server
                 $lang = $this->default_doclang;
             }
 
-            $docs = $this->generateDocs($docType, $lang, $this->editorpath);
+            $docs = $this->generateDocs($docType, $lang, $this->editorpath, $this->execute_on_form_submit);
             if (!$returnPayload) {
                 print $docs;
             }
@@ -77,11 +77,12 @@ class SelfDocumentingServer extends Server
      * @param string $doctype
      * @param string $lang
      * @param string $editorPath
+     * @param bool $displayExecutionForm
      * @return string
      */
-    protected function generateDocs($doctype = 'html', $lang = 'en', $editorPath = '')
+    protected function generateDocs($doctype = 'html', $lang = 'en', $editorPath = '', $displayExecutionForm = true)
     {
         $documentationGenerator = new ServerDocumentor(new XmlrpcSmartyTemplate(null));
-        return $documentationGenerator->generateDocs($this, $doctype, $lang, $editorPath);
+        return $documentationGenerator->generateDocs($this, $doctype, $lang, $editorPath, $displayExecutionForm);
     }
 }

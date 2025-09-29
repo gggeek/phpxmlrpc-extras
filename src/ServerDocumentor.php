@@ -30,6 +30,7 @@ class ServerDocumentor
      * @param string $editorPath path to the visualeditor.html file, part of the jsxmlrpc lib. NB: when setting this,
      *               make sure that both that file and the xmlrpc_lib.js are present, with the same relative paths as in
      *               the original lib
+     * @param string $displayExecutionForm
      * @return string
      *
      * @todo add support for i18n of generated user-readable docs (eg html)
@@ -37,7 +38,7 @@ class ServerDocumentor
      * @todo add customizeable favicon to the template
      * @todo move template to utf8
      */
-    function generateDocs($server, $doctype = 'html', $lang = 'en', $editorPath = '')
+    function generateDocs($server, $doctype = 'html', $lang = 'en', $editorPath = '', $displayExecutionForm = true)
     {
         $payload = '';
         switch ($doctype) {
@@ -96,11 +97,18 @@ class ServerDocumentor
                             $formParams .= $this->render('formparam');
                         }
 
-                        if ($editorPath) {
-                            $payload .= $this->render('methodfooter', array('method' => htmlspecialchars($_GET['methodName']), 'params' => $formParams, 'extras' => $this->render('editorlink', array())));
+                        if ($displayExecutionForm) {
+                            if ($editorPath) {
+                                $payload .= $this->render('methodfooter', array('method' => htmlspecialchars($_GET['methodName']), 'params' => $formParams, 'extras' => $this->render('editorlink', array())));
+                            } else {
+                                $payload .= $this->render('methodfooter', array('method' => htmlspecialchars($_GET['methodName']), 'params' => $formParams, 'extras' => ''));
+                            }
                         } else {
-                            $payload .= $this->render('methodfooter', array('method' => htmlspecialchars($_GET['methodName']), 'params' => $formParams, 'extras' => ''));
+                            if ($editorPath) {
+                                /// @todo render a link to the editor, instead of a form field
+                            }
                         }
+
                     }
                 } else {
                     // complete api info
