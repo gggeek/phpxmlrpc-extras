@@ -72,6 +72,15 @@ else
         if [ "${DEBIAN_VERSION}" = jammy -o "${DEBIAN_VERSION}" = noble ]; then
             ENCHANTSUFFIX='-2'
         fi
+        # note: on ubuntu 24, libtinfo5 is missing, and libodbc1 is replaced by libodbc2
+        if [ "${DEBIAN_VERSION}" = noble ]; then
+            PACKAGES="libodbc2"
+            #wget https://security.ubuntu.com/ubuntu/pool/universe/n/ncurses/libtinfo5_6.3-2ubuntu0.1_amd64.deb
+            #apt install ./libtinfo5_6.3-2ubuntu0.1_amd64.deb
+            #rm ./libtinfo5_6.3-2ubuntu0.1_amd64.deb
+        else
+            PACKAGES="libodbc1 libtinfo5"
+        fi
         DEBIAN_FRONTEND=noninteractive apt-get install -y \
             curl \
             enchant${ENCHANTSUFFIX} \
@@ -80,13 +89,14 @@ else
             libcurl3-gnutls \
             libmcrypt4 \
             libodbc1 \
+            libodbc2 \
             libpq5 \
             libqdbm14 \
             libtinfo5 \
             libxpm4 \
             libxslt1.1 \
             mysql-common \
-            zstd
+            zstd $PACKAGES
 
         if [ ! -d /usr/include/php ]; then mkdir -p /usr/include/php; fi
 
