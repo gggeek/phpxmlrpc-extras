@@ -67,7 +67,6 @@ else
     # @todo use onderj packages for php 8.5 when they are available
     if [ "${PHP_VERSION}" = 5.3 -o "${PHP_VERSION}" = 5.4 -o "${PHP_VERSION}" = 5.5 -o "${PHP_VERSION}" = 8.5 ]; then
         echo "Using PHP from shivammathur/php5-ubuntu..."
-
         # @todo this set of packages has only been tested on Bionic, Focal and Jammy so far
         if [ "${DEBIAN_VERSION}" = jammy -o "${DEBIAN_VERSION}" = noble ]; then
             ENCHANTSUFFIX='-2'
@@ -88,11 +87,9 @@ else
             libc-client2007e \
             libcurl3-gnutls \
             libmcrypt4 \
-            libodbc1 \
             libodbc2 \
             libpq5 \
             libqdbm14 \
-            libtinfo5 \
             libxpm4 \
             libxslt1.1 \
             mysql-common \
