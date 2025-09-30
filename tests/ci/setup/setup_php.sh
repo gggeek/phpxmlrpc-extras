@@ -64,10 +64,11 @@ else
         fi
     done
 
-    # @todo use onderj packages for php 8.5 when they are available
+    # @todo use ondrej packages for php 8.5 when they are available
     if [ "${PHP_VERSION}" = 5.3 -o "${PHP_VERSION}" = 5.4 -o "${PHP_VERSION}" = 5.5 -o "${PHP_VERSION}" = 8.5 ]; then
         echo "Using PHP from shivammathur/php5-ubuntu..."
-        # @todo this set of packages has only been tested on Bionic, Focal and Jammy so far
+        # @todo this set of packages has only been tested on Bionic, Focal, Jammy and Noble so far
+        # @todo also, it might not be needed (or be different) when installing php 8.5
         if [ "${DEBIAN_VERSION}" = jammy -o "${DEBIAN_VERSION}" = noble ]; then
             ENCHANTSUFFIX='-2'
         fi
@@ -98,7 +99,11 @@ else
         if [ ! -d /usr/include/php ]; then mkdir -p /usr/include/php; fi
 
         set +e
-        curl -sSL https://github.com/shivammathur/php5-ubuntu/releases/latest/download/install.sh | bash -s "${PHP_VERSION}"
+        if [ "${PHP_VERSION}" = 5.3 -o "${PHP_VERSION}" = 5.4 -o "${PHP_VERSION}" = 5.5 ]; then
+            curl -sSL https://github.com/shivammathur/php5-ubuntu/releases/latest/download/install.sh | bash -s "${PHP_VERSION}"
+        else
+            curl -sSL https://github.com/shivammathur/php-ubuntu/releases/latest/download/install.sh | bash -s "${PHP_VERSION}"
+        fi
         set -e
 
         # we have to do this as the init script we get for starting/stopping php-fpm seems to be faulty...
