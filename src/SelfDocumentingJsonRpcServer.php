@@ -2,19 +2,19 @@
 
 namespace PhpXmlRpc\Extras;
 
-use PhpXmlRpc\Server;
+use PhpXmlRpc\JsonRpc\Server;
 
 /**
- * Extends the base xmlrpc server with the capability to generate documentation about the exposed xmlrpc methods.
+ * Extends the base jsonrpc server with the capability to generate documentation about the exposed jsonrpc methods.
  * It will take advantage of a new member in the dispatch map: signature_docs it is expected to be an array with the
  * same number of members as signature, but containing a short description for every parameter.
  *
- * @todo use some AJAX magic to implement xmlrpc calls to test/debug methods without feeding to user the raw xml
+ * @todo use some AJAX magic to implement jsonrpc calls to test/debug methods without feeding to user the raw json
  * @todo add some i18n support
  * @todo add a sane way to have a set of http headers to be sent along with every type of generated documentation
  *       (eg. content-type)
  */
-class SelfDocumentingServer extends Server
+class SelfDocumentingJsonRpcServer extends Server
 {
     use SelfDocumentingServerTrait;
 
@@ -33,7 +33,7 @@ class SelfDocumentingServer extends Server
         if ($_SERVER['REQUEST_METHOD'] != 'POST') {
             return $this->handleNonRPCRequest($docType);
         } else {
-            // we break the xmlrpc spec here, and answer to POST requests that have been sent via a standard html form,
+            // we break the jsonrpc spec here, and answer to POST requests that have been sent via a standard html form,
             // such as the one that is part of self-generated docs
             if ($this->execute_on_form_submit && isset($_SERVER['CONTENT_TYPE'])
                 && $_SERVER['CONTENT_TYPE'] == 'application/x-www-form-urlencoded'
@@ -47,5 +47,18 @@ class SelfDocumentingServer extends Server
                 return parent::service($data, $returnPayload);
             }
         }
+    }
+
+    /**
+     * @param string $doctype
+     * @param string $lang
+     * @param string $editorPath
+     * @param bool $displayExecutionForm
+     * @return string
+     */
+    protected function generateDocs($doctype = 'html', $lang = 'en', $editorPath = '', $displayExecutionForm = true)
+    {
+        $documentationGenerator = new ServerDocumentor(new XmlrpcSmartyTemplate(null));
+        return $documentationGenerator->generateDocs($this, $doctype, $lang, $editorPath, $displayExecutionForm);
     }
 }

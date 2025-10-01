@@ -4,6 +4,10 @@
 
 - improved: added new bool field `$execute_on_form_submit` to class `SelfDocumentingServer`
 
+- improved: added a self-documenting jsonrpc server class `SelfDocumentingJsonRpcServer`. Also, moved functionality
+  shared with `SelfDocumentingServer` to a trait
+
+
 ## XML-RPC for PHP EXTRAS version 1.0-beta4 - 2024/4/16
 
 - fixed: a php warning emitted by class `ReverseProxy` because of compatibility with its parent class
