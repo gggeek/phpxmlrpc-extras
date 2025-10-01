@@ -31,10 +31,11 @@ class SelfDocumentingServer extends Server
     function service($data = null, $returnPayload = false, $docType = '')
     {
         if ($_SERVER['REQUEST_METHOD'] != 'POST') {
-            return $this->handleNonRPCRequest($docType);
+            return $this->handleNonRPCRequest($docType, $returnPayload);
         } else {
-            // we break the xmlrpc spec here, and answer to POST requests that have been sent via a standard html form,
-            // such as the one that is part of self-generated docs
+            // We break the xmlrpc spec here, and answer to POST requests that have been sent via a standard html form,
+            // such as the one that is part of self-generated docs.
+            // The POST requests should have a single field: 'methodCall', with the complete xml payload
             if ($this->execute_on_form_submit && isset($_SERVER['CONTENT_TYPE'])
                 && $_SERVER['CONTENT_TYPE'] == 'application/x-www-form-urlencoded'
                 && isset($_POST['methodCall'])

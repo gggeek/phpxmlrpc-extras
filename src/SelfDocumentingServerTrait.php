@@ -16,7 +16,9 @@ trait SelfDocumentingServerTrait
     /** @var bool */
     public $execute_on_form_submit = true;
 
-    protected function handleNonRPCRequest($docType)
+    protected $documentationGenerator;
+
+    protected function handleNonRPCRequest($docType, $returnPayload)
     {
         if ($docType == '' || !in_array($docType, $this->supported_doctypes)) {
             $docType = $this->default_doctype;
@@ -44,8 +46,9 @@ trait SelfDocumentingServerTrait
      */
     protected function generateDocs($doctype = 'html', $lang = 'en', $editorPath = '', $displayExecutionForm = true)
     {
-        $documentationGenerator = new ServerDocumentor(new XmlrpcSmartyTemplate(null));
-        return $documentationGenerator->generateDocs($this, $doctype, $lang, $editorPath, $displayExecutionForm);
+        if ($this->documentationGenerator == null) {
+            $this->documentationGenerator = new ServerDocumentor(new XmlrpcSmartyTemplate(null));
+        }
+        return $this->documentationGenerator->generateDocs($this, $doctype, $lang, $editorPath, $displayExecutionForm);
     }
-
 }

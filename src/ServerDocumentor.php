@@ -5,6 +5,7 @@ namespace PhpXmlRpc\Extras;
 use PhpXmlRpc\PhpXmlRpc;
 use PhpXmlRpc\Server;
 
+/// @todo make it easy to subclass this to produce docs for jsonrpc servers - esp. the forms used to send test payloads
 class ServerDocumentor
 {
     /** @var TemplateEngineInterface */
@@ -37,12 +38,14 @@ class ServerDocumentor
      * @todo make css link customizeable, as well as the title
      * @todo add customizeable favicon to the template
      * @todo move template to utf8
+     * @todo make it easier for developers to provide custom templates
      */
     function generateDocs($server, $doctype = 'html', $lang = 'en', $editorPath = '', $displayExecutionForm = true)
     {
         $payload = '';
         switch ($doctype) {
             case 'wsdl':
+                /// @todo throw for now
                 break;
             case 'html':
                 // in case we have to send custom http headers, do it
@@ -127,6 +130,7 @@ class ServerDocumentor
 
                 $payload .= $this->render('docfooter');
 
+            /// @todo throw on unsupported format
         }
         return $payload;
     }
