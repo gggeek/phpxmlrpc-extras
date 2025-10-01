@@ -16,14 +16,14 @@ use PhpXmlRpc\Value;
 // php functions to be exposed as webservices
 function sumIntegers ($msg)
 {
-  $v = $msg->getParam(0);
-  $tot = 0;
-  foreach ($v as $val)
-  {
-    $tot = $tot + $val->scalarval();
-  }
+    $v = $msg->getParam(0);
+    $tot = 0;
+    foreach ($v as $val)
+    {
+        $tot = $tot + $val->scalarval();
+    }
 
-  return new Response(new Value($tot, 'int'));
+    return new Response(new Value($tot, 'int'));
 }
 
 // webservices signature
