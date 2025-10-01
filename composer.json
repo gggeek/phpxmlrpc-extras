@@ -16,7 +16,7 @@
         "yoast/phpunit-polyfills": "*"
     },
     "suggest": {
-        "phpxmlrpc/jsonrpc": "Needed for the SonOfAjax demo",
+        "phpxmlrpc/jsonrpc": "Needed for the SonOfAjax demo and the SelfDocumentingJsonRpcServer class",
         "phpxmlrpc/jsxmlrpc": "Used by the Ajax Server component. NB: better installed via NPM or used directly from CDN!"
     },
     "autoload": {
