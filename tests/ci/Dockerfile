@@ -1,28 +1,26 @@
-ARG UBUNTU_VERSION=focal
+ARG UBUNTU_VERSION=jammy
 
 FROM ubuntu:${UBUNTU_VERSION}
 
 ARG PHP_VERSION=default
-ARG UBUNTU_VERSION=focal
+ARG UBUNTU_VERSION=jammy
 
-COPY setup/*.sh /root/setup/
+COPY --chmod=755 setup/*.sh /root/setup/
 COPY config/* /root/config/
 
 RUN if [ ! -f /.dockerenv ]; then touch /.dockerenv; fi && \
   mkdir -p /usr/share/man/man1 && \
-  apt-get update && DEBIAN_FRONTEND=noninteractive apt-get -y upgrade && \
-  chmod 755 /root/setup/*.sh && \
   cd /root/setup && \
   ./install_packages.sh && \
   ./create_user.sh && \
-  ./setup_apache.sh && \
-  ./setup_php.sh "${PHP_VERSION}" && \
+  ./setup_apache.sh
+
+RUN cd /root/setup && ./setup_php.sh "${PHP_VERSION}" && \
   ./setup_composer.sh && \
   echo "PHP_VERSION=${PHP_VERSION}" > /etc/build-info && \
   echo "UBUNTU_VERSION=${UBUNTU_VERSION}" >> /etc/build-info
 
-COPY docker/entrypoint.sh /root/entrypoint.sh
-RUN chmod 755 /root/entrypoint.sh
+COPY --chmod=755 docker/entrypoint.sh /root/entrypoint.sh
 
 EXPOSE 80 443 8080
 
