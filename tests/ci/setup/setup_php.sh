@@ -139,7 +139,7 @@ install_shivammatur() {
             if [ -d "/etc/php/${PHP_VERSION}/${DIR}/conf.d" ]; then
                 rm -rf /etc/php/${PHP_VERSION}/${DIR}/conf.d/*.ini
                 # this list includes the php exts required by composer, phpxmlrpc as well as phpunit
-                for EXT in dom curl mbstring phar tokenizer xml xmlwriter; do
+                for EXT in dom curl mbstring phar sqlite3 tokenizer xml xmlwriter; do
                     ln -s /etc/php/${PHP_VERSION}/mods-available/${EXT}.ini /etc/php/${PHP_VERSION}/${DIR}/conf.d/20-${EXT}.ini
                 done
             fi
