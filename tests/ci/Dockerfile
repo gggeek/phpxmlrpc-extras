@@ -9,7 +9,6 @@ COPY --chmod=755 setup/*.sh /root/setup/
 COPY config/* /root/config/
 
 RUN if [ ! -f /.dockerenv ]; then touch /.dockerenv; fi && \
-  mkdir -p /usr/share/man/man1 && \
   cd /root/setup && \
   ./install_packages.sh && \
   ./create_user.sh && \

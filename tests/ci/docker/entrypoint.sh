@@ -4,8 +4,12 @@ USERNAME="${1:-docker}"
 
 echo "[$(date)] Bootstrapping the Test container..."
 
-if [ -f "${TESTS_ROOT_DIR}/tests/ci/var/bootstrap_ok" ]; then
-    rm "${TESTS_ROOT_DIR}/tests/ci/var/bootstrap_ok"
+# load values for UBUNTU_VERSION, PHP_VERSION
+. /etc/build-info
+BOOTSTRAP_OK_FILE="${TESTS_ROOT_DIR}/tests/ci/var/bootstrap_ok_${UBUNTU_VERSION}_${PHP_VERSION}"
+
+if [ -f "${BOOTSTRAP_OK_FILE}" ]; then
+    rm "${BOOTSTRAP_OK_FILE}"
 fi
 
 clean_up() {
@@ -17,8 +21,8 @@ clean_up() {
     echo "[$(date)] Stopping FPM"
     service php-fpm stop
 
-    if [ -f "${TESTS_ROOT_DIR}/tests/ci/var/bootstrap_ok" ]; then
-        rm "${TESTS_ROOT_DIR}/tests/ci/var/bootstrap_ok"
+    if [ -f "${BOOTSTRAP_OK_FILE}" ]; then
+        rm "${BOOTSTRAP_OK_FILE}"
     fi
 
     echo "[$(date)] Exiting"
@@ -48,6 +52,14 @@ if [ "$(stat -c '%u' "${CONTAINER_USER_HOME}")" != "${CONTAINER_USER_UID}" ] || 
     fi
 fi
 # @todo do the same chmod for ${TESTS_ROOT_DIR}, if it's not within CONTAINER_USER_HOME
+#       Also, the composer cache dir, while within the user home dir, is mounted via docker and might have faulty ownership  or perms
+
+# @todo the following snippet does not seem to be required on any vm - but we might want to run a chown/chmod on $TESTS_ROOT_DIR
+#DIR="$(dirname "$TESTS_ROOT_DIR")"
+#while "$DIR" != /; do
+#    chmod o+rx "$DIR"
+#    DIR="$(dirname "$DIR")"
+#done
 
 echo "[$(date)] Fixing Apache configuration..."
 
@@ -57,22 +69,21 @@ sed -e "s?^export APACHE_RUN_GROUP=.*?export APACHE_RUN_GROUP=${USERNAME}?g" --i
 
 echo "[$(date)] Fixing FPM configuration..."
 
-FPMCONF="/etc/php/$(php -r 'echo implode(".",array_slice(explode(".",PHP_VERSION),0,2));' 2>/dev/null)/fpm/pool.d/www.conf"
+PHPVER="$(php -r 'echo implode(".",array_slice(explode(".",PHP_VERSION),0,2));' 2>/dev/null)"
+if [ -f "/usr/local/php/${PHPVER}/etc/php-fpm.conf" ]; then
+    # presumably a php installation from shivammathur/php5-ubuntu, which does not have separate files in a pool.d dir
+    FPMCONF="/usr/local/php/${PHPVER}/etc/php-fpm.conf"
+else
+    FPMCONF="/etc/php/${PHPVER}/fpm/pool.d/www.conf"
+fi
 sed -e "s?^user =.*?user = ${USERNAME}?g" --in-place "${FPMCONF}"
 sed -e "s?^group =.*?group = ${USERNAME}?g" --in-place "${FPMCONF}"
 sed -e "s?^listen.owner =.*?listen.owner = ${USERNAME}?g" --in-place "${FPMCONF}"
 sed -e "s?^listen.group =.*?listen.group = ${USERNAME}?g" --in-place "${FPMCONF}"
 
-if [ -f "${TESTS_ROOT_DIR}/composer.json" ]; then
-    echo "[$(date)] Running Composer..."
-
-    # @todo if there is a composer.lock file present, there are chances it might be a leftover from when running the
-    #       container using a different php version. We should then back it up / do some symlink magic to make sure that
-    #       it matches the current php version and a hash of composer.json...
-    su "${USERNAME}" -c "cd ${TESTS_ROOT_DIR} && composer install"
-else
-    # @todo should we exit?
-    echo "Missing file '${TESTS_ROOT_DIR}/composer.json' - was the container started without the correct mount?" >&2
+#  We make it optional to run composer at container start
+if [ "${INSTALL_ON_START}" = true ]; then
+    /root/setup/setup_app.sh "${TESTS_ROOT_DIR}"
 fi
 
 trap clean_up TERM
@@ -91,7 +102,7 @@ if [ ! -d "${TESTS_ROOT_DIR}/tests/ci/var" ]; then
     chown -R "${USERNAME}" "${TESTS_ROOT_DIR}/tests/ci/var"
 fi
 # @todo save to bootstrap_ok an actual error code if any of the commands above failed
-touch "${TESTS_ROOT_DIR}/tests/ci/var/bootstrap_ok" && chown "${USERNAME}" "${TESTS_ROOT_DIR}/tests/ci/var/bootstrap_ok"
+touch "${BOOTSTRAP_OK_FILE}" && chown "${USERNAME}" "${BOOTSTRAP_OK_FILE}"
 
 tail -f /dev/null &
 child=$!
