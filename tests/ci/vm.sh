@@ -1,7 +1,7 @@
 #!/bin/sh
 
 # @todo rename: this is not based on a vm. Also, the 'ci' folder should really be called 'env' or 'testenv'...
-# @todo support getting the various settings as cli options as well as via env vars?
+# @todo support getting the various settings as cli options as well as via env vars (use getopts)
 
 set -e
 
@@ -23,8 +23,8 @@ HOST_HTTPSPORT="${HOST_HTTPSPORT:-443}"
 HOST_PROXYPORT="${HOST_PROXYPORT:-8080}"
 
 CONTAINER_INSTALL_ON_START="${CONTAINER_INSTALL_ON_START:-false}"
-CONTAINER_NAME_PREFIX="${CONTAINER_NAME_PREFIX:-phpxmlrpc-extras}"
-CONTAINER_IMAGE_PREFIX="${CONTAINER_IMAGE_PREFIX:-phpxmlrpc-extras_}"
+CONTAINER_NAME_PREFIX="${CONTAINER_NAME_PREFIX:-jsonrpc}"
+CONTAINER_IMAGE_PREFIX="${CONTAINER_IMAGE_PREFIX:jsonrpc_}"
 CONTAINER_USER=docker
 CONTAINER_WORKSPACE_DIR="/home/${CONTAINER_USER}/workspace"
 
@@ -59,9 +59,19 @@ Actions for troubleshooting the container:
 Options:
     -h                print help
 
-Environment variables: to be set before the 'build' action
+Environment variables:
+  used by the 'build' action
     PHP_VERSION       default value: 'default', ie. the stock php version from the Ubuntu version in use. Other possible values: 5.6, 7.0 .. 7.4, 8.0 .. 8.4
     UBUNTU_VERSION    default value: jammy. Other possible values: xenial, bionic, focal, noble
+  used by the 'start' action
+    HOST_HTTPPORT     default value: 80. Set to 'no' not to publish the container's http port to the host
+    HOST_HTTPSPORT    default value: 443. Set to 'no' not to publish the container's https port to the host
+    HOST_PROXYPORT    default value: 8080. Set to 'no' not to publish the container's proxy http port to the host
+  used by the 'runtests' and 'runcoverage' actions:
+    HTTPSVERIFYHOST   0, 1 or 2. Default and recommended: 0
+    HTTPSIGNOREPEER   0 or 1. Default and recommended: 1
+    SSLVERSION        0 (auto), 2 (SSLv2) to 7 (tls 1.3). Default: 0
+    DEBUG             0 - 3. Default: 0
 "
 }
 
@@ -114,8 +124,10 @@ start() {
                 --env "TESTS_ROOT_DIR=${CONTAINER_WORKSPACE_DIR}" \
                 --env "INSTALL_ON_START=${CONTAINER_INSTALL_ON_START}" \
                 --env HTTPSERVER=localhost \
+                --env HTTPURI=/tests/index.php?demo=server/server.php \
                 --env HTTPSSERVER=localhost \
-                -v "${ROOT_DIR}":"${CONTAINER_WORKSPACE_DIR}" \
+                --env HTTPSURI=/tests/index.php?demo=server/server.php \
+                -v "${ROOT_DIR}:${CONTAINER_WORKSPACE_DIR}" \
                 -v "${ROOT_DIR}/tests/ci/var/composer_cache:/home/${CONTAINER_USER}/.cache/composer" \
                  "${IMAGE_NAME}"; then
                 wait_for_bootstrap
@@ -198,7 +210,7 @@ runcoverage() {
     lock
     trap unlock INT
     {
-        # @todo clean up /tmp/phpxmlrpc and .phpunit.result.cache
+        # @todo clean up /tmp/phpxmlrpc_coverage and .phpunit.result.cache (in setup_code_coverage.sh?)
         docker exec $USE_TTY "${CONTAINER_NAME}" /root/setup/setup_app.sh "${CONTAINER_WORKSPACE_DIR}" || true
         if [ ! -d ./var/coverage ]; then mkdir -p ./var/coverage; fi
         docker exec -t "${CONTAINER_NAME}" /root/setup/setup_code_coverage.sh enable
@@ -302,6 +314,11 @@ case "${ACTION}" in
 
     unlock)
         unlock
+        ;;
+
+    -h)
+        help
+        exit 0
         ;;
 
     *)
