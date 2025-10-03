@@ -111,6 +111,11 @@ jobs:
                         # so we hack around that
                         sed -e 's?"phpxmlrpc/phpxmlrpc": "^4\.10\..*?"phpxmlrpc/phpxmlrpc": "^4.11.0"?g' --in-place composer.json
                     fi
+                    if [  "${{ matrix.php }}" = '8.5' ]; then
+                        # versions up to 4.11.3 are buggy with php 8.5, even though they do not declare it,
+                        # so we hack around that
+                        sed -e 's?"phpxmlrpc/phpxmlrpc": "^4\.10\..*?"phpxmlrpc/phpxmlrpc": "^4.11.3"?g' --in-place composer.json
+                    fi
                     composer update --prefer-lowest phpxmlrpc/phpxmlrpc
 
             -   name: run tests again
