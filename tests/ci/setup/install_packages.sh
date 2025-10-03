@@ -28,7 +28,7 @@ if [ ! -d /usr/share/man/man1 ]; then mkdir -p /usr/share/man/man1; fi
 apt-get update
 
 if [ "$UPDATE_INSTALLED" = true ]; then
-apt-get upgrade -y
+    apt-get upgrade -y
 fi
 
 apt-get install -y \
