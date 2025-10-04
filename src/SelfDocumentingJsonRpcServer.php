@@ -18,6 +18,28 @@ class SelfDocumentingJsonRpcServer extends Server
 {
     use SelfDocumentingServerTrait;
 
+    protected static $templates = array(
+        /// @todo the trailing comma in `{$params}` is not valid in json
+        'methodfooter' => '
+    <h2>Test method call</h2>
+<p>Complete by hand the form below inserting the needed parameters to call this method.<br/>
+<form action="" method="post"><p>
+<textarea id="methodCall" name="methodCall" rows="5" cols="80">{
+"jsonrpc": "2.0",
+"id": 1,
+"method": "{$method}"
+"params": [
+{$params}]
+}
+</textarea><br/>
+{$extras}
+<input type="submit" value="Test"/>
+</p></form>',
+
+        'formparam' => '  "",
+',
+    );
+
     /**
      * Override service method:
      *   in case of GET requests show docs about implemented methods;
@@ -60,6 +82,9 @@ class SelfDocumentingJsonRpcServer extends Server
     protected function generateDocs($doctype = 'html', $lang = 'en', $editorPath = '', $displayExecutionForm = true)
     {
         $documentationGenerator = new ServerDocumentor(new XmlrpcSmartyTemplate(null));
+        foreach (static::$templates as $name => $string) {
+            $documentationGenerator->setTemplate($name, $string);
+        }
         return $documentationGenerator->generateDocs($this, $doctype, $lang, $editorPath, $displayExecutionForm);
     }
 }

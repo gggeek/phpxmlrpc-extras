@@ -44,8 +44,22 @@ class XmlrpcSmartyTemplate implements TemplateEngineInterface, TemplateInterface
         return $template;
     }
 
+    /**
+     * @param string[] $templateArray
+     * @return void
+     */
     public static function setTemplates($templateArray)
     {
         static::$templates = $templateArray;
+    }
+
+    /**
+     * @param string $templateName
+     * @param string $templateString
+     * @return void
+     */
+    public static function setTemplate($templateName, $templateString)
+    {
+        static::$templates[$templateName] = $templateString;
     }
 }

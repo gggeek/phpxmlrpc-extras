@@ -5,16 +5,125 @@ namespace PhpXmlRpc\Extras;
 use PhpXmlRpc\PhpXmlRpc;
 use PhpXmlRpc\Server;
 
-/// @todo make it easy to subclass this to produce docs for jsonrpc servers - esp. the forms used to send test payloads
 class ServerDocumentor
 {
     /** @var TemplateEngineInterface */
     protected $templateEngine;
 
+    protected static $templates = array(
+        //'httpheaders' => array(),
+
+        'docheader' => '<!DOCTYPE html>
+<html lang="{$lang}">
+<head>
+<meta name="generator" content="{$xmlrpc_name}" />
+<link rel="stylesheet" type="text/css" href="docxmlrpcs.css" />
+{$extras}
+<title>{$title}</title>
+</head>
+<body>',
+
+        'docfooter' => '
+<div class="footer">Generated using PHPXMLRPC {$xmlrpc_version}</div>
+</body></html>',
+
+        'apiheader' => '
+<h1>API index</h1>
+<p>This server defines the following API specification:</p>
+<table class="apilist">
+<tr><th>Method</th><th>Description</th></tr>',
+
+        'apimethod' => '
+<tr><td><a href="?methodName={$method}">{$method}</a></td><td>{$desc}</td></tr>',
+
+        'apifooter' => '
+</table>',
+
+        'methodheader' => '
+<h1>Method <em>{$method}</em></h1>
+<div>{$desc}</div>',
+
+        'methodnotfound' => '
+<h3>The method {$method} is not part of the API of this server</h3>
+',
+
+        'sigheader' => '
+<h2>Signature {$signum}</h2>
+<blockquote>
+<h3>Input parameters</h3>
+<table class="inputparameters">
+<tr><th>Type</th><th>Description</th></tr>',
+
+        'sigparam' => '
+<tr><td>{$paramtype}</td><td>{$paramdesc}</td></tr>',
+
+        'sigfooter' => '
+</table>
+<h3>Output parameter</h3>
+<table class="inputparameters">
+<tr><th>Type</th><th>Description</th></tr>
+<tr><td>{$outtype}</td><td>{$outdesc}</td></tr>
+</table>
+</blockquote>',
+
+        'formparam' => '&lt;param&gt;&lt;value&gt;&lt;/value&gt;&lt;/param&gt;
+',
+
+        'methodfooter' => '
+<h2>Test method call</h2>
+<p>Complete by hand the form below inserting the needed parameters to call this method.<br/>
+For a string param use e.g. <pre>&lt;param&gt;&lt;value&gt;&lt;string&gt;Hello&lt;/string&gt;&lt;/value&gt;&lt;/param&gt;</pre></p>
+<form action="" method="post"><p>
+<textarea id="methodCall" name="methodCall" rows="5" cols="80">
+&lt;methodCall&gt;&lt;methodName&gt;{$method}&lt;/methodName&gt;
+&lt;params&gt;
+{$params}&lt;/params&gt;
+&lt;/methodCall&gt;
+</textarea><br/>
+{$extras}
+<input type="submit" value="Test"/>
+</p></form>',
+
+        'editorheaders' => '<script type="module">
+import {base64_decode} from "{$liburl}xmlrpc_lib.js";
+window.base64_decode = base64_decode;
+</script>
+<script type="text/javascript">
+<!--
+function runeditor()
+{
+  //var url = "{$editorurl}visualeditor.html?params={$param_payload}";
+  var url = "{$editorurl}visualeditor.html";
+  //if (document.frmaction.wstype.value == "1")
+  //  url += "&type=jsonrpc";
+  var wnd = window.open(url, "_blank", "width=750, height=400, location=0, resizable=1, menubar=0, scrollbars=1");
+}
+// if javascript version of the lib is found, allow it to send us params
+function buildparams(base64data)
+{
+  if (typeof base64_decode == "function")
+  {
+    if (base64data == "0") // workaround for bug in base64_encode...
+      document.getElementById("methodCall").value = "{$methodcallstart}{$methodcallend}";
+    else
+      document.getElementById("methodCall").value = "{$methodcallstart}"+base64_decode(base64data)+"{$methodcallend}";
+  }
+}
+//-->
+</script>
+',
+
+        'editorlink' => '<input type="submit" value="Edit" onclick="runeditor(); return false;"/>',
+
+        'xmlrpcmethodstart' => '<methodCall><methodName>{$method}</methodName>\n<params>\n',
+
+        'xmlrpcmethodend' => '</params>\n</methodCall>',
+    );
+
     /**
      * @param $templateEngine
      */
-    function __construct($templateEngine)
+    public function __construct($templateEngine)
     {
         $this->templateEngine = $templateEngine;
         if ($templateEngine instanceof XmlrpcSmartyTemplate) {
@@ -38,14 +147,13 @@ class ServerDocumentor
      * @todo make css link customizeable, as well as the title
      * @todo add customizeable favicon to the template
      * @todo move template to utf8
-     * @todo make it easier for developers to provide custom templates
      */
-    function generateDocs($server, $doctype = 'html', $lang = 'en', $editorPath = '', $displayExecutionForm = true)
+    public function generateDocs($server, $doctype = 'html', $lang = 'en', $editorPath = '', $displayExecutionForm = true)
     {
         $payload = '';
         switch ($doctype) {
             case 'wsdl':
-                /// @todo throw for now
+                throw new \Exception('Support for WSDL not implemented yet');
                 break;
             case 'html':
                 // in case we have to send custom http headers, do it
@@ -55,7 +163,8 @@ class ServerDocumentor
 
                 // method name decoding: is user seeking info about a single method?
                 if (isset($_GET['methodName'])) {
-                    $opts = array('lang' => $lang, 'title' => 'Method ' . htmlspecialchars($_GET['methodName']));
+                    $opts = array('lang' => $lang, 'title' => 'Method ' . htmlspecialchars($_GET['methodName']),
+                        'xmlrpc_name' => PhpXmlRpc::$xmlrpcName);
                     if ($editorPath != '') {
                         $mstart = $this->render('xmlrpcmethodstart', array('method' => htmlspecialchars($_GET['methodName'])));
                         $mend = $this->render('xmlrpcmethodend', array());
@@ -115,7 +224,8 @@ class ServerDocumentor
                     }
                 } else {
                     // complete api info
-                    $payload .= $this->render('docheader', array('lang' => $lang, 'title' => 'API Index', 'extras' => ''));
+                    $payload .= $this->render('docheader', array('lang' => $lang, 'title' => 'API Index',
+                        'xmlrpc_name' => PhpXmlRpc::$xmlrpcName, 'extras' => ''));
                     $payload .= $this->render('apiheader');
                     foreach ($server->getDispatchMap() as $key => $val) {
                         $payload .= $this->render('apimethod', array('method' => $key, 'desc' => @$val['docstring']));
@@ -128,7 +238,7 @@ class ServerDocumentor
                     $payload .= $this->render('apifooter');
                 }
 
-                $payload .= $this->render('docfooter');
+                $payload .= $this->render('docfooter', array('xmlrpc_version' => PhpXmlRpc::$xmlrpcVersion));
 
             /// @todo throw on unsupported format
         }
@@ -145,117 +255,24 @@ class ServerDocumentor
         return $this->templateEngine->load($templateName)->render($params);
     }
 
+    /**
+     * @return string[]
+     */
     public static function templates()
     {
-        return array(
+        return static::$templates;
+    }
 
-//'httpheaders' => array(),
-
-            'docheader' => '<!DOCTYPE html>
-<html lang="{$lang}">
-<head>
-<meta name="generator" content="' . PhpXmlRpc::$xmlrpcName . '" />
-<link rel="stylesheet" type="text/css" href="docxmlrpcs.css" />
-{$extras}
-<title>{$title}</title>
-</head>
-<body>',
-
-            'docfooter' => '
-<div class="footer">Generated using PHPXMLRPC ' . PhpXmlRpc::$xmlrpcVersion . '</div>
-</body></html>',
-
-            'apiheader' => '
-<h1>API index</h1>
-<p>This server defines the following API specification:</p>
-<table class="apilist">
-<tr><th>Method</th><th>Description</th></tr>',
-
-            'apimethod' => '
-<tr><td><a href="?methodName={$method}">{$method}</a></td><td>{$desc}</td></tr>',
-
-            'apifooter' => '
-</table>',
-
-            'methodheader' => '
-<h1>Method <em>{$method}</em></h1>
-<div>{$desc}</div>',
-
-            'methodnotfound' => '
-<h3>The method {$method} is not part of the API of this server</h3>
-',
-
-            'sigheader' => '
-<h2>Signature {$signum}</h2>
-<blockquote>
-<h3>Input parameters</h3>
-<table class="inputparameters">
-<tr><th>Type</th><th>Description</th></tr>',
-
-            'sigparam' => '
-<tr><td>{$paramtype}</td><td>{$paramdesc}</td></tr>',
-
-            'sigfooter' => '
-</table>
-<h3>Output parameter</h3>
-<table class="inputparameters">
-<tr><th>Type</th><th>Description</th></tr>
-<tr><td>{$outtype}</td><td>{$outdesc}</td></tr>
-</table>
-</blockquote>',
-
-            'formparam' => '&lt;param&gt;&lt;value&gt;&lt;/value&gt;&lt;/param&gt;
-',
-
-            'methodfooter' => '
-<h2>Test method call</h2>
-<p>Complete by hand the form below inserting the needed parameters to call this method.<br/>
-For a string param use e.g. <pre>&lt;param&gt;&lt;value&gt;&lt;string&gt;Hello&lt;/string&gt;&lt;/value&gt;&lt;/param&gt;</pre></p>
-<form action="" method="post"><p>
-<textarea id="methodCall" name="methodCall" rows="5" cols="80">
-&lt;methodCall&gt;&lt;methodName&gt;{$method}&lt;/methodName&gt;
-&lt;params&gt;
-{$params}&lt;/params&gt;
-&lt;/methodCall&gt;
-</textarea><br/>
-{$extras}
-<input type="submit" value="Test"/>
-</p></form>',
-
-            'editorheaders' => '<script type="module">
-import {base64_decode} from "{$liburl}xmlrpc_lib.js";
-window.base64_decode = base64_decode;
-</script>
-<script type="text/javascript">
-<!--
-function runeditor()
-{
-  //var url = "{$editorurl}visualeditor.html?params={$param_payload}";
-  var url = "{$editorurl}visualeditor.html";
-  //if (document.frmaction.wstype.value == "1")
-  //  url += "&type=jsonrpc";
-  var wnd = window.open(url, "_blank", "width=750, height=400, location=0, resizable=1, menubar=0, scrollbars=1");
-}
-// if javascript version of the lib is found, allow it to send us params
-function buildparams(base64data)
-{
-  if (typeof base64_decode == "function")
-  {
-    if (base64data == "0") // workaround for bug in base64_encode...
-      document.getElementById("methodCall").value = "{$methodcallstart}{$methodcallend}";
-    else
-      document.getElementById("methodCall").value = "{$methodcallstart}"+base64_decode(base64data)+"{$methodcallend}";
-  }
-}
-//-->
-</script>
-',
-
-            'editorlink' => '<input type="submit" value="Edit" onclick="runeditor(); return false;"/>',
-
-            'xmlrpcmethodstart' => '<methodCall><methodName>{$method}</methodName>\n<params>\n',
-
-            'xmlrpcmethodend' => '</params>\n</methodCall>',
-        );
+    /**
+     * @param string $name
+     * @param string $contents
+     * @return void
+     */
+    public function setTemplate($name, $contents)
+    {
+        static::$templates[$name] = $contents;
+        if ($this->templateEngine && ($this->templateEngine instanceof XmlrpcSmartyTemplate)) {
+            XmlrpcSmartyTemplate::setTemplate($name, $contents);
+        }
     }
 }
