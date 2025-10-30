@@ -1,6 +1,6 @@
 <?php
 /**
- * Demo of the Self-documenting PHPXMLRPC server
+ * Demo of the Self-documenting PHPJSONRPC server
  *
  * @author Gaetano Giunta
  * @copyright (c) 2005-2025 G. Giunta
