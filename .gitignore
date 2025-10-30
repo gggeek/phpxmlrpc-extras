@@ -1,5 +1,11 @@
 /.idea
 /.scannerwork
+/doc/api
+/doc/build/.phpdoc
+/doc/build/.phive
+/doc/build/phive
+/doc/build/phpdocumentor
+/doc/manual/xmlrpc_php_extras.pdf
 /vendor/*
 /.phpunit.result.cache
 /composer.lock
