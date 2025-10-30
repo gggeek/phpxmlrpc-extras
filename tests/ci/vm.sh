@@ -93,6 +93,10 @@ start() {
         #       Doable using `docker container cp` to retrieve the /etc/build-info file...
         echo "${CONTAINER_NAME} already started..."
     else
+        # @todo we could allow cli flags to
+        #       1. not force a (re) build of the image
+        #       2. force a re-creation of the container
+        #       3. force a composer update on start (also, when running runtests)
         if docker inspect "${CONTAINER_NAME}" >/dev/null 2>/dev/null; then
             echo "starting existing container ${CONTAINER_NAME}..."
             # @todo we should check that the env vars have not changed since cont. creation, and give a warning if so.
@@ -112,7 +116,7 @@ start() {
                 PORTMAPPING="${PORTMAPPING}-p $((HOST_HTTPSPORT)):443 "
             fi
             if [ "$HOST_PROXYPORT" != no ] && [ "$HOST_PROXYPORT" != '' ]; then
-                PORTMAPPING="-p $((HOST_PROXYPORT-0)):8080 "
+                PORTMAPPING="${PORTMAPPING}-p $((HOST_PROXYPORT-0)):8080 "
             fi
 
             if [ ! -d "${ROOT_DIR}/tests/ci/var/composer_cache" ]; then mkdir -p "${ROOT_DIR}/tests/ci/var/composer_cache"; fi

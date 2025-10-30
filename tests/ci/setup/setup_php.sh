@@ -68,6 +68,9 @@ install_shivammatur() {
     if [ "${PHP_VERSION}" = 5.3 ] || [ "${PHP_VERSION}" = 5.4 ] || [ "${PHP_VERSION}" = 5.5 ]; then
 
         echo "Using PHP from shivammathur/php5-ubuntu..."
+
+        # @todo this set of packages has been tested on Bionic, Focal, Jammy and Noble so far - but it might still need
+        #       some tweaks, eg. adding readline-common
         if [ "${DEBIAN_VERSION}" = jammy ] || [ "${DEBIAN_VERSION}" = noble ]; then
             PACKAGES='enchant-2'
         else
@@ -83,7 +86,7 @@ install_shivammatur() {
         else
             PACKAGES="$PACKAGES libodbc1 libtinfo5"
         fi
-        # @todo this set of packages has only been tested on Bionic, Focal, Jammy and Noble so far
+
         apt-get install -y \
             curl \
             imagemagick \
@@ -101,11 +104,18 @@ install_shivammatur() {
         curl -sSL https://github.com/shivammathur/php5-ubuntu/releases/latest/download/install.sh | bash -s "${PHP_VERSION}"
         set -e
 
+        # remove leftover stuff in /tmp, eg. php-5.4.tar.zst
+        rm -rf /tmp/php-"${PHP_VERSION}"*
+
+        # This seems to be required at least on Jammy
+        apt -y --fix-broken install
+
         # @todo check which php extensions are enabled, and disable all except the desired ones
     else
 
         # @todo check if this script works with all php versions from 5.6 onwards
         # @todo the amount of cleanup and hacks required to get shivammathur/php-ubuntu working is huge. Can we find a better installer?
+        #       It seems that https://github.com/shivammathur/php-builder might in fact be the one to use!
         echo "Using PHP from shivammathur/php-ubuntu..."
 
         # Some of these packages create issues on GHA ubuntu containers...
@@ -236,11 +246,9 @@ else
         fi
     done
 
-    # @todo use ondrej packages for php 8.5 when they are available
-    # @todo also use shivammatur packages for os versions for which the ondrej repos are not available any more.
-    #       Test eg. on focal
-    # @todo move this to looping over an array
-    if [ "${PHP_VERSION}" = 5.3 ] || [ "${PHP_VERSION}" = 5.4 ] || [ "${PHP_VERSION}" = 5.5 ] || [ "${PHP_VERSION}" = 8.5 ]; then
+    # @todo move to using ondrej packages for php 8.5 when they become available
+    if [ "${PHP_VERSION}" = 5.3 ] || [ "${PHP_VERSION}" = 5.4 ] || [ "${PHP_VERSION}" = 5.5 ] || [ "${PHP_VERSION}" = 8.5 ] || \
+        [ "${DEBIAN_VERSION}" = focal ] || [ "${DEBIAN_VERSION}" = bionic ] || [ "${DEBIAN_VERSION}" = xenial ] || [ "${DEBIAN_VERSION}" = trusty ]; then
         install_shivammatur
     else
         install_ondrej
