@@ -12,8 +12,7 @@ namespace PhpXmlRpc\Extras;
  *       or at least a name prefix for all created functions, to prevent js namespace pollution
  * @todo find a fix for xmlrpc methods whose name contain chars invalid in js function names (eg. '.')
 
- * @todo add support for json with jsxmlrpc (only jsolait supports it currently)
- * @todo drop support for jsolait, as it is unmaintained
+ * @todo add support for json with jsxmlrpc
  */
 class JSWrapper
 {
@@ -22,7 +21,7 @@ class JSWrapper
      *
      * @param string $jsLibsPath
      * @param string $protocol either 'xmlrpc' or 'jsonrpc'
-     * @param string $jsLibsType either 'jsolait' or 'jsxmlrpc'
+     * @param string $jsLibsType currently only 'jsxmlrpc'
      * @return string
      */
     public function importLibs($jsLibsPath, $protocol = 'xmrlpc', $jsLibsType = 'jsxmlrpc')
@@ -30,11 +29,7 @@ class JSWrapper
         if ($jsLibsPath == '') {
             $jsLibsPath = '.';
         }
-        if ($jsLibsType == 'jsolait') {
-            $out = '<script type="text/javascript" src="' . $jsLibsPath . '/init.js"></script>
-';
-        } else {
-            $out = '<script type="module">
+        $out = '<script type="module">
     import {' . $protocol . '_client, ' . $protocol . 'msg, ' . $protocol . '_encode, ' . $protocol . '_decode} from "' . $jsLibsPath . '";
     window.' . $protocol . '_client = ' . $protocol . '_client;
     window.' . $protocol . 'msg = ' . $protocol . 'msg;
@@ -42,7 +37,6 @@ class JSWrapper
     window.' . $protocol . '_decode = ' . $protocol . '_decode;
 </script>
 ';
-        }
         return $out;
     }
 
@@ -55,35 +49,8 @@ class JSWrapper
     public function wrapXmlrpcMethod($method, $url, $libUrl = '', $protocol = 'xmrlpc', $jsLibsType = 'jsxmlrpc')
     {
         //$method = str_replace('.', '_', $method);
-        if ($jsLibsType == 'jsolait') {
-            $out = 'function ' . $method . ' (args) {
-	var ' . $protocol . ' = null;
-	var ' . $protocol . '_server = null;';
-            /*if ($baseurl != '')
-            {
-                $out .= '
-            jsolait.baseURL = '.$baseurl;
-            }*/
-            if ($libUrl != '') {
-                $out .= '
-	jsolait.libURL = "' . $libUrl . '"';
-            }
-            $out .= '
-	try {
-		' . $protocol . ' = importModule("' . $protocol . '");
-		' . $protocol . '_server = new ' . $protocol . '.ServiceProxy("' . $url . '", ["' . $method . '"]);
-		try {
-			return ' . $protocol . '_server.' . $method . '(args);
-		} catch (e) {
-			console.log(e);
-		}
-	} catch (e) {
-		console.log(e);
-	}
-}
-';
-        } else {
-            $out = 'function ' . $method . ' () {
+
+        $out = 'function ' . $method . ' () {
 	var ws_client = new ' . $protocol . '_client("' . $url . '");
 	var ws_args = [];
 	for (var i = 0; i < arguments.length; i++)
@@ -102,7 +69,6 @@ class JSWrapper
 	}
 }
 ';
-        }
         return $out;
     }
 
@@ -114,7 +80,7 @@ class JSWrapper
      * @param array $methodList list of methods to be wrapped into js (or null == expose all methods)
      * @param string $url url at which the xmlrpcserver responds
      * @param string $libUrl url of the jsolait lib (see jsolait docs for more info)
-     * @param string $jsLibsType either 'jsolait' or 'jsxmlrpc'
+     * @param string $jsLibsType only 'jsxmlrpc' supported atm
      * @return string the js code snippet defining js functions that wrap web services
      */
     public function wrapXmlrpcServer($server, $url, $libUrl = '', $methodList = null, $jsLibsType = 'jsxmlrpc')
@@ -136,7 +102,7 @@ class JSWrapper
      * @param string $libUrl url of the jsxmlrpc lib (see ... docs for more info)
      * @param array $methodList list of methods to be wrapped into js (or null = wrap all)
      * @param string $protocol either 'xmlrpc' or 'jsonrpc'
-     * @param string $jsLibsType either 'jsolait' or 'jsxmlrpc'
+     * @param string $jsLibsType only 'jsxmlrpc' supported atm
      * @return string the js code snippet defining js functions that wrap web services
      */
     public function wrapDispatchMap($dispatchMap, $url, $libUrl = '', $methodList = null, $protocol = 'xmlrpc', $jsLibsType = 'jsxmlrpc')

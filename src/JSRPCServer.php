@@ -14,7 +14,7 @@ class JSRPCServer extends Server
     public $jsLibsPath = 'https://cdn.jsdelivr.net/npm/@jsxmlrpc/jsxmlrpc@0.6/lib/index.js';
     /** @var string */
     public $selfUrl;
-    /** @var string Javascript lib in use: either 'jsolait' or 'jsxmlrpc' */
+    /** @var string Javascript lib in use: only 'jsxmlrpc' supported atm */
     public $jsLibsType = 'jsxmlrpc';
 
     /**

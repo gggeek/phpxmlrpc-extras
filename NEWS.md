@@ -7,6 +7,8 @@
 - improved: added a self-documenting jsonrpc server class `SelfDocumentingJsonRpcServer`. Also, moved functionality
   shared with `SelfDocumentingServer` to a trait
 
+- improved: dropped support for Jsolait from `JSWrapper` class, as that library has been unmaintained for a long time
+
 
 ## XML-RPC for PHP EXTRAS version 1.0-beta4 - 2024/4/16
 
