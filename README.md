@@ -8,11 +8,11 @@ PHPXMLRPC Extras
 ## REQUIREMENTS
 
   * PHP 5.4 or newer
-  * phpxmlrpc/phpxmlrpc 4.10.0 or newer
+  * phpxmlrpc/phpxmlrpc 4.10.1 or newer
 
 
 ## API DOCUMENTATION
-  documentation can be found in the doc/ directory. _NB_ the docbook manual is quite outdated.
+  documentation can be found in the doc/ directory. _NB_ the manual is quite outdated.
 
 
 ## COPYRIGHT:
