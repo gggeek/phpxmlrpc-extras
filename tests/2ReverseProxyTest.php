@@ -4,7 +4,7 @@ include_once __DIR__ . '/WebTestCase.php';
 
 class ReverseProxyTest extends ExtrasWebTestCase
 {
-    protected $defaultTarget = '/demo/server/proxyServer.php';
+    protected $defaultTarget = '?demo=server/proxyServer.php';
 
     public function testGet()
     {

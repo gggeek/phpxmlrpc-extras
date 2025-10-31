@@ -6,7 +6,7 @@ use \PhpXmlRpc\Request;
 
 class SelfDocumentingServerTest extends ExtrasWebTestCase
 {
-    protected $defaultTarget = '/demo/server/docServer.php';
+    protected $defaultTarget = '?demo=server/docServer.php';
 
     public function testListMethods()
     {
@@ -18,7 +18,7 @@ class SelfDocumentingServerTest extends ExtrasWebTestCase
 
     public function testAddTwoSignature()
     {
-        $page = $this->request('?methodName=examples.addtwo');
+        $page = $this->request('&methodName=examples.addtwo');
         $this->assertStringContainsString('Add two integers together and return the result', $page);
         $this->assertStringContainsString('Signature 1', $page);
     }

@@ -128,9 +128,9 @@ start() {
                 --env "TESTS_ROOT_DIR=${CONTAINER_WORKSPACE_DIR}" \
                 --env "INSTALL_ON_START=${CONTAINER_INSTALL_ON_START}" \
                 --env HTTPSERVER=localhost \
-                --env HTTPURI=/tests/index.php?demo=server/server.php \
+                --env HTTPURI=/tests/index.php?demo=server/docServer.php \
                 --env HTTPSSERVER=localhost \
-                --env HTTPSURI=/tests/index.php?demo=server/server.php \
+                --env HTTPSURI=/tests/index.php?demo=server/docServer.php \
                 -v "${ROOT_DIR}:${CONTAINER_WORKSPACE_DIR}" \
                 -v "${ROOT_DIR}/tests/ci/var/composer_cache:/home/${CONTAINER_USER}/.cache/composer" \
                  "${IMAGE_NAME}"; then

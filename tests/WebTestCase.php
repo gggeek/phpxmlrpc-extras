@@ -32,10 +32,11 @@ abstract class ExtrasWebTestCase extends PhpXmlRpc_WebTestCase
 
         $this->args = extrasArgParser::getArgs();
 
-        $this->baseUrl = $this->args['HTTPSERVER'] . '/' . ltrim($this->args['HTTPURI'], '/') . $this->defaultTarget;
-        $this->coverageScriptUrl = 'http://' . $this->args['HTTPSERVER'] . '/' . $this->args['HTTPURI'] . '/tests/phpunit_coverage.php';
+        // assumes HTTPURI to be in the form /tests/index.php?etc...
+        $this->baseUrl = $this->args['HTTPSERVER'] . preg_replace('|\?.+|', '', $this->args['HTTPURI']) . $this->defaultTarget;
+        $this->coverageScriptUrl = 'http://' . $this->args['HTTPSERVER'] . preg_replace('|/tests/index\.php(\?.*)?|', '/tests/phpunit_coverage.php', $this->args['HTTPURI']);
 
-        $this->client = new Client($this->args['HTTPURI'] . $this->defaultTarget, $this->args['HTTPSERVER'], 80);
+        $this->client = new Client(preg_replace('|\?.+|', '', $this->args['HTTPURI']) . $this->defaultTarget, $this->args['HTTPSERVER'], 80);
         $this->client->setDebug($this->args['DEBUG']);
 
         $this->client->request_compression = $this->request_compression;
@@ -72,10 +73,13 @@ abstract class ExtrasWebTestCase extends PhpXmlRpc_WebTestCase
                 CURLOPT_POSTFIELDS => $payload
             ));
         }
+        $cookie = 'PHPUNIT_RANDOM_TEST_ID=' . static::$randId;
         if ($this->collectCodeCoverageInformation)
         {
-            curl_setopt($ch, CURLOPT_COOKIE, 'PHPUNIT_SELENIUM_TEST_ID='.$this->testId);
+            $cookie .= '; PHPUNIT_SELENIUM_TEST_ID=' . $this->testId;
         }
+        curl_setopt($ch, CURLOPT_COOKIE, $cookie);
+
         if ($this->args['DEBUG'] > 0) {
             curl_setopt($ch, CURLOPT_VERBOSE, 1);
         }
