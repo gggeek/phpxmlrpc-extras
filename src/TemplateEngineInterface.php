@@ -6,7 +6,7 @@ interface TemplateEngineInterface
 {
     /**
      * @param string $templateName
-     * @return TemplateInterface;
+     * @return TemplateInterface
      */
     public function load($templateName);
 }
