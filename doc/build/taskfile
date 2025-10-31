@@ -96,7 +96,8 @@ function build_api() {
     # @todo for completeness, we should add to the API docs the documentation of the superclasses. However, currently
     #       phpdocumentor does not allow to document code in vendor/ as belonging to separate packages, which makes
     #       the generated docs unfriendly... See https://github.com/phpDocumentor/phpDocumentor/issues/3999
-    $PHPDOC run --cache-folder 'build/.phpdoc' -d "$(realpath ../src/)" -t 'api' --title PHPXMLRPC-EXTRAS --defaultpackagename PHPXMLRPC-EXTRAS
+    # nb: the package name is a bit ugly, but using a dash or underscore results in phpdoc showing it as nested PHPXMLRP / CEXTRAS
+    $PHPDOC run --cache-folder 'build/.phpdoc' -d "$(realpath ../src/)" -t 'api' --title PHPXMLRPC-EXTRAS --defaultpackagename PHPXMLRPCEXTRAS
 
     # manually mangle the index.html file to add generation date, lib version, etc...
     # @todo get the TAG from git info
