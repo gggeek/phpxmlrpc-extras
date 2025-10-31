@@ -80,7 +80,7 @@ function setup_tools() {
     chmod +x build/phive
     cd build; ./phive install --trust-gpg-keys F33A0AF69AF7A8B15017DB526DA3ACC4991FFAE5 -t "$(pwd)" phpdocumentor; cd ..
     # phive behaves weirdly... fix that
-    if [ -L ./build/phpDocumentor ]; then mv  ./build/phpDocumentor ./build/phpdocumentor; fi
+    if [ -L ./build/phpDocumentor ]; then mv ./build/phpDocumentor ./build/phpdocumentor; fi
 
     #$sudo chown -R "$(id -u):$(id -g)" build/vendor
 
@@ -88,14 +88,20 @@ function setup_tools() {
 }
 
 function build_api() {
-    PHPDOC='build/phpdocumentor'
+    PHPDOC='./build/phpdocumentor'
     #PHPDOC='php build/vendor/bin/phpdoc'
 
+    # @todo move to using a config file, as it gives more options and work better with relative paths
+
+    # @todo for completeness, we should add to the API docs the documentation of the superclasses. However, currently
+    #       phpdocumentor does not allow to document code in vendor/ as belonging to separate packages, which makes
+    #       the generated docs unfriendly... See https://github.com/phpDocumentor/phpDocumentor/issues/3999
     $PHPDOC run --cache-folder 'build/.phpdoc' -d "$(realpath ../src/)" -t 'api' --title PHPXMLRPC-EXTRAS --defaultpackagename PHPXMLRPC-EXTRAS
 
     # manually mangle the index.html file to add generation date, lib version, etc...
+    # @todo get the TAG from git info
     #TAG=$(grep 'public \+static \+$jsonrpcVersion *=' ../src/PhpJsonRpc.php | sed 's/public \+static \+$jsonrpcVersion *= *//' | tr -d ' ' | tr -d \" | tr -d ';' | tr -d "'")
-    sed -r -i -e "s|<h2>Documentation</h2>|<h2>Documentation for the <a href=\"https://gggeek.github.io/phpxmlrpc-extras/\">PHPXMLRPC-EXTRAS</a> library, ver. ${TAG}</h2><p>Built on $(date +%Y/%m/%d)</p>|g" ./api/index.html
+    sed -r -i -e "s|<h2>Documentation</h2>|<h2>Documentation for the <a href=\"https://gggeek.github.io/phpxmlrpc-extras/\">PHPXMLRPC-EXTRAS</a> library</h2><p>Built on $(date +%Y/%m/%d)</p>|g" ./api/index.html
     find api -name '*.html' | xargs sed -r -i -e 's|<a href="" class="phpdocumentor-title__link">|<a href="index.html" class="phpdocumentor-title__link">|g'
     ###find api -name '*.html' | xargs sed -r -i -e "s|>JSONRPC</a></h1>|>JSONRPC ${TAG}</a></h1>|g"
     #find api -name '*.html' | fgrep -v 'api/index.html' | xargs sed -r -i -e "s|...|...|g"
