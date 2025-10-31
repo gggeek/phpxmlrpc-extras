@@ -9,6 +9,7 @@ function setup_tools() {
         sudo="sudo --preserve-env=GITHUB_ACTIONS DEBIAN_FRONTEND=noninteractive"
     fi
 
+    # @todo if php-cli is already installed, make sure we use that version
     PHPPKG=$(apt-cache search php-cli | grep php | grep cli | grep -v -F '(default)' | awk '{print $1}')
     if [ -z "${PHPPKG}" ]; then
         echo "Can not find a php-cli package in the apt repositories for this server" >&2
