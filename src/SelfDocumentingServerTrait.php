@@ -11,7 +11,7 @@ trait SelfDocumentingServerTrait
     public $supported_langs = array('en');
     /** @var string[] */
     public $supported_doctypes = array('html', 'wsdl');
-    /** @var string|null relative path to the visual xmlrpc editing dialog */
+    /** @var string|null relative path to the visual xml-rpc editing dialog */
     public $editorpath = '';
     /** @var bool */
     public $execute_on_form_submit = true;

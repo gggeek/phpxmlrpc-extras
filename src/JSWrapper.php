@@ -10,7 +10,7 @@ namespace PhpXmlRpc\Extras;
  * @todo add a js object wrapper for all web services if user prefers oop instead
  *       of plain function names (see php-o-lait for an example),
  *       or at least a name prefix for all created functions, to prevent js namespace pollution
- * @todo find a fix for xmlrpc methods whose name contain chars invalid in js function names (eg. '.')
+ * @todo find a fix for xm-rpc methods whose name contain chars invalid in js function names (eg. '.')
 
  * @todo add support for json with jsxmlrpc
  */
@@ -73,7 +73,7 @@ class JSWrapper
     }
 
     /**
-     * Return js code providing functions to call all methods of an xmlrpc server.
+     * Return js code providing functions to call all methods of an xml-rpc server.
      * Note that method names with a . will not work!
      *
      * @param \PhpXmlRpc\Server $server

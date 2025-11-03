@@ -27,7 +27,7 @@ function js_import_libs($jsLibsPath, $jsLibsType = 'jsolait')
 }
 
 /**
- * Return js code providing a function to call a method of an xmlrpc server.
+ * Return js code providing a function to call a method of an xml-rpc server.
  * Note that method names should NOT contain dot characters, nor url contain double quotes
  */
 function js_wrap_xmlrpc_method($method, $url, $liburl = '', $protocol = 'xmrlpc', $jsLibsType = 'jsolait')

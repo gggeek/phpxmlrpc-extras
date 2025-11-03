@@ -1,6 +1,6 @@
 <?php
 /**
- * Very simple xmlrpc reverse proxy server. Forwards all requests to the server defined in the constant XMLRPCSERVER
+ * Very simple xml-rpc reverse proxy server. Forwards all requests to the server defined in the constant XMLRPCSERVER
  *
  * @author Gaetano Giunta
  * @copyright (c) 2006-2025 G. Giunta
