@@ -21,7 +21,7 @@ use PhpXmlRpc\Value;
  * @param Request $msg
  * @return Response
  */
-function sumIntegers ($msg)
+function sumIntegers($msg)
 {
     $v = $msg->getParam(0);
     $tot = 0;
