@@ -4,10 +4,14 @@
 
 - improved: added new bool field `$execute_on_form_submit` to class `SelfDocumentingServer`
 
-- improved: added a self-documenting jsonrpc server class `SelfDocumentingJsonRpcServer`. Also, moved functionality
+- improved: added a self-documenting json-rpc server class `SelfDocumentingJsonRpcServer`. Also, moved functionality
   shared with `SelfDocumentingServer` to a trait
 
+- improved: added a js-generating json-rpc server class `JSJsonRpcServer`. Its usage is shown in `ajaxdemo.php`
+
 - improved: dropped support for Jsolait from `JSWrapper` class, as that library has been unmaintained for a long time
+
+- breaking change: renamed class `JSRPCServer` to `JSRpcServer`
 
 
 ## XML-RPC for PHP EXTRAS version 1.0-beta4 - 2024/4/16

@@ -11,8 +11,6 @@ namespace PhpXmlRpc\Extras;
  *       of plain function names (see php-o-lait for an example),
  *       or at least a name prefix for all created functions, to prevent js namespace pollution
  * @todo find a fix for xm-rpc methods whose name contain chars invalid in js function names (eg. '.')
-
- * @todo add support for json with jsxmlrpc
  */
 class JSWrapper
 {
