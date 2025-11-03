@@ -2,8 +2,6 @@
 
 include_once __DIR__ . '/WebTestCase.php';
 
-use \PhpXmlRpc\Request;
-
 class SelfDocumentingServerTest extends ExtrasWebTestCase
 {
     protected $defaultTarget = '?demo=server/docServer.php';

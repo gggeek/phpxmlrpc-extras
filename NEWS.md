@@ -17,6 +17,8 @@
 
 - improved: dropped support for Jsolait from `JSWrapper` class, as that library has been unmaintained for a long time
 
+- improved: made demo file `ajaxdemo.php` multi-protocol, and dropped demo file `sonofajax.php`
+
 - breaking change: renamed class `JSRPCServer` to `JSRpcServer`
 
 
