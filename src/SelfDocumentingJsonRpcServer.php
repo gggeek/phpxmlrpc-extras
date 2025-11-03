@@ -18,7 +18,7 @@ class SelfDocumentingJsonRpcServer extends Server
 {
     use SelfDocumentingServerTrait;
 
-    protected static $templates = array(
+    protected static $_templates = array(
         /// @todo the trailing comma in `{$params}` is not valid in json
         'methodfooter' => '
     <h2>Test method call</h2>
@@ -72,19 +72,8 @@ class SelfDocumentingJsonRpcServer extends Server
         }
     }
 
-    /**
-     * @param string $doctype
-     * @param string $lang
-     * @param string $editorPath
-     * @param bool $displayExecutionForm
-     * @return string
-     */
-    protected function generateDocs($doctype = 'html', $lang = 'en', $editorPath = '', $displayExecutionForm = true)
+    protected function getTemplates()
     {
-        $documentationGenerator = new ServerDocumentor(new XmlrpcSmartyTemplate(null));
-        foreach (static::$templates as $name => $string) {
-            $documentationGenerator->setTemplate($name, $string);
-        }
-        return $documentationGenerator->generateDocs($this, $doctype, $lang, $editorPath, $displayExecutionForm);
+        return array_merge(static::$_templates, $this->templates);
     }
 }

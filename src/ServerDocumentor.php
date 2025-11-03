@@ -27,6 +27,8 @@ class ServerDocumentor
 <div class="footer">Generated using PHPXMLRPC {$xmlrpc_version}</div>
 </body></html>',
 
+        'extrahtmlheader' => '',
+
         'apiheader' => '
 <h1>API index</h1>
 <p>This server defines the following API specification:</p>
@@ -164,15 +166,15 @@ function buildparams(base64data)
                 // method name decoding: is user seeking info about a single method?
                 if (isset($_GET['methodName'])) {
                     $opts = array('lang' => $lang, 'title' => 'Method ' . htmlspecialchars($_GET['methodName']),
-                        'xmlrpc_name' => PhpXmlRpc::$xmlrpcName);
+                        'xmlrpc_name' => PhpXmlRpc::$xmlrpcName, 'extras' => $this->render('extrahtmlheader'));
                     if ($editorPath != '') {
                         $mstart = $this->render('xmlrpcmethodstart', array('method' => htmlspecialchars($_GET['methodName'])));
                         $mend = $this->render('xmlrpcmethodend', array());
                         $editorUrl = preg_replace('|visualeditor.html$|', '', $editorPath);
                         $libUrl = rtrim($editorPath, '/') . '/../lib/';
-                        $opts['extras'] = $this->render('editorheaders', array('editorurl' => $editorUrl, 'liburl' => $libUrl, 'methodcallstart' => $mstart, 'methodcallend' => $mend));
-                    } else
-                        $opts['extras'] = '';
+                        $opts['extras'] .= "\n" . $this->render('editorheaders', array('editorurl' => $editorUrl, 'liburl' => $libUrl, 'methodcallstart' => $mstart, 'methodcallend' => $mend));
+                    }
+
                     $payload .= $this->render('docheader', $opts);
                     if ($server->allow_system_funcs) {
                         $methods = array_merge($server->getDispatchMap(), $server->getSystemDispatchMap());
@@ -225,7 +227,7 @@ function buildparams(base64data)
                 } else {
                     // complete api info
                     $payload .= $this->render('docheader', array('lang' => $lang, 'title' => 'API Index',
-                        'xmlrpc_name' => PhpXmlRpc::$xmlrpcName, 'extras' => ''));
+                        'xmlrpc_name' => PhpXmlRpc::$xmlrpcName, 'extras' => $this->render('extrahtmlheader')));
                     $payload .= $this->render('apiheader');
                     foreach ($server->getDispatchMap() as $key => $val) {
                         $payload .= $this->render('apimethod', array('method' => $key, 'desc' => @$val['docstring']));

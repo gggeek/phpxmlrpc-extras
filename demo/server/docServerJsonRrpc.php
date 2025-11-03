@@ -18,6 +18,10 @@ $signatures2 = include($providersDir.'interop.php');
 $signatures3 = include($providersDir.'validator1.php');
 
 $server = new SelfDocumentingJsonRpcServer(array_merge($signatures1, $signatures2, $signatures3), false);
+
+// customize the rendering
+$server->setTemplate('extrahtmlheader', '<link rel="icon" type="image/x-icon" href="https://gggeek.github.io/phpxmlrpc-jsonrpc/favicon.ico">');
+
 // nb: setting debug level 2 breaks most json-parsers, as server output will include comments
 $server->setDebug(1);
 

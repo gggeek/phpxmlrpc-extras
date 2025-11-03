@@ -18,6 +18,9 @@ trait SelfDocumentingServerTrait
 
     protected $documentationGenerator;
 
+    /** @var string[] */
+    protected $templates = array();
+
     protected function handleNonRPCRequest($docType, $returnPayload)
     {
         if ($docType == '' || !in_array($docType, $this->supported_doctypes)) {
@@ -49,6 +52,27 @@ trait SelfDocumentingServerTrait
         if ($this->documentationGenerator == null) {
             $this->documentationGenerator = new ServerDocumentor(new XmlrpcSmartyTemplate(null));
         }
+        foreach ($this->getTemplates() as $name => $string) {
+            $this->documentationGenerator->setTemplate($name, $string);
+        }
         return $this->documentationGenerator->generateDocs($this, $doctype, $lang, $editorPath, $displayExecutionForm);
+    }
+
+    /**
+     * @return array
+     */
+    protected function getTemplates()
+    {
+        return $this->templates;
+    }
+
+    /**
+     * @param string $name
+     * @param string $contents
+     * @return void
+     */
+    public function setTemplate($name, $contents)
+    {
+        $this->templates[$name] = $contents;
     }
 }
