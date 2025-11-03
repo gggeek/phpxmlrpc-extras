@@ -36,6 +36,7 @@ abstract class ExtrasWebTestCase extends PhpXmlRpc_WebTestCase
         $this->baseUrl = $this->args['HTTPSERVER'] . preg_replace('|\?.+|', '', $this->args['HTTPURI']) . $this->defaultTarget;
         $this->coverageScriptUrl = 'http://' . $this->args['HTTPSERVER'] . preg_replace('|/tests/index\.php(\?.*)?|', '/tests/phpunit_coverage.php', $this->args['HTTPURI']);
 
+        /// @todo can we replace this with $this->getClient() ?
         $this->client = new Client(preg_replace('|\?.+|', '', $this->args['HTTPURI']) . $this->defaultTarget, $this->args['HTTPSERVER'], 80);
         $this->client->setDebug($this->args['DEBUG']);
 
@@ -56,6 +57,8 @@ abstract class ExtrasWebTestCase extends PhpXmlRpc_WebTestCase
      * @param string $payload
      * @param false $emptyPageOk
      * @return bool|string
+     *
+     * @todo can we replace this with the parent call?
      */
     protected function request($uri = '', $method = 'GET', $payload = '', $emptyPageOk = false)
     {
@@ -84,14 +87,16 @@ abstract class ExtrasWebTestCase extends PhpXmlRpc_WebTestCase
             curl_setopt($ch, CURLOPT_VERBOSE, 1);
         }
         $page = curl_exec($ch);
-        curl_close($ch);
+        $info = curl_getinfo($ch);
+        if (PHP_MAJOR_VERSION < 8)
+            curl_close($ch);
 
-        $this->assertNotFalse($page);
+        $this->assertNotFalse($page, 'Curl request should not fail. Url: ' . @$info['url'] . ', Http code: ' . @$info['http_code']);
         if (!$emptyPageOk) {
-            $this->assertNotEquals('', $page);
+            $this->assertNotEquals('', $page, 'Retrieved web page should not be empty');
         }
-        $this->assertStringNotContainsStringIgnoringCase('Fatal error', $page);
-        $this->assertStringNotContainsStringIgnoringCase('Notice:', $page);
+        $this->assertStringNotContainsStringIgnoringCase('Fatal error', $page, 'Retrieved web page should not contain a fatal error string');
+        $this->assertStringNotContainsStringIgnoringCase('Notice:', $page, 'Retrieved web page should not contain a notice string');
 
         return $page;
     }
@@ -107,7 +112,7 @@ abstract class ExtrasWebTestCase extends PhpXmlRpc_WebTestCase
         $response = $this->client->send($request);
 
         if (!$faultOk) {
-            $this->assertEquals(0, $response->faultCode());
+            $this->assertEquals(0, $response->faultCode(), $response->faultString());
         }
         return $encoder->decode($response->value());
     }
