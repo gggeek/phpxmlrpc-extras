@@ -13,7 +13,7 @@
 - improved: added a js-generating json-rpc server class `JSJsonRpcServer`. Its usage is shown in `ajaxdemo.php`
 
 - fixed: the javascript code emitted by the `JSWrapper` class when using the json-rpc protocol will use proper method
-  call instead of notification calls
+  calls instead of notification calls
 
 - improved: dropped support for Jsolait from `JSWrapper` class, as that library has been unmaintained for a long time
 
