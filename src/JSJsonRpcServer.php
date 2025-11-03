@@ -2,13 +2,9 @@
 
 namespace PhpXmlRpc\Extras;
 
-use PhpXmlRpc\Server;
+use PhpXmlRpc\JsonRpc\Server;
 
-/**
- * @todo if we subclass the json-rpc server instead of the xml-rpc one, we _might_ be able to easily use all this magic
- *       with both xml-rpc and json-rpc protocols...
- */
-class JSRPCServer extends Server
+class JSJsonRpcServer extends Server
 {
     /** @var string default url of jsxmlrpc lib */
     public $jsLibsPath = 'https://cdn.jsdelivr.net/npm/@jsxmlrpc/jsxmlrpc@0.6/lib/index.js';
@@ -25,8 +21,8 @@ class JSRPCServer extends Server
     {
         // Check if this page has been called via XML-RPC or not
         if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_SERVER['CONTENT_TYPE']) &&
-            strpos(strtolower($_SERVER['CONTENT_TYPE']), 'text/xml') === 0) {
-            // xmlrpc call received: serve web service
+            strpos(strtolower($_SERVER['CONTENT_TYPE']), 'application/json') === 0) {
+            // json-rpc call received: serve web service
             parent::__construct($dispatchMap, $serviceNow);
             if ($dispatchMap && $serviceNow) {
                 die();

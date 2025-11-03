@@ -57,7 +57,7 @@ class JSWrapper
 	{
 		ws_args[ws_args.length] = ' . $protocol . '_encode(arguments[i]);
 	}
-	var ws_msg = new ' . $protocol . 'msg("' . $method . '", ws_args);
+	var ws_msg = new ' . $protocol . 'msg("' . $method . '", ws_args' . ($protocol === 'jsonrpc' ? ', 1' : '') . ');
 	try {
 		var ws_resp = ws_client.send(ws_msg);
 		if  (ws_resp.faultCode())

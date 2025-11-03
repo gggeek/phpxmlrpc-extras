@@ -55,7 +55,7 @@ class SelfDocumentingJsonRpcServer extends Server
         if ($_SERVER['REQUEST_METHOD'] != 'POST') {
             return $this->handleNonRPCRequest($docType, $returnPayload);
         } else {
-            // We break the jsonrpc spec here, and answer to POST requests that have been sent via a standard html form,
+            // We break the json-rpc spec here, and answer to POST requests that have been sent via a standard html form,
             // such as the one that is part of self-generated docs.
             // The POST requests should have a single field: 'methodCall', with the complete json payload
             if ($this->execute_on_form_submit && isset($_SERVER['CONTENT_TYPE'])

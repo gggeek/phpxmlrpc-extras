@@ -7,10 +7,10 @@
  * with the previous API of the library
  *****************************************************************************/
 
-include_once(__DIR__.'/../src/JSRPCServer.php');
+include_once(__DIR__ . '/../src/JSRpcServer.php');
 include_once(__DIR__.'/../src/JSWrapper.php');
 
-class js_rpc_server extends PhpXmlRpc\Extras\JSRPCServer
+class js_rpc_server extends PhpXmlRpc\Extras\JSRpcServer
 {
 }
 
