@@ -7,7 +7,9 @@ jobs:
         runs-on: ${{ matrix.operating-system }}
         env:
             HTTPSERVER: localhost
+            HTTPURI: /tests/index.php?demo=server/docServer.php
             HTTPSSERVER: localhost
+            HTTPSURI: /tests/index.php?demo=server/docServer.php
             HTTPSVERIFYHOST: 2
             HTTPSIGNOREPEER: 0
             SSLVERSION: 0
@@ -84,8 +86,7 @@ jobs:
             #        key: ${{ runner.os }}-${{ hashFiles('**/composer.lock') }}
 
             -   name: install dependencies
-                # NB: we do require the test code of phpxmlrpc, which is not part of the tarball, so no --prefer-dist
-                run: 'composer install --no-progress'
+                run: 'composer install'
 
             -   name: run tests and upload coverage info if needed
                 run: |
