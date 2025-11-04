@@ -11,8 +11,13 @@ require_once __DIR__ . "/_prepend.php";
 
 use PhpXmlRpc\Extras\SelfDocumentingJsonRpcServer;
 
-// Import example webservice definitions from the demos found in the base PhpXmlrpc lib
-$providersDir = __DIR__."/../../vendor/phpxmlrpc/phpxmlrpc/demo/server/methodProviders/";
+// Import example webservice definitions from the demos found in the base PhpXmlrpc lib.
+// Support being installed both as top-level project and as dependency
+if (is_dir(__DIR__ . '/../../../../../vendor')) {
+    $providersDir = __DIR__."/../../../../../vendor/phpxmlrpc/phpxmlrpc/demo/server/methodProviders/";
+} else {
+    $providersDir = __DIR__."/../../vendor/phpxmlrpc/phpxmlrpc/demo/server/methodProviders/";
+}
 $signatures1 = include($providersDir.'functions.php');
 $signatures2 = include($providersDir.'interop.php');
 $signatures3 = include($providersDir.'validator1.php');

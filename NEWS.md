@@ -1,7 +1,7 @@
 ## XML-RPC for PHP EXTRAS version 1.XX - unreleased
 
 - fixed: the `_prepend.php` file used by the demos would not locate the php autoloader when the library is installed as
-  dependency
+  dependency. Same for demo files `docServer.php` and `docServerJsonRpc.php`.
 
 
 ## XML-RPC for PHP EXTRAS version 1.0 - 2025-11-4
