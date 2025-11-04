@@ -1,4 +1,4 @@
-## XML-RPC for PHP EXTRAS 1.0 - 2025-11-3
+## XML-RPC for PHP EXTRAS 1.0 - 2025-11-4
 
 - improved: added CI testing on php 8.4, 8.5. Default the local testing container to using PHP 8.1 on Ubuntu Jammy
 
@@ -20,6 +20,8 @@
 - improved: made demo file `ajaxdemo.php` multi-protocol, and dropped demo file `sonofajax.php`
 
 - breaking change: renamed class `JSRPCServer` to `JSRpcServer`
+
+- improved: increased test coverage
 
 
 ## XML-RPC for PHP EXTRAS version 1.0-beta4 - 2024/4/16

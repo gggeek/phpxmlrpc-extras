@@ -18,17 +18,17 @@ PHPXMLRPC Extras
 ## COPYRIGHT:
   Use of this software is subject to the terms in [license.txt](license.txt)
 
-## INCLUDED MODULES
+## INCLUDED CLASSES
 
-### AJAX
-  Demo of ajaxified version of the  lib: supports executing xml-rpc/json-rpc calls directly from the client browser
+### JSRpcServer, JsJsonRpcServer, JSWrapper
+  Ajaxified version of the  lib: support executing xml-rpc/json-rpc calls directly from the client browser
   after having defined them only once, in php.
 
-### DOCXMLRPCSERVER:
-  Subclass of the xml-rpc server that auto-generates HTML documentation of exposed services.
+### SelfDocumentingServer, SelfDocumentingJsonRpcServer, ServerDocumentor, XmlrpcSmartyTemplate:
+  Subclasses of the xml-rpc/json-rpc servers and their helpers, to auto-generate HTML documentation of exposed services.
   Easy as a breeze to use, and extremely user-friendly.
 
-### PROXY:
+### ReverseProxy:
   Subclass of the xml-rpc server that can act as remote (transparent) xml-rpc proxy to forward calls to a remote server.
   Can either forward any received call or probe remote server first for existing methods.
 
@@ -48,7 +48,7 @@ The full sequence of operations is:
     # and, once you have finished all testing related work:
     ./tests/ci/vm.sh cleanup
 
-By default, tests are run using php 7.4 in a Container based on Ubuntu 20 Focal.
+By default, tests are run using php 8.1 in a Container based on Ubuntu 22 Jammy.
 You can change the version of PHP and Ubuntu in use by setting the environment variables PHP_VERSION and UBUNTU_VERSION
 before building the Container.
 
