@@ -15,5 +15,3 @@ use PhpXmlRpc\Client;
 $server = new ReverseProxy(new Client(XMLRPCSERVER), false);
 $server->setDebug(2);
 $server->service();
-
-require_once __DIR__ . "/_append.php";

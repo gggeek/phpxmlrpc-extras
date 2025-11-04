@@ -31,5 +31,3 @@ $server->setTemplate('extrahtmlheader', '<link rel="icon" type="image/x-icon" hr
 $server->setDebug(1);
 
 $server->service();
-
-require_once __DIR__ . "/_append.php";
