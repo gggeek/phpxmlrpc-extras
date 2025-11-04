@@ -33,21 +33,10 @@ abstract class ExtrasWebTestCase extends PhpXmlRpc_WebTestCase
         $this->args = extrasArgParser::getArgs();
 
         // assumes HTTPURI to be in the form /tests/index.php?etc...
-        $this->baseUrl = $this->args['HTTPSERVER'] . preg_replace('|\?.+|', '', $this->args['HTTPURI']) . $this->defaultTarget;
+        $this->baseUrl = 'http://' . $this->args['HTTPSERVER'] . preg_replace('|\?.+|', '', $this->args['HTTPURI']) . $this->defaultTarget;
         $this->coverageScriptUrl = 'http://' . $this->args['HTTPSERVER'] . preg_replace('|/tests/index\.php(\?.*)?|', '/tests/phpunit_coverage.php', $this->args['HTTPURI']);
 
-        /// @todo can we replace this with $this->getClient() ?
-        $this->client = new Client(preg_replace('|\?.+|', '', $this->args['HTTPURI']) . $this->defaultTarget, $this->args['HTTPSERVER'], 80);
-        $this->client->setDebug($this->args['DEBUG']);
-
-        $this->client->request_compression = $this->request_compression;
-        $this->client->accepted_compression = $this->accepted_compression;
-
-        $this->client->setCookie('PHPUNIT_RANDOM_TEST_ID', static::$randId);
-
-        if ($this->collectCodeCoverageInformation) {
-            $this->client->setCookie('PHPUNIT_SELENIUM_TEST_ID', $this->testId);
-        }
+        $this->client = $this->newClient('');
     }
 
     /**
@@ -55,7 +44,7 @@ abstract class ExtrasWebTestCase extends PhpXmlRpc_WebTestCase
      * @param string $uri
      * @param string $method
      * @param string $payload
-     * @param false $emptyPageOk
+     * @param bool $emptyPageOk
      * @return bool|string
      *
      * @todo can we replace this with the parent call?
@@ -101,19 +90,48 @@ abstract class ExtrasWebTestCase extends PhpXmlRpc_WebTestCase
         return $page;
     }
 
-    protected function call($method, $params = array(), $faultOk = false)
+    protected function call($method, $params = array(), $faultOk = false, $useJsonRpc = false)
     {
-        $encoder = new Encoder();
+        if ($useJsonRpc) {
+            $encoder = new \PhpXmlRpc\JsonRpc\Encoder();
+        } else {
+            $encoder = new Encoder();
+        }
+
         foreach($params as &$param) {
             $param = $encoder->encode($param);
         }
-        $request = new Request($method, $params);
-
-        $response = $this->client->send($request);
+        if ($useJsonRpc) {
+            $request = new \PhpXmlRpc\JsonRpc\Request($method, $params, 1);
+            $response = $this->newClient('', true)->send($request);
+        } else {
+            $request = new Request($method, $params);
+            $response = $this->client->send($request);
+        }
 
         if (!$faultOk) {
             $this->assertEquals(0, $response->faultCode(), $response->faultString());
         }
         return $encoder->decode($response->value());
+    }
+
+    protected function newClient($path, $useJsonRpc = false)
+    {
+        if ($useJsonRpc) {
+            $client = new \PhpXmlRpc\JsonRpc\Client($this->baseUrl . $path);
+        } else {
+            $client = new Client($this->baseUrl . $path);
+        }
+
+        $client->setCookie('PHPUNIT_RANDOM_TEST_ID', static::$randId);
+        if ($this->collectCodeCoverageInformation) {
+            $client->setCookie('PHPUNIT_SELENIUM_TEST_ID', $this->testId);
+        }
+
+        $client->setDebug(1);//$this->args['DEBUG']);
+        $client->request_compression = $this->request_compression;
+        $client->accepted_compression = $this->accepted_compression;
+
+        return $client;
     }
 }
