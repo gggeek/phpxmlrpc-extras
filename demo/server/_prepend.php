@@ -8,8 +8,8 @@ if (isset($_GET['showSource']) && $_GET['showSource']) {
 }
 
 // support being installed both as top-level project and as dependency
-if (file_exists(__DIR__ . '/../../../../vendor/autoload.php')) {
-    include_once __DIR__ . '/../../../../vendor/autoload.php';
+if (file_exists(__DIR__ . '/../../../../../vendor/autoload.php')) {
+    include_once __DIR__ . '/../../../../../vendor/autoload.php';
 } else {
     include_once __DIR__ . '/../../vendor/autoload.php';
 }
@@ -19,5 +19,5 @@ if (isset($_SERVER['HTTPSERVER'])) {
     define('XMLRPCSERVER', 'http://'.$_SERVER['HTTPSERVER'].'/demo/server/docServer.php');
 } else {
     # @todo fix - this url is not working any more
-    define('XMLRPCSERVER', 'http://gggeek.altervista.org/sw/phpxmlrpc/extras/demo/server/docServer.php');
+    define('XMLRPCSERVER', 'http://gggeek.altervista.org/sw/xmlrpc/extras/demo/server/docServer.php');
 }
