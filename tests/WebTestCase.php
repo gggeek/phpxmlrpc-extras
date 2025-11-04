@@ -103,9 +103,13 @@ abstract class ExtrasWebTestCase extends PhpXmlRpc_WebTestCase
         }
         if ($useJsonRpc) {
             $request = new \PhpXmlRpc\JsonRpc\Request($method, $params, 1);
+            // work around the fact that the Parser might have been initialized by an xml-rpc request
+            \PhpXmlRpc\JsonRpc\Request::setParser(new PhpXmlRpc\JsonRpc\Helper\Parser());
             $response = $this->newClient('', true)->send($request);
         } else {
             $request = new Request($method, $params);
+            // work around the fact that the Parser might have been initialized by a json-rpc request
+            Request::setParser(new PhpXmlRpc\Helper\XMLParser());
             $response = $this->client->send($request);
         }
 
