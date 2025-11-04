@@ -18,6 +18,5 @@ if (file_exists(__DIR__ . '/../../../../../vendor/autoload.php')) {
 if (isset($_SERVER['HTTPSERVER'])) {
     define('XMLRPCSERVER', 'http://'.$_SERVER['HTTPSERVER'].'/demo/server/docServer.php');
 } else {
-    # @todo fix - this url is not working any more
-    define('XMLRPCSERVER', 'http://gggeek.altervista.org/sw/xmlrpc/extras/demo/server/docServer.php');
+    define('XMLRPCSERVER', 'http://gggeek.altervista.org/sw/xmlrpc/demo/server/server.php');
 }
