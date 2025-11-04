@@ -76,11 +76,11 @@ jobs:
 
             # create release on github, with data from the NEWS file and add docs+demo artifacts
 
-            #-   name: create release assets
-            #    #if: ${{ github.ref_type == 'tag' && startsWith(github.ref_name, '4.') }}
-            #    run: |
-            #        tar -cvzf demofiles.tgz demo
-            #        tail -n+2 NEWS.md | sed '/## JSON-RPC for PHP version/Q' >> announcement.txt
+            -   name: create release assets
+                #if: ${{ github.ref_type == 'tag' && startsWith(github.ref_name, '4.') }}
+                run: |
+                    #tar -cvzf demofiles.tgz demo
+                    tail -n+2 NEWS.md | sed '/## JSON-RPC for PHP version/Q' >> announcement.txt
 
             -   name: create release on github
                 #if: ${{ github.ref_type == 'tag' && startsWith(github.ref_name, '4.') }}
