@@ -48,7 +48,7 @@ jobs:
                     ./doc/build/taskfile build_api
                     mv doc/api .
                     git fetch
-                    git checkout -f gh-pages
+                    git checkout gh-pages
                     rm -rf doc/api
                     mv ./api doc
                     git add doc/api
@@ -65,7 +65,7 @@ jobs:
                     ./doc/build/taskfile build_manual
                     mv doc/manual/xmlrpc_php_extras.pdf .
                     git fetch
-                    git checkout -f gh-pages
+                    git checkout gh-pages
                     mv ./xmlrpc_php_extras.pdf doc
                     git add doc/xmlrpc_php_extras.pdf
                     git commit -m 'update pdf version of manual'
