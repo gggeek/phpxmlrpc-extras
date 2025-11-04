@@ -70,14 +70,8 @@
                 <section class="phpdocumentor-sidebar__category -packages">
             <h2 class="phpdocumentor-sidebar__category-header">Packages</h2>
                                     <h4 class="phpdocumentor-sidebar__root-namespace">
-    <a href="packages/PHPXMLRPC.html" class="">PHPXMLRPC</a>
+    <a href="packages/PHPXMLRPCEXTRAS.html" class="">PHPXMLRPCEXTRAS</a>
 </h4>
-    <ul class="phpdocumentor-list">
-                    <li>
-                <a href="packages/PHPXMLRPC-EXTRAS.html" class="">EXTRAS</a>
-                
-            </li>
-            </ul>
 
                         </section>
             
@@ -184,6 +178,12 @@
                         &nbsp;: mixed            </span>
 </dt>
 
+            <dt class="phpdocumentor-table-of-contents__entry -property -protected">
+    <a class="" href="classes/PhpXmlRpc-Extras-SelfDocumentingServerTrait.html#property_templates">$templates</a>
+    <span>
+                        &nbsp;: array&lt;string|int, string&gt;            </span>
+</dt>
+
     </dl>
 
 <h4 id="toc-methods">
@@ -192,10 +192,22 @@
 
 </h4>
 <dl class="phpdocumentor-table-of-contents">
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a class="" href="classes/PhpXmlRpc-Extras-SelfDocumentingServerTrait.html#method_setTemplate">setTemplate()</a>
+    <span>
+                                &nbsp;: void    </span>
+</dt>
+
             <dt class="phpdocumentor-table-of-contents__entry -method -protected">
     <a class="" href="classes/PhpXmlRpc-Extras-SelfDocumentingServerTrait.html#method_generateDocs">generateDocs()</a>
     <span>
                                 &nbsp;: string    </span>
+</dt>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -protected">
+    <a class="" href="classes/PhpXmlRpc-Extras-SelfDocumentingServerTrait.html#method_getTemplates">getTemplates()</a>
+    <span>
+                                &nbsp;: array&lt;string|int, mixed&gt;    </span>
 </dt>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -protected">
@@ -326,7 +338,7 @@
      = <span class="phpdocumentor-signature__default-value">&#039;&#039;</span></code>
 
     
-        <section class="phpdocumentor-description"><p>relative path to the visual xmlrpc editing dialog</p>
+        <section class="phpdocumentor-description"><p>relative path to the visual xml-rpc editing dialog</p>
 </section>
 
     
@@ -488,6 +500,44 @@
     
 
 </article>
+                    <article
+        class="
+            phpdocumentor-element
+            -property
+            -protected
+                                                                    "
+>
+    <h4 class="phpdocumentor-element__name" id="property_templates">
+        $templates
+        <a href="classes/PhpXmlRpc-Extras-SelfDocumentingServerTrait.html#property_templates" class="headerlink"><i class="fas fa-link"></i></a>
+
+        <span class="phpdocumentor-element__modifiers">
+                                            </span>
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="SelfDocumentingServerTrait.php"><a href="files/selfdocumentingservertrait.html">SelfDocumentingServerTrait.php</a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">22</span>
+
+    </aside>
+
+    
+    
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+        <span class="phpdocumentor-signature__visibility">protected</span>
+            <span class="phpdocumentor-signature__type">array&lt;string|int, string&gt;</span>
+    <span class="phpdocumentor-signature__name">$templates</span>
+     = <span class="phpdocumentor-signature__default-value">array()</span></code>
+
+    
+    
+    
+
+    
+
+    
+
+</article>
             </section>
 
             <section class="phpdocumentor-methods">
@@ -496,6 +546,57 @@
             <a href="classes/PhpXmlRpc-Extras-SelfDocumentingServerTrait.html#methods" class="headerlink"><i class="fas fa-link"></i></a>
 
         </h3>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="method_setTemplate">
+        setTemplate()
+        <a href="classes/PhpXmlRpc-Extras-SelfDocumentingServerTrait.html#method_setTemplate" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="SelfDocumentingServerTrait.php"><a href="files/selfdocumentingservertrait.html">SelfDocumentingServerTrait.php</a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">74</span>
+
+    </aside>
+
+    
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+                    <span class="phpdocumentor-signature__name">setTemplate</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$name</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$contents</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+    
+        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+    <dl class="phpdocumentor-argument-list">
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$name</span>
+                : <span class="phpdocumentor-signature__argument__return-type">string</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                
+            </dd>
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$contents</span>
+                : <span class="phpdocumentor-signature__argument__return-type">string</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                
+            </dd>
+            </dl>
+
+    
+
+    
+
+    
+</article>
                     <article
         class="phpdocumentor-element
             -method
@@ -510,7 +611,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="SelfDocumentingServerTrait.php"><a href="files/selfdocumentingservertrait.html">SelfDocumentingServerTrait.php</a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">47</span>
+    <span class="phpdocumentor-element-found-in__line">50</span>
 
     </aside>
 
@@ -571,6 +672,44 @@
             -protected
                                                         "
 >
+    <h4 class="phpdocumentor-element__name" id="method_getTemplates">
+        getTemplates()
+        <a href="classes/PhpXmlRpc-Extras-SelfDocumentingServerTrait.html#method_getTemplates" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="SelfDocumentingServerTrait.php"><a href="files/selfdocumentingservertrait.html">SelfDocumentingServerTrait.php</a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">64</span>
+
+    </aside>
+
+    
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">protected</span>
+                    <span class="phpdocumentor-signature__name">getTemplates</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+    
+    
+    
+
+    
+
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;</span>
+            </section>
+
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -protected
+                                                        "
+>
     <h4 class="phpdocumentor-element__name" id="method_handleNonRPCRequest">
         handleNonRPCRequest()
         <a href="classes/PhpXmlRpc-Extras-SelfDocumentingServerTrait.html#method_handleNonRPCRequest" class="headerlink"><i class="fas fa-link"></i></a>
@@ -579,7 +718,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="SelfDocumentingServerTrait.php"><a href="files/selfdocumentingservertrait.html">SelfDocumentingServerTrait.php</a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">21</span>
+    <span class="phpdocumentor-element-found-in__line">24</span>
 
     </aside>
 
@@ -737,12 +876,15 @@
                                             <li class=""><a href="classes/PhpXmlRpc-Extras-SelfDocumentingServerTrait.html#property_supported_doctypes">$supported_doctypes</a></li>
                                             <li class=""><a href="classes/PhpXmlRpc-Extras-SelfDocumentingServerTrait.html#property_supported_langs">$supported_langs</a></li>
                                             <li class=""><a href="classes/PhpXmlRpc-Extras-SelfDocumentingServerTrait.html#property_documentationGenerator">$documentationGenerator</a></li>
+                                            <li class=""><a href="classes/PhpXmlRpc-Extras-SelfDocumentingServerTrait.html#property_templates">$templates</a></li>
                                     </ul>
             </li>
                                     <li class="phpdocumentor-on-this-page-section__title">Methods</li>
             <li>
                 <ul class="phpdocumentor-list -clean">
+                                            <li class=""><a href="classes/PhpXmlRpc-Extras-SelfDocumentingServerTrait.html#method_setTemplate">setTemplate()</a></li>
                                             <li class=""><a href="classes/PhpXmlRpc-Extras-SelfDocumentingServerTrait.html#method_generateDocs">generateDocs()</a></li>
+                                            <li class=""><a href="classes/PhpXmlRpc-Extras-SelfDocumentingServerTrait.html#method_getTemplates">getTemplates()</a></li>
                                             <li class=""><a href="classes/PhpXmlRpc-Extras-SelfDocumentingServerTrait.html#method_handleNonRPCRequest">handleNonRPCRequest()</a></li>
                                     </ul>
             </li>

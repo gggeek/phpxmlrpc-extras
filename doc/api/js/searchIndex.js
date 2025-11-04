@@ -1,35 +1,65 @@
 Search.appendIndex(
     [
                 {
-            "fqsen": "\\PhpXmlRpc\\Extras\\JSRPCServer",
-            "name": "JSRPCServer",
+            "fqsen": "\\PhpXmlRpc\\Extras\\JSJsonRpcServer",
+            "name": "JSJsonRpcServer",
             "summary": "",
-            "url": "classes/PhpXmlRpc-Extras-JSRPCServer.html"
+            "url": "classes/PhpXmlRpc-Extras-JSJsonRpcServer.html"
         },                {
-            "fqsen": "\\PhpXmlRpc\\Extras\\JSRPCServer\u003A\u003A__construct\u0028\u0029",
+            "fqsen": "\\PhpXmlRpc\\Extras\\JSJsonRpcServer\u003A\u003A__construct\u0028\u0029",
             "name": "__construct",
             "summary": "Override\u0020base\u0020class\u0020creator,\u0020since\u0020we\u0020take\u0020care\u0020of\u0020either\u0020executing\u0020or\u0020just\u0020preparing\u0020the\u0020server\u0020\u0028this\u0020means\u0020on\ncreating\u0020class\u0020we\u0020should\u0020either\u0020execute\u002Dand\u002Ddie\u0020or\u0020basically\u0020do\u0020nothing.\u0020Use\u0020\u0024servicenow\u003Dfalse\u0020only\u0020for\u0020debugging\u0029",
-            "url": "classes/PhpXmlRpc-Extras-JSRPCServer.html#method___construct"
+            "url": "classes/PhpXmlRpc-Extras-JSJsonRpcServer.html#method___construct"
         },                {
-            "fqsen": "\\PhpXmlRpc\\Extras\\JSRPCServer\u003A\u003AimportMethods2JS\u0028\u0029",
+            "fqsen": "\\PhpXmlRpc\\Extras\\JSJsonRpcServer\u003A\u003AimportMethods2JS\u0028\u0029",
             "name": "importMethods2JS",
             "summary": "Echo\u0020js\u0020code\u0020that\u0020wraps\u0020calls\u0020to\u0020server.",
-            "url": "classes/PhpXmlRpc-Extras-JSRPCServer.html#method_importMethods2JS"
+            "url": "classes/PhpXmlRpc-Extras-JSJsonRpcServer.html#method_importMethods2JS"
         },                {
-            "fqsen": "\\PhpXmlRpc\\Extras\\JSRPCServer\u003A\u003A\u0024jsLibsPath",
+            "fqsen": "\\PhpXmlRpc\\Extras\\JSJsonRpcServer\u003A\u003A\u0024jsLibsPath",
             "name": "jsLibsPath",
             "summary": "",
-            "url": "classes/PhpXmlRpc-Extras-JSRPCServer.html#property_jsLibsPath"
+            "url": "classes/PhpXmlRpc-Extras-JSJsonRpcServer.html#property_jsLibsPath"
         },                {
-            "fqsen": "\\PhpXmlRpc\\Extras\\JSRPCServer\u003A\u003A\u0024selfUrl",
+            "fqsen": "\\PhpXmlRpc\\Extras\\JSJsonRpcServer\u003A\u003A\u0024selfUrl",
             "name": "selfUrl",
             "summary": "",
-            "url": "classes/PhpXmlRpc-Extras-JSRPCServer.html#property_selfUrl"
+            "url": "classes/PhpXmlRpc-Extras-JSJsonRpcServer.html#property_selfUrl"
         },                {
-            "fqsen": "\\PhpXmlRpc\\Extras\\JSRPCServer\u003A\u003A\u0024jsLibsType",
+            "fqsen": "\\PhpXmlRpc\\Extras\\JSJsonRpcServer\u003A\u003A\u0024jsLibsType",
             "name": "jsLibsType",
             "summary": "",
-            "url": "classes/PhpXmlRpc-Extras-JSRPCServer.html#property_jsLibsType"
+            "url": "classes/PhpXmlRpc-Extras-JSJsonRpcServer.html#property_jsLibsType"
+        },                {
+            "fqsen": "\\PhpXmlRpc\\Extras\\JSRpcServer",
+            "name": "JSRpcServer",
+            "summary": "",
+            "url": "classes/PhpXmlRpc-Extras-JSRpcServer.html"
+        },                {
+            "fqsen": "\\PhpXmlRpc\\Extras\\JSRpcServer\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "Override\u0020base\u0020class\u0020creator,\u0020since\u0020we\u0020take\u0020care\u0020of\u0020either\u0020executing\u0020or\u0020just\u0020preparing\u0020the\u0020server\u0020\u0028this\u0020means\u0020on\ncreating\u0020class\u0020we\u0020should\u0020either\u0020execute\u002Dand\u002Ddie\u0020or\u0020basically\u0020do\u0020nothing.\u0020Use\u0020\u0024servicenow\u003Dfalse\u0020only\u0020for\u0020debugging\u0029",
+            "url": "classes/PhpXmlRpc-Extras-JSRpcServer.html#method___construct"
+        },                {
+            "fqsen": "\\PhpXmlRpc\\Extras\\JSRpcServer\u003A\u003AimportMethods2JS\u0028\u0029",
+            "name": "importMethods2JS",
+            "summary": "Echo\u0020js\u0020code\u0020that\u0020wraps\u0020calls\u0020to\u0020server.",
+            "url": "classes/PhpXmlRpc-Extras-JSRpcServer.html#method_importMethods2JS"
+        },                {
+            "fqsen": "\\PhpXmlRpc\\Extras\\JSRpcServer\u003A\u003A\u0024jsLibsPath",
+            "name": "jsLibsPath",
+            "summary": "",
+            "url": "classes/PhpXmlRpc-Extras-JSRpcServer.html#property_jsLibsPath"
+        },                {
+            "fqsen": "\\PhpXmlRpc\\Extras\\JSRpcServer\u003A\u003A\u0024selfUrl",
+            "name": "selfUrl",
+            "summary": "",
+            "url": "classes/PhpXmlRpc-Extras-JSRpcServer.html#property_selfUrl"
+        },                {
+            "fqsen": "\\PhpXmlRpc\\Extras\\JSRpcServer\u003A\u003A\u0024jsLibsType",
+            "name": "jsLibsType",
+            "summary": "",
+            "url": "classes/PhpXmlRpc-Extras-JSRpcServer.html#property_jsLibsType"
         },                {
             "fqsen": "\\PhpXmlRpc\\Extras\\JSWrapper",
             "name": "JSWrapper",
@@ -48,7 +78,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\PhpXmlRpc\\Extras\\JSWrapper\u003A\u003AwrapXmlrpcServer\u0028\u0029",
             "name": "wrapXmlrpcServer",
-            "summary": "Return\u0020js\u0020code\u0020providing\u0020functions\u0020to\u0020call\u0020all\u0020methods\u0020of\u0020an\u0020xmlrpc\u0020server.",
+            "summary": "Return\u0020js\u0020code\u0020providing\u0020functions\u0020to\u0020call\u0020all\u0020methods\u0020of\u0020an\u0020xml\u002Drpc\u0020server.",
             "url": "classes/PhpXmlRpc-Extras-JSWrapper.html#method_wrapXmlrpcServer"
         },                {
             "fqsen": "\\PhpXmlRpc\\Extras\\JSWrapper\u003A\u003AwrapDispatchMap\u0028\u0029",
@@ -106,15 +136,15 @@ Search.appendIndex(
             "summary": "Override\u0020service\u0020method\u003A\n\u0020\u0020in\u0020case\u0020of\u0020GET\u0020requests\u0020show\u0020docs\u0020about\u0020implemented\u0020methods\u003B\n\u0020\u0020in\u0020case\u0020of\u0020POST\u0020received\u0020by\u0020a\u0020form,\u0020we\u0020use\u0020the\u0020methodCall\u0020input\u0020value\u0020as\u0020if\u0020it\u0020had\u0020been\u0020sent\u0020with\u0020a\u0020tex\/xml\u0020mimetype",
             "url": "classes/PhpXmlRpc-Extras-SelfDocumentingJsonRpcServer.html#method_service"
         },                {
-            "fqsen": "\\PhpXmlRpc\\Extras\\SelfDocumentingJsonRpcServer\u003A\u003AgenerateDocs\u0028\u0029",
-            "name": "generateDocs",
+            "fqsen": "\\PhpXmlRpc\\Extras\\SelfDocumentingJsonRpcServer\u003A\u003AgetTemplates\u0028\u0029",
+            "name": "getTemplates",
             "summary": "",
-            "url": "classes/PhpXmlRpc-Extras-SelfDocumentingJsonRpcServer.html#method_generateDocs"
+            "url": "classes/PhpXmlRpc-Extras-SelfDocumentingJsonRpcServer.html#method_getTemplates"
         },                {
-            "fqsen": "\\PhpXmlRpc\\Extras\\SelfDocumentingJsonRpcServer\u003A\u003A\u0024templates",
-            "name": "templates",
+            "fqsen": "\\PhpXmlRpc\\Extras\\SelfDocumentingJsonRpcServer\u003A\u003A\u0024_templates",
+            "name": "_templates",
             "summary": "",
-            "url": "classes/PhpXmlRpc-Extras-SelfDocumentingJsonRpcServer.html#property_templates"
+            "url": "classes/PhpXmlRpc-Extras-SelfDocumentingJsonRpcServer.html#property__templates"
         },                {
             "fqsen": "\\PhpXmlRpc\\Extras\\SelfDocumentingServer",
             "name": "SelfDocumentingServer",
@@ -140,6 +170,16 @@ Search.appendIndex(
             "name": "generateDocs",
             "summary": "",
             "url": "classes/PhpXmlRpc-Extras-SelfDocumentingServerTrait.html#method_generateDocs"
+        },                {
+            "fqsen": "\\PhpXmlRpc\\Extras\\SelfDocumentingServerTrait\u003A\u003AgetTemplates\u0028\u0029",
+            "name": "getTemplates",
+            "summary": "",
+            "url": "classes/PhpXmlRpc-Extras-SelfDocumentingServerTrait.html#method_getTemplates"
+        },                {
+            "fqsen": "\\PhpXmlRpc\\Extras\\SelfDocumentingServerTrait\u003A\u003AsetTemplate\u0028\u0029",
+            "name": "setTemplate",
+            "summary": "",
+            "url": "classes/PhpXmlRpc-Extras-SelfDocumentingServerTrait.html#method_setTemplate"
         },                {
             "fqsen": "\\PhpXmlRpc\\Extras\\SelfDocumentingServerTrait\u003A\u003A\u0024default_doctype",
             "name": "default_doctype",
@@ -175,6 +215,11 @@ Search.appendIndex(
             "name": "documentationGenerator",
             "summary": "",
             "url": "classes/PhpXmlRpc-Extras-SelfDocumentingServerTrait.html#property_documentationGenerator"
+        },                {
+            "fqsen": "\\PhpXmlRpc\\Extras\\SelfDocumentingServerTrait\u003A\u003A\u0024templates",
+            "name": "templates",
+            "summary": "",
+            "url": "classes/PhpXmlRpc-Extras-SelfDocumentingServerTrait.html#property_templates"
         },                {
             "fqsen": "\\PhpXmlRpc\\Extras\\ServerDocumentor",
             "name": "ServerDocumentor",
