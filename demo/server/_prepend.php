@@ -18,5 +18,5 @@ if (file_exists(__DIR__ . '/../../../../../vendor/autoload.php')) {
 if (isset($_SERVER['HTTPSERVER'])) {
     define('XMLRPCSERVER', 'http://'.$_SERVER['HTTPSERVER'].'/demo/server/docServer.php');
 } else {
-    define('XMLRPCSERVER', 'http://gggeek.altervista.org/sw/xmlrpc/demo/server/server.php');
+    define('XMLRPCSERVER', 'http://tanoconsulting.com/sw/xmlrpc/demo/server/server.php');
 }

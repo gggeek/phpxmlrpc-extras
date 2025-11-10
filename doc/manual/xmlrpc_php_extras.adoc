@@ -116,7 +116,7 @@ $s->service();
 
 === files
 
-* `proxyServer.php`: demo of a simple xml-rpc service acting as proxy to the webservices of gggeek.altervista.org
+* `proxyServer.php`: demo of a simple xml-rpc service acting as proxy to the webservices of tanoconsulting.com
 * `ReverseProxy.php`: xml-rpc proxy server class definition
 
 === usage

@@ -3,6 +3,8 @@
 - fixed: the `_prepend.php` file used by the demos would not locate the php autoloader when the library is installed as
   dependency. Same for demo files `docServer.php` and `docServerJsonRpc.php`.
 
+- improved: moved the public demo servers from altervista.org to tanoconsulting.com
+
 
 ## XML-RPC for PHP EXTRAS version 1.0 - 2025-11-4
 

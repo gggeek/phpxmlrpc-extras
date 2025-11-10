@@ -20,7 +20,7 @@ class extrasArgParser
             'HTTPSSERVER' => 'localhost',
             'HTTPSURI' => null,
             // example alternative:
-            //'HTTPSSERVER' => 'gggeek.altervista.org',
+            //'HTTPSSERVER' => 'tanoconsulting.com',
             //'HTTPSURI' => '/sw/phpxmlrpc/extras',
             'HTTPSIGNOREPEER' => false,
             'HTTPSVERIFYHOST' => 2,
