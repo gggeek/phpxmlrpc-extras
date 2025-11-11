@@ -1,12 +1,14 @@
-## XML-RPC for PHP EXTRAS version 1.XX - unreleased
+## XML-RPC for PHP EXTRAS version 1.0.1 - 2025/11/11
 
 - fixed: the `_prepend.php` file used by the demos would not locate the php autoloader when the library is installed as
   dependency. Same for demo files `docServer.php` and `docServerJsonRpc.php`.
 
 - improved: moved the public demo servers from altervista.org to tanoconsulting.com
 
+- improved: separated the demo files into their own tarball
 
-## XML-RPC for PHP EXTRAS version 1.0 - 2025-11-4
+
+## XML-RPC for PHP EXTRAS version 1.0 - 2025/11/4
 
 - improved: added CI testing on php 8.4, 8.5. Default the local testing container to using PHP 8.1 on Ubuntu Jammy
 

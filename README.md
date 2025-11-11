@@ -1,24 +1,19 @@
 PHPXMLRPC Extras
 ================
 
-## DESCRIPTION
+## Description
   A collection of server addons that might be of use for development of xml-rpc (and json-rpc) based applications
 
 
-## REQUIREMENTS
+## Requirements
 
   * PHP 5.4 or newer
   * phpxmlrpc/phpxmlrpc 4.10.1 or newer
 
-
-## API DOCUMENTATION
-  documentation can be found in the doc/ directory. _NB_ the manual is quite outdated.
-
-
-## COPYRIGHT:
+## Copyright
   Use of this software is subject to the terms in [license.txt](license.txt)
 
-## INCLUDED CLASSES
+## Short list of included classes
 
 ### JSRpcServer, JsJsonRpcServer, JSWrapper
   Ajaxified version of the  lib: support executing xml-rpc/json-rpc calls directly from the client browser
@@ -31,6 +26,18 @@ PHPXMLRPC Extras
 ### ReverseProxy:
   Subclass of the xml-rpc server that can act as remote (transparent) xml-rpc proxy to forward calls to a remote server.
   Can either forward any received call or probe remote server first for existing methods.
+
+
+## API documentation
+Documentation can be found in the doc/ directory. _NB_ the manual is quite outdated.
+
+You are encouraged to look also at the code examples found in the demo/ directory.
+
+Note: to reduce the size of the download, the demo files are not part of the default package installed with Composer.
+You can either check them out online at https://github.com/gggeek/phpxmlrpc-extras/tree/master/demo, download them as
+a separate tarball from https://github.com/gggeek/phpxmlrpc-extras/releases or make sure they are available locally
+by installing the library using Composer option `--prefer-install=source`. Whatever the method chosen, make sure that
+the demo folder is not directly accessible from the internet, i.e. it is not within the webserver root directory).
 
 
 ## Running tests

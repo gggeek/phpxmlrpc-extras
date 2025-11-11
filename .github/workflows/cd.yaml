@@ -79,7 +79,7 @@ jobs:
             -   name: create release assets
                 #if: ${{ github.ref_type == 'tag' && startsWith(github.ref_name, '4.') }}
                 run: |
-                    #tar -cvzf demofiles.tgz demo
+                    tar -cvzf demofiles.tgz demo
                     tail -n+2 NEWS.md | sed '/## JSON-RPC for PHP version/Q' >> announcement.txt
 
             -   name: create release on github
@@ -87,8 +87,8 @@ jobs:
                 uses: softprops/action-gh-release@v1
                 with:
                     body_path: announcement.txt
-                    #files: |
-                    #    demofiles.tgz
+                    files: |
+                        demofiles.tgz
 
             # update github pages with release info
             -   name: update website with info about the latest release
