@@ -104,3 +104,24 @@ jobs:
                     git commit -m 'update index page with latest release'
                     git push
                     git checkout ${{ github.ref_name }}
+
+    deploy_to_tanoconsulting_dot_com:
+        if: ${{ startsWith(github.ref_name, '4.') && !(contains(github.ref_name, 'alpha') || contains(github.ref_name, 'beta') || contains(github.ref_name, 'rc')) }}
+        runs-on: ubuntu-latest
+        steps:
+            -   name: create canary file
+                run: |
+                    mkdir canary
+                    touch canary/please_update.txt
+
+            -   name: upload canary file to tanoconsulting.com
+                #if: ${{ github.ref_type == 'tag' && startsWith(github.ref_name, '4.') }}
+                uses: SamKirkland/FTP-Deploy-Action@v4.3.6
+                with:
+                    server: ftp.tanoconsulting.com
+                    username: ${{ secrets.ftp_tanoconsulting_com_user }}
+                    password: ${{ secrets.ftp_tanoconsulting_com_password }}
+                    #protocol: ftps
+                    local-dir: ./canary/
+                    #server-dir: ./
+                    #log-level: verbose
