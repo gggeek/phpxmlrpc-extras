@@ -106,7 +106,7 @@ jobs:
                     git checkout ${{ github.ref_name }}
 
     deploy_to_tanoconsulting_dot_com:
-        if: ${{ startsWith(github.ref_name, '4.') && !(contains(github.ref_name, 'alpha') || contains(github.ref_name, 'beta') || contains(github.ref_name, 'rc')) }}
+        if: ${{ startsWith(github.ref_name, '1.') && !(contains(github.ref_name, 'alpha') || contains(github.ref_name, 'beta') || contains(github.ref_name, 'rc')) }}
         runs-on: ubuntu-latest
         steps:
             -   name: create canary file
