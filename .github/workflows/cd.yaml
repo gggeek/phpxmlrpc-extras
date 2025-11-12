@@ -80,7 +80,7 @@ jobs:
                 #if: ${{ github.ref_type == 'tag' && startsWith(github.ref_name, '4.') }}
                 run: |
                     tar -cvzf demofiles.tgz demo
-                    tail -n+2 NEWS.md | sed '/## JSON-RPC for PHP version/Q' >> announcement.txt
+                    tail -n+2 NEWS.md | sed '/## XML-RPC for PHP EXTRAS version/Q' >> announcement.txt
 
             -   name: create release on github
                 #if: ${{ github.ref_type == 'tag' && startsWith(github.ref_name, '4.') }}
@@ -89,6 +89,7 @@ jobs:
                     body_path: announcement.txt
                     files: |
                         demofiles.tgz
+                        doc/manual/xmlrpc_php_extras.pdf
 
             # update github pages with release info
             -   name: update website with info about the latest release
